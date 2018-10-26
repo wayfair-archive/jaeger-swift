@@ -1,0 +1,440 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		66541CC5217F6698001E088D /* Jaeger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66541CBB217F6698001E088D /* Jaeger.framework */; };
+		66541CCA217F6698001E088D /* JaegerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66541CC9217F6698001E088D /* JaegerTests.swift */; };
+		79E4CF9F218111F700273142 /* Jaeger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E4CF9B218111F700273142 /* Jaeger.swift */; };
+		79E4CFC02181185500273142 /* Jaeger.h in Headers */ = {isa = PBXBuildFile; fileRef = 79E4CFBB2181167E00273142 /* Jaeger.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		66541CC6217F6698001E088D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 66541CB0217F666E001E088D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 66541CBA217F6698001E088D;
+			remoteInfo = Jaeger;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		66541CBB217F6698001E088D /* Jaeger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Jaeger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		66541CC4217F6698001E088D /* JaegerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JaegerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		66541CC9217F6698001E088D /* JaegerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JaegerTests.swift; sourceTree = "<group>"; };
+		79CC1D6A21836FA2000A00C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		79CC1D6D21836FA2000A00C2 /* CompilerWarnings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = CompilerWarnings.xcconfig; sourceTree = "<group>"; };
+		79CC1D6E21836FA2000A00C2 /* CodeSigning.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = CodeSigning.xcconfig; sourceTree = "<group>"; };
+		79CC1D6F21836FA2000A00C2 /* Target.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Target.xcconfig; sourceTree = "<group>"; };
+		79CC1D7021836FA2000A00C2 /* Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
+		79CC1D8C21837BF8000A00C2 /* Framework.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Framework.xcconfig; sourceTree = "<group>"; };
+		79CC1D8D2183805A000A00C2 /* XCTest.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = XCTest.xcconfig; sourceTree = "<group>"; };
+		79CC1D8E2183811C000A00C2 /* Jaeger.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Jaeger.xcconfig; path = xcconfigs/Jaeger.xcconfig; sourceTree = SOURCE_ROOT; };
+		79CC1D8F2183875B000A00C2 /* JaegerTests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = JaegerTests.xcconfig; sourceTree = "<group>"; };
+		79E4CF6C21801D4800273142 /* Supporting Files */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Supporting Files"; sourceTree = "<group>"; };
+		79E4CF9B218111F700273142 /* Jaeger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Jaeger.swift; sourceTree = "<group>"; };
+		79E4CFBB2181167E00273142 /* Jaeger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Jaeger.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		66541CB8217F6698001E088D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66541CC1217F6698001E088D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66541CC5217F6698001E088D /* Jaeger.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		66541CAF217F666E001E088D = {
+			isa = PBXGroup;
+			children = (
+				79E4CF92218111DC00273142 /* Sources */,
+				79E4CF8A2180F9A900273142 /* Tests */,
+				66541CBC217F6698001E088D /* Products */,
+				79CC1D6921836FA2000A00C2 /* Supporting Files */,
+				79CC1D6B21836FA2000A00C2 /* xcconfigs */,
+			);
+			sourceTree = "<group>";
+		};
+		66541CBC217F6698001E088D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				66541CBB217F6698001E088D /* Jaeger.framework */,
+				66541CC4217F6698001E088D /* JaegerTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		66541CC8217F6698001E088D /* JaegerTests */ = {
+			isa = PBXGroup;
+			children = (
+				66541CC9217F6698001E088D /* JaegerTests.swift */,
+				79E4CF6C21801D4800273142 /* Supporting Files */,
+			);
+			path = JaegerTests;
+			sourceTree = "<group>";
+		};
+		79CC1D6921836FA2000A00C2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				79CC1D6A21836FA2000A00C2 /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		79CC1D6B21836FA2000A00C2 /* xcconfigs */ = {
+			isa = PBXGroup;
+			children = (
+				79CC1D6C21836FA2000A00C2 /* Shared */,
+				79CC1D7021836FA2000A00C2 /* Project.xcconfig */,
+				79CC1D8E2183811C000A00C2 /* Jaeger.xcconfig */,
+				79CC1D8F2183875B000A00C2 /* JaegerTests.xcconfig */,
+			);
+			path = xcconfigs;
+			sourceTree = "<group>";
+		};
+		79CC1D6C21836FA2000A00C2 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				79CC1D6D21836FA2000A00C2 /* CompilerWarnings.xcconfig */,
+				79CC1D6E21836FA2000A00C2 /* CodeSigning.xcconfig */,
+				79CC1D6F21836FA2000A00C2 /* Target.xcconfig */,
+				79CC1D8C21837BF8000A00C2 /* Framework.xcconfig */,
+				79CC1D8D2183805A000A00C2 /* XCTest.xcconfig */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		79E4CF8A2180F9A900273142 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				66541CC8217F6698001E088D /* JaegerTests */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		79E4CF92218111DC00273142 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				79E4CF93218111F700273142 /* Jaeger */,
+				79E4CFB12181123E00273142 /* OpenTracing */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+		79E4CF93218111F700273142 /* Jaeger */ = {
+			isa = PBXGroup;
+			children = (
+				79E4CF94218111F700273142 /* Formatters */,
+				79E4CF95218111F700273142 /* Models */,
+				79E4CF97218111F700273142 /* Extensions */,
+				79E4CF9A218111F700273142 /* Protocols */,
+				79E4CF9B218111F700273142 /* Jaeger.swift */,
+				79E4CFBB2181167E00273142 /* Jaeger.h */,
+			);
+			name = Jaeger;
+			path = Sources/Jaeger/Jaeger;
+			sourceTree = "<group>";
+		};
+		79E4CF94218111F700273142 /* Formatters */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Formatters;
+			sourceTree = "<group>";
+		};
+		79E4CF95218111F700273142 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		79E4CF97218111F700273142 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		79E4CF9A218111F700273142 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		79E4CFB12181123E00273142 /* OpenTracing */ = {
+			isa = PBXGroup;
+			children = (
+				79E4CFB22181123E00273142 /* Formatters */,
+				79E4CFB32181123E00273142 /* Models */,
+				79E4CFB62181123E00273142 /* Extensions */,
+				79E4CFB72181123E00273142 /* Protocols */,
+			);
+			name = OpenTracing;
+			path = Sources/Jaeger/OpenTracing;
+			sourceTree = "<group>";
+		};
+		79E4CFB22181123E00273142 /* Formatters */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Formatters;
+			sourceTree = "<group>";
+		};
+		79E4CFB32181123E00273142 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		79E4CFB62181123E00273142 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		79E4CFB72181123E00273142 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		66541CB6217F6698001E088D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79E4CFC02181185500273142 /* Jaeger.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		66541CBA217F6698001E088D /* Jaeger */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 66541CD1217F6698001E088D /* Build configuration list for PBXNativeTarget "Jaeger" */;
+			buildPhases = (
+				66541CB6217F6698001E088D /* Headers */,
+				66541CB7217F6698001E088D /* Sources */,
+				66541CB8217F6698001E088D /* Frameworks */,
+				66541CB9217F6698001E088D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Jaeger;
+			productName = Jaeger;
+			productReference = 66541CBB217F6698001E088D /* Jaeger.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		66541CC3217F6698001E088D /* JaegerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 66541CD2217F6698001E088D /* Build configuration list for PBXNativeTarget "JaegerTests" */;
+			buildPhases = (
+				66541CC0217F6698001E088D /* Sources */,
+				66541CC1217F6698001E088D /* Frameworks */,
+				66541CC2217F6698001E088D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				66541CC7217F6698001E088D /* PBXTargetDependency */,
+			);
+			name = JaegerTests;
+			productName = JaegerTests;
+			productReference = 66541CC4217F6698001E088D /* JaegerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		66541CB0217F666E001E088D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1000;
+				LastUpgradeCheck = 1000;
+				TargetAttributes = {
+					66541CBA217F6698001E088D = {
+						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1000;
+					};
+					66541CC3217F6698001E088D = {
+						CreatedOnToolsVersion = 10.0;
+					};
+				};
+			};
+			buildConfigurationList = 66541CB3217F666E001E088D /* Build configuration list for PBXProject "Jaeger" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 66541CAF217F666E001E088D;
+			productRefGroup = 66541CBC217F6698001E088D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				66541CBA217F6698001E088D /* Jaeger */,
+				66541CC3217F6698001E088D /* JaegerTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		66541CB9217F6698001E088D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66541CC2217F6698001E088D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		66541CB7217F6698001E088D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79E4CF9F218111F700273142 /* Jaeger.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66541CC0217F6698001E088D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66541CCA217F6698001E088D /* JaegerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		66541CC7217F6698001E088D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 66541CBA217F6698001E088D /* Jaeger */;
+			targetProxy = 66541CC6217F6698001E088D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		66541CB4217F666E001E088D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 79CC1D7021836FA2000A00C2 /* Project.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+			};
+			name = Debug;
+		};
+		66541CB5217F666E001E088D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 79CC1D7021836FA2000A00C2 /* Project.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+			};
+			name = Release;
+		};
+		66541CCD217F6698001E088D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 79CC1D8E2183811C000A00C2 /* Jaeger.xcconfig */;
+			buildSettings = {
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		66541CCE217F6698001E088D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 79CC1D8E2183811C000A00C2 /* Jaeger.xcconfig */;
+			buildSettings = {
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
+		66541CCF217F6698001E088D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 79CC1D8F2183875B000A00C2 /* JaegerTests.xcconfig */;
+			buildSettings = {
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		66541CD0217F6698001E088D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 79CC1D8F2183875B000A00C2 /* JaegerTests.xcconfig */;
+			buildSettings = {
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		66541CB3217F666E001E088D /* Build configuration list for PBXProject "Jaeger" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66541CB4217F666E001E088D /* Debug */,
+				66541CB5217F666E001E088D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		66541CD1217F6698001E088D /* Build configuration list for PBXNativeTarget "Jaeger" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66541CCD217F6698001E088D /* Debug */,
+				66541CCE217F6698001E088D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		66541CD2217F6698001E088D /* Build configuration list for PBXNativeTarget "JaegerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66541CCF217F6698001E088D /* Debug */,
+				66541CD0217F6698001E088D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 66541CB0217F666E001E088D /* Project object */;
+}

@@ -1,0 +1,16 @@
+#include "Shared/Framework.xcconfig"
+
+PRODUCT_NAME = $(TARGET_NAME)
+PRODUCT_BUNDLE_IDENTIFIER = com.wayfair.$(TARGET_NAME)
+
+// As of Xcode 9F2000, the Swift Migrator doesn’t respect any `SWIFT_VERSION` from `xcconfig` files. So, until said improvement, manually duplicate the value below in ../Jaeger.xcodeproj/project.pbxproj
+// SWIFT_VERSION = 4.2
+
+MACH_O_TYPE = staticlib
+
+TARGETED_DEVICE_FAMILY = 1,2
+IPHONEOS_DEPLOYMENT_TARGET = 9.0
+
+INFOPLIST_FILE = Supporting Files/Info.plist
+PRODUCT_BUNDLE_IDENTIFIER = com.wayfair.Jaeger
+PRODUCT_NAME = $(TARGET_NAME:c99extidentifier)
