@@ -20,7 +20,6 @@
 		3286EF412187975500A07DDB /* OTSpan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3286EF402187975500A07DDB /* OTSpan.swift */; };
 		66541CC5217F6698001E088D /* Jaeger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66541CBB217F6698001E088D /* Jaeger.framework */; };
 		66541CCA217F6698001E088D /* JaegerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66541CC9217F6698001E088D /* JaegerTests.swift */; };
-		79E4CF9F218111F700273142 /* Jaeger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E4CF9B218111F700273142 /* Jaeger.swift */; };
 		79E4CFC02181185500273142 /* Jaeger.h in Headers */ = {isa = PBXBuildFile; fileRef = 79E4CFBB2181167E00273142 /* Jaeger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
@@ -59,7 +58,6 @@
 		79CC1D8E2183811C000A00C2 /* Jaeger.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Jaeger.xcconfig; path = xcconfigs/Jaeger.xcconfig; sourceTree = SOURCE_ROOT; };
 		79CC1D8F2183875B000A00C2 /* JaegerTests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = JaegerTests.xcconfig; sourceTree = "<group>"; };
 		79E4CF6C21801D4800273142 /* Supporting Files */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Supporting Files"; sourceTree = "<group>"; };
-		79E4CF9B218111F700273142 /* Jaeger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Jaeger.swift; sourceTree = "<group>"; };
 		79E4CFBB2181167E00273142 /* Jaeger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Jaeger.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -174,7 +172,6 @@
 				79E4CF95218111F700273142 /* Models */,
 				79E4CF97218111F700273142 /* Extensions */,
 				79E4CF9A218111F700273142 /* Protocols */,
-				79E4CF9B218111F700273142 /* Jaeger.swift */,
 				79E4CFBB2181167E00273142 /* Jaeger.h */,
 			);
 			name = Jaeger;
@@ -373,7 +370,6 @@
 				3286EF302187942200A07DDB /* JaegerTag.swift in Sources */,
 				3286EF322187945300A07DDB /* JaegerSpan.swift in Sources */,
 				3286EF372187956800A07DDB /* Tag.swift in Sources */,
-				79E4CF9F218111F700273142 /* Jaeger.swift in Sources */,
 				3286EF3B218795A300A07DDB /* Span.swift in Sources */,
 				3286EF2C218793E200A07DDB /* TimeInterval+Extensions.swift in Sources */,
 				3286EF412187975500A07DDB /* OTSpan.swift in Sources */,
