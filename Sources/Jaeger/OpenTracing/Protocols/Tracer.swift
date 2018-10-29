@@ -1,0 +1,80 @@
+//
+//  Tracer.swift
+//  Jaeger
+//
+//  Created by Simon-Pierre Roy on 10/29/18.
+//
+
+import Foundation
+
+/**
+ An interface representing chosen functionalities of the OpenTracing Tracer specifications. Any class implementing this interface should be able to create and relay spans.
+ 
+ Usually a Tracer should be able to transfer spans across process boundaries. In this implementation, the tracer will only be able to create spans and relay them to another system responsible for communication.
+ */
+public protocol Tracer: class {
+    /**
+     A point of entry the crete a start a new span wrapped in an OTSpan.
+     
+     - Parameter operationName: A human-readable string which concisely represents the work done by the Span. See [OpenTracing Semantic Specification](https://opentracing.io/specification/) for the naming conventions.
+     - Parameter references: The relationship to a node (span).
+     - Parameter startTime: The time at which the task was started.
+     - Parameter tags: Tags to be included at the creation of the span.
+     
+     - Returns: A new `Span` wrapped in an OTSpan.
+     */
+    func startSpan(operationName: String, references: Span.Reference?, startTime: Date, tags: [Tag]) -> OTSpan
+    /**
+     Transfer a **completed** span to the tracer.
+     
+     - Parameter span: A **completed** span.
+     
+     The span should be completed before being reported to the tracer. Common implementation of a Tracer should reject incomplete span.
+     */
+    func report(span: Span)
+}
+
+extension Tracer {
+    /**
+     A point of entry the crete a start a new span wrapped in an OTSpan.
+     
+     - Parameter operationName: A human-readable string which concisely represents the work done by the Span. See [OpenTracing Semantic Specification](https://opentracing.io/specification/) for the naming conventions.
+     - Parameter childOf: The parent node (span) .
+     - Parameter startTime: The time at which the task was started.
+     - Parameter tags: Tags to be included at the creation of the span.
+     
+     - Returns: A new `Span` (wrapped in an OTSpan) with a `childOf` relationship.
+     */
+    public func startSpan(operationName: String, childOf parent: Span.Context, startTime: Date = Date(), tags: [Tag] = []) -> OTSpan {
+        let reference = Span.Reference(refType: .childOf, context: parent)
+        return startSpan(operationName: operationName, references: reference, startTime: startTime, tags: tags)
+    }
+    
+    /**
+     A point of entry the crete a start a new span wrapped in an OTSpan.
+     
+     - Parameter operationName: A human-readable string which concisely represents the work done by the Span. See [OpenTracing Semantic Specification](https://opentracing.io/specification/) for the naming conventions.
+     - Parameter followsFrom: The parent node (span) .
+     - Parameter startTime: The time at which the task was started.
+     - Parameter tags: Tags to be included at the creation of the span.
+     
+     - Returns: A new `Span` (wrapped in an OTSpan) with a `followsFrom` relationship.
+     */
+    public func startSpan(operationName: String, followsFrom parent: Span.Context, startTime: Date = Date(), tags: [Tag] = []) -> OTSpan {
+        let reference = Span.Reference(refType: .followsFrom, context: parent)
+        return startSpan(operationName: operationName, references: reference, startTime: startTime, tags: tags)
+    }
+    
+    /**
+     A point of entry the crete a start a new span wrapped in an OTSpan.
+     
+     - Parameter operationName: A human-readable string which concisely represents the work done by the Span. See [OpenTracing Semantic Specification](https://opentracing.io/specification/) for the naming conventions.
+     - Parameter startTime: The time at which the task was started.
+     - Parameter tags: Tags to be included at the creation of the span.
+     
+     - Returns: A new `Span` (wrapped in an OTSpan) with no relationship. This is a root node.
+     */
+    public func startRootSpan(operationName: String, startTime: Date = Date(), tags: [Tag] = []) -> OTSpan {
+        return startSpan(operationName: operationName, references: nil, startTime: startTime, tags: tags)
+    }
+}
