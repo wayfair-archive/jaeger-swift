@@ -27,6 +27,6 @@ struct JaegerLog: Codable {
     
     /// The time at which the event occurred with Unix time in microseconds.
     let timestamp: Int64
-    // An arbitrary set of tags.
+    /// An arbitrary set of tags.
     let fields: [JaegerTag]
 }

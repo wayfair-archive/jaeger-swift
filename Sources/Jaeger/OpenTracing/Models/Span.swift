@@ -77,7 +77,7 @@ public struct Span {
         public enum ReferenceType: String {
             /// A span that depends on a child Span in some capacity.
             case childOf
-            // A span that does not depend in any way on the result of a child.
+            /// A span that does not depend in any way on the result of a child.
             case followsFrom
         }
         
