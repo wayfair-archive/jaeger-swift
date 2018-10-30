@@ -10,7 +10,7 @@ import Foundation
 /**
  An event that occurred at a specific point in time with the information stored as **key:value** pairs.
  */
-public struct Log {
+public struct Log: Equatable {
     
     /**
      Creates a new tag from a log event.

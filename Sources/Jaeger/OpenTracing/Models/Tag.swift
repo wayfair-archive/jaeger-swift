@@ -25,7 +25,7 @@ import Foundation
  
  ````
  */
-public struct Tag {
+public struct Tag: Equatable  {
     /// The allowed key type for a tag.
     public typealias Key = String
     
@@ -40,7 +40,7 @@ public struct Tag {
      case binary(Binary)
      ````
      */
-    public enum TagType {
+    public enum TagType: Equatable {
         ///  A swift String
         case string(String)
         ///  A swift Double

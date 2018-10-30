@@ -13,6 +13,6 @@ typealias MicroSeconds = Double
 extension TimeInterval {
     /// A time interval expressed in microseconds.
     var microseconds: MicroSeconds {
-        return self * 10e6
+        return self * 1e6
     }
 }

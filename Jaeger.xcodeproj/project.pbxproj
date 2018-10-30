@@ -18,8 +18,11 @@
 		3286EF3D218795EA00A07DDB /* UUID+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3286EF3C218795EA00A07DDB /* UUID+Extensions.swift */; };
 		3286EF3F2187966E00A07DDB /* Tracer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3286EF3E2187966E00A07DDB /* Tracer.swift */; };
 		3286EF412187975500A07DDB /* OTSpan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3286EF402187975500A07DDB /* OTSpan.swift */; };
+		328FABDE21889973006C0A89 /* TestUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328FABDD21889973006C0A89 /* TestUtilities.swift */; };
+		328FABE02188C1DD006C0A89 /* JaegerExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328FABDF2188C1DD006C0A89 /* JaegerExtensionsTests.swift */; };
+		328FABE22188D73B006C0A89 /* JaegerModelsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328FABE12188D73B006C0A89 /* JaegerModelsTests.swift */; };
 		66541CC5217F6698001E088D /* Jaeger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66541CBB217F6698001E088D /* Jaeger.framework */; };
-		66541CCA217F6698001E088D /* JaegerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66541CC9217F6698001E088D /* JaegerTests.swift */; };
+		66541CCA217F6698001E088D /* OTModelsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66541CC9217F6698001E088D /* OTModelsTests.swift */; };
 		79E4CFC02181185500273142 /* Jaeger.h in Headers */ = {isa = PBXBuildFile; fileRef = 79E4CFBB2181167E00273142 /* Jaeger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
@@ -45,9 +48,12 @@
 		3286EF3C218795EA00A07DDB /* UUID+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UUID+Extensions.swift"; sourceTree = "<group>"; };
 		3286EF3E2187966E00A07DDB /* Tracer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracer.swift; sourceTree = "<group>"; };
 		3286EF402187975500A07DDB /* OTSpan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTSpan.swift; sourceTree = "<group>"; };
+		328FABDD21889973006C0A89 /* TestUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUtilities.swift; sourceTree = "<group>"; };
+		328FABDF2188C1DD006C0A89 /* JaegerExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JaegerExtensionsTests.swift; sourceTree = "<group>"; };
+		328FABE12188D73B006C0A89 /* JaegerModelsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JaegerModelsTests.swift; sourceTree = "<group>"; };
 		66541CBB217F6698001E088D /* Jaeger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Jaeger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		66541CC4217F6698001E088D /* JaegerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JaegerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		66541CC9217F6698001E088D /* JaegerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JaegerTests.swift; sourceTree = "<group>"; };
+		66541CC9217F6698001E088D /* OTModelsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTModelsTests.swift; sourceTree = "<group>"; };
 		79CC1D6A21836FA2000A00C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		79CC1D6D21836FA2000A00C2 /* CompilerWarnings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = CompilerWarnings.xcconfig; sourceTree = "<group>"; };
 		79CC1D6E21836FA2000A00C2 /* CodeSigning.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = CodeSigning.xcconfig; sourceTree = "<group>"; };
@@ -111,7 +117,10 @@
 		66541CC8217F6698001E088D /* JaegerTests */ = {
 			isa = PBXGroup;
 			children = (
-				66541CC9217F6698001E088D /* JaegerTests.swift */,
+				328FABDD21889973006C0A89 /* TestUtilities.swift */,
+				66541CC9217F6698001E088D /* OTModelsTests.swift */,
+				328FABDF2188C1DD006C0A89 /* JaegerExtensionsTests.swift */,
+				328FABE12188D73B006C0A89 /* JaegerModelsTests.swift */,
 				79E4CF6C21801D4800273142 /* Supporting Files */,
 			);
 			path = JaegerTests;
@@ -383,7 +392,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66541CCA217F6698001E088D /* JaegerTests.swift in Sources */,
+				328FABE02188C1DD006C0A89 /* JaegerExtensionsTests.swift in Sources */,
+				328FABDE21889973006C0A89 /* TestUtilities.swift in Sources */,
+				66541CCA217F6698001E088D /* OTModelsTests.swift in Sources */,
+				328FABE22188D73B006C0A89 /* JaegerModelsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
