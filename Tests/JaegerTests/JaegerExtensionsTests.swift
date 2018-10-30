@@ -10,10 +10,6 @@ import XCTest
 
 class JaegerExtensionsTests: XCTestCase {
 
-    override func setUp() { }
-
-    override func tearDown() { }
-
     func testMicrosecondsConversion() {
         let time: TimeInterval = 1
         let microTime = time.microseconds

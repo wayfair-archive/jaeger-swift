@@ -10,91 +10,85 @@ import XCTest
 
 class OTModelsTests: XCTestCase {
     
+    var defaultSpan = TestUtilities.getNewTestSpan()
     
-    override func setUp() { }
-
-    override func tearDown() { }
+    override func setUp() {
+        defaultSpan = TestUtilities.getNewTestSpan()
+    }
     
     func testEndSpan() {
-        var span = TestUtilities.getNewTestSpan()
-        XCTAssertFalse(span.isCompleted)
-        span.finish()
-        XCTAssertTrue(span.isCompleted)
-        XCTAssertNotNil(span.endTime)
+        XCTAssertFalse(defaultSpan.isCompleted)
+        defaultSpan.finish()
+        XCTAssertTrue(defaultSpan.isCompleted)
+        XCTAssertNotNil(defaultSpan.endTime)
     }
     
     func testSpanMultipleFinish() {
         let endDate = Date()
-        var span = TestUtilities.getNewTestSpan()
         
-        XCTAssertFalse(span.isCompleted)
-        XCTAssertNil(span.endTime)
+        XCTAssertFalse(defaultSpan.isCompleted)
+        XCTAssertNil(defaultSpan.endTime)
         
-        span.finish(at: endDate)
+        defaultSpan.finish(at: endDate)
         
-        XCTAssertTrue(span.isCompleted)
-        XCTAssertEqual(span.endTime, endDate)
+        XCTAssertTrue(defaultSpan.isCompleted)
+        XCTAssertEqual(defaultSpan.endTime, endDate)
         
         let newEndDate = Date()
-        span.finish(at: newEndDate)
-        XCTAssertTrue(span.isCompleted)
-        XCTAssertEqual(span.endTime, endDate)
-        XCTAssertNotEqual(span.endTime, newEndDate)
+        defaultSpan.finish(at: newEndDate)
+        XCTAssertTrue(defaultSpan.isCompleted)
+        XCTAssertEqual(defaultSpan.endTime, endDate)
+        XCTAssertNotEqual(defaultSpan.endTime, newEndDate)
     }
     
     func testReplaceTagInSpan() {
-        var span = TestUtilities.getNewTestSpan()
         let newTag = Tag(key: "testKey", tagType: .double(42))
-        span.set(tag: newTag)
+        defaultSpan.set(tag: newTag)
         
-        let firstTag = span.tags["testKey"]
+        let firstTag = defaultSpan.tags["testKey"]
         XCTAssertNotNil(firstTag)
         XCTAssertEqual(firstTag, newTag)
         
         let replacingTag = Tag(key: "testKey", tagType: .bool(true))
-        span.set(tag: replacingTag)
+        defaultSpan.set(tag: replacingTag)
         
-        let replacedTag = span.tags["testKey"]
+        let replacedTag = defaultSpan.tags["testKey"]
         XCTAssertNotNil(replacedTag)
         XCTAssertEqual(replacedTag, replacingTag)
     }
     
     func testSaveSpanTagWhenSpanNotCompleted() {
-        var span = TestUtilities.getNewTestSpan()
         let newTag = Tag(key: "testKey", tagType: .double(42))
-        span.set(tag: newTag)
+        defaultSpan.set(tag: newTag)
         
-        let firstTag = span.tags["testKey"]
+        let firstTag = defaultSpan.tags["testKey"]
         XCTAssertNotNil(firstTag)
         XCTAssertEqual(firstTag, newTag)
     }
     
     func testSaveSpanTagWhenSpanCompleted() {
-        var span = TestUtilities.getNewTestSpan()
-        span.finish()
+        defaultSpan.finish()
         let newTag = Tag(key: "testKey", tagType: .double(42))
-        span.set(tag: newTag)
-        XCTAssertTrue(span.tags.isEmpty)
+        defaultSpan.set(tag: newTag)
+        XCTAssertTrue(defaultSpan.tags.isEmpty)
     }
     
     func testSaveLogTagWhenSpanNotCompleted() {
-        var span = TestUtilities.getNewTestSpan()
         let newTag = Tag(key: "testKey", tagType: .double(42))
         let newLog = Log(fields: [newTag])
-        span.log(newLog)
+        defaultSpan.log(newLog)
         
-        let firstLog = span.logs.first
+        let firstLog = defaultSpan.logs.first
         XCTAssertNotNil(firstLog)
         XCTAssertEqual(firstLog, newLog)
     }
     
     func testSaveLogTagWhenSpanCompleted() {
-        var span = TestUtilities.getNewTestSpan()
-        span.finish()
+        defaultSpan.finish()
         let newTag = Tag(key: "testKey", tagType: .double(42))
         let newLog = Log(fields: [newTag])
-        span.log(newLog)
-        XCTAssertTrue(span.logs.isEmpty)
+        defaultSpan.log(newLog)
+        XCTAssertTrue(defaultSpan.logs.isEmpty)
     }
     
     func testOTSpanEnd() {

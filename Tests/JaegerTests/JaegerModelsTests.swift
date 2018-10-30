@@ -9,10 +9,6 @@ import XCTest
 @testable import Jaeger
 
 class JaegerModelsTests: XCTestCase {
-
-    override func setUp() { }
-
-    override func tearDown() { }
     
     func testJaegerTagConversionString() {
         let tag = Tag(key: "testKey", tagType: .string("testType"))
@@ -23,6 +19,7 @@ class JaegerModelsTests: XCTestCase {
         XCTAssertNil(jaegerTag.vLong)
         XCTAssertNil(jaegerTag.vBinary)
         XCTAssertNil(jaegerTag.vDouble)
+        XCTAssertEqual(jaegerTag.vType, .string)
     }
     
     func testJaegerTagConversionBool() {
@@ -34,6 +31,8 @@ class JaegerModelsTests: XCTestCase {
         XCTAssertNil(jaegerTag.vLong)
         XCTAssertNil(jaegerTag.vBinary)
         XCTAssertNil(jaegerTag.vDouble)
+        XCTAssertEqual(jaegerTag.vType, .bool)
+        
     }
     
     func testJaegerTagConversionLong() {
@@ -45,6 +44,7 @@ class JaegerModelsTests: XCTestCase {
         XCTAssertEqual(jaegerTag.vLong, 42)
         XCTAssertNil(jaegerTag.vBinary)
         XCTAssertNil(jaegerTag.vDouble)
+        XCTAssertEqual(jaegerTag.vType, .long)
     }
     
     func testJaegerTagConversionBinary() {
@@ -56,6 +56,7 @@ class JaegerModelsTests: XCTestCase {
         XCTAssertNil(jaegerTag.vLong)
         XCTAssertEqual(jaegerTag.vBinary, [UInt8(1)])
         XCTAssertNil(jaegerTag.vDouble)
+        XCTAssertEqual(jaegerTag.vType, .binary)
     }
     
     func testJaegerTagConversionDouble() {
@@ -67,6 +68,7 @@ class JaegerModelsTests: XCTestCase {
         XCTAssertNil(jaegerTag.vLong)
         XCTAssertNil(jaegerTag.vBinary)
         XCTAssertEqual(jaegerTag.vDouble, 42)
+        XCTAssertEqual(jaegerTag.vType, .double)
     }
 
     func testJaegerLogConversion() {
