@@ -31,7 +31,7 @@ public final class OTSpan { // final class:  enables direct dispatch
                                                          qos: .utility,
                                                          attributes: .concurrent) // Work takes a few seconds to a few minutes.
     
-    // The synchronizing queue for all span operations.
+    /// The synchronizing queue for all span operations.
     private let synchronizingQueue: DispatchQueue
     
     /**

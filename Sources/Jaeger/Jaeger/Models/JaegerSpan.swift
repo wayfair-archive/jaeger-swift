@@ -78,7 +78,9 @@ public struct JaegerSpan {
          See the [Jaeger.Thrift](https://github.com/jaegertracing/jaeger-idl/blob/master/thrift/jaeger.thrift) definition.
          */
         enum RefType: String, Codable { // Jaeger.Thrift original def
+            /// A span that depends on a child Span in some capacity.
             case childOf = "CHILD_OF"
+            /// A span that does not depend in any way on the result of a child.
             case followsFrom = "FOLLOWS_FROM"
         }
         
