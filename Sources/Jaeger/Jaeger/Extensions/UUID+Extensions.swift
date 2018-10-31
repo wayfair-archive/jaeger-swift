@@ -10,7 +10,7 @@ import Foundation
 extension UUID {
     
     /**
-     A integer representation of the first 64 bits of the UUID.
+     An integer representation of the first 64 bits of the UUID.
      
      This still produces a random number, since all bits were randomly generated with no correlation.
      See the [UUID documentation](https://developer.apple.com/documentation/foundation/nsuuid).
@@ -31,7 +31,7 @@ extension UUID {
     }
     
     /**
-     A integer representation of the last 64 bits of the UUID.
+     An integer representation of the last 64 bits of the UUID.
      
      This still produces a random number, since all bits were randomly generated with no correlation.
      See the [UUID documentation](https://developer.apple.com/documentation/foundation/nsuuid).

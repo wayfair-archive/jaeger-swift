@@ -182,7 +182,7 @@ public struct Span {
      As specified in the OpenTracing documentation, the tags can only be modified before the span ends.
      */
     public mutating func set(tag: Tag) {
-        guard isCompleted == false else {return}
+        guard !isCompleted else {return}
         tags[tag.key] = tag
     }
     
@@ -194,7 +194,7 @@ public struct Span {
      As specified in the OpenTracing documentation, the logs can only be modified before the span ends.
      */
     public mutating func log(_ log: Log) {
-        guard isCompleted == false else {return}
+        guard !isCompleted else {return}
         logs.append(log)
     }
     
@@ -206,7 +206,7 @@ public struct Span {
      As specified in the OpenTracing documentation, this action will prevent the span to be modified by further actions.
      */
     public mutating func finish(at time: Date = Date()) {
-        guard isCompleted == false else {return}
+        guard !isCompleted else {return}
         endTime = time
         tracer.report(span: self)
     }

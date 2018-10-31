@@ -88,9 +88,7 @@ public struct JaegerSpan {
         let refType: JaegerSpanReference.RefType
         /// The least significant 64 bits of a traceid.
         let traceIdLow: Int64
-        /** The most significant 64 bits of a traceid.
-         **Set this to 0 when only using 64bit ids.**
-         */
+        /// The most significant 64 bits of a traceid. **Set this to 0 when only using 64bit ids.**
         let traceIdHigh: Int64
         /// The span id.
         let spanId: Int64
@@ -98,9 +96,7 @@ public struct JaegerSpan {
     
     /// The least significant 64 bits of a traceid.
     let traceIdLow: Int64
-    /** The most significant 64 bits of a traceid.
-     **Set this to 0 when only using 64bit ids.**
-     */
+    /// The most significant 64 bits of a traceid. **Set this to 0 when only using 64bit ids.**
     let traceIdHigh: Int64
     /// The span id.
     let spanId: Int64

@@ -32,7 +32,6 @@ class JaegerModelsTests: XCTestCase {
         XCTAssertNil(jaegerTag.vBinary)
         XCTAssertNil(jaegerTag.vDouble)
         XCTAssertEqual(jaegerTag.vType, .bool)
-        
     }
     
     func testJaegerTagConversionLong() {
@@ -80,10 +79,10 @@ class JaegerModelsTests: XCTestCase {
         
         let jaegerLog = JaegerLog(log: log)
         
-        XCTAssertEqual(jaegerLog.fields[0].key, "testKey1")
-        XCTAssertEqual(jaegerLog.fields[0].vStr, "testType")
-        XCTAssertEqual(jaegerLog.fields[1].key, "testKey2")
-        XCTAssertEqual(jaegerLog.fields[1].vDouble, 42)
+        XCTAssertEqual(jaegerLog.fields.first?.key, "testKey1")
+        XCTAssertEqual(jaegerLog.fields.first?.vStr, "testType")
+        XCTAssertEqual(jaegerLog.fields.last?.key, "testKey2")
+        XCTAssertEqual(jaegerLog.fields.last?.vDouble, 42)
         XCTAssertEqual(jaegerLog.timestamp, Int64(date.timeIntervalSince1970.microseconds))
     }
     
@@ -142,11 +141,11 @@ class JaegerModelsTests: XCTestCase {
         XCTAssertEqual(jaegerSpan.flags, 2)
         XCTAssertEqual(jaegerSpan.startTime, Int64(startTime.timeIntervalSince1970.microseconds))
         XCTAssertEqual(jaegerSpan.incomplete, false)
-        XCTAssertEqual(jaegerSpan.tags![0].key, "testKey")
-        XCTAssertEqual(jaegerSpan.tags![0].vStr, "testType")
-        XCTAssertEqual(jaegerSpan.logs![0].timestamp, Int64(startTime.timeIntervalSince1970.microseconds))
-        XCTAssertEqual(jaegerSpan.logs![0].fields[0].key, "testKey")
-        XCTAssertEqual(jaegerSpan.logs![0].fields[0].vStr, "testType")
+        XCTAssertEqual(jaegerSpan.tags?.first?.key, "testKey")
+        XCTAssertEqual(jaegerSpan.tags?.first?.vStr, "testType")
+        XCTAssertEqual(jaegerSpan.logs?.first?.timestamp, Int64(startTime.timeIntervalSince1970.microseconds))
+        XCTAssertEqual(jaegerSpan.logs?.first?.fields.first?.key, "testKey")
+        XCTAssertEqual(jaegerSpan.logs?.first?.fields.first?.vStr, "testType")
         XCTAssertEqual(jaegerSpan.duration, Int64(endTime.timeIntervalSince(startTime).microseconds))
     }
 }
