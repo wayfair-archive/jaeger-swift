@@ -78,3 +78,62 @@ extension Tracer {
         return startSpan(operationName: operationName, references: nil, startTime: startTime, tags: tags)
     }
 }
+
+extension Tracer {
+    
+    /**
+     A point of entry the crete a start a new span wrapped in an OTSpan.
+     
+     - Parameter operationName: An operation name which concisely represents the work done by the Span. See [OpenTracing Semantic Specification](https://opentracing.io/specification/) for the naming conventions.
+     - Parameter references: The relationship to a node (span).
+     - Parameter startTime: The time at which the task was started.
+     - Parameter tags: Tags to be included at the creation of the span.
+     
+     - Returns: A new `Span` wrapped in an OTSpan.
+     */
+    public func startSpan<Operation: RawRepresentable>(operationName: Operation, references: Span.Reference?, startTime: Date, tags: [Tag]) -> OTSpan where Operation.RawValue == String {
+        return startSpan(operationName: operationName.rawValue, references: references, startTime: startTime, tags: tags)
+    }
+    
+    
+    /**
+     A point of entry the crete a start a new span wrapped in an OTSpan.
+     
+     - Parameter operationName: An operation name which concisely represents the work done by the Span. See [OpenTracing Semantic Specification](https://opentracing.io/specification/) for the naming conventions.
+     - Parameter childOf: The parent node (span) .
+     - Parameter startTime: The time at which the task was started.
+     - Parameter tags: Tags to be included at the creation of the span.
+     
+     - Returns: A new `Span` (wrapped in an OTSpan) with a `childOf` relationship.
+     */
+    public func startSpan<Operation: RawRepresentable>(operationName: Operation, childOf parent: Span.Context, startTime: Date = Date(), tags: [Tag] = []) -> OTSpan where Operation.RawValue == String {
+        return startSpan(operationName: operationName.rawValue, childOf: parent, startTime: startTime, tags: tags)
+    }
+    
+    /**
+     A point of entry the crete a start a new span wrapped in an OTSpan.
+     
+     - Parameter operationName: An operation name which concisely represents the work done by the Span. See [OpenTracing Semantic Specification](https://opentracing.io/specification/) for the naming conventions.
+     - Parameter followsFrom: The parent node (span) .
+     - Parameter startTime: The time at which the task was started.
+     - Parameter tags: Tags to be included at the creation of the span.
+     
+     - Returns: A new `Span` (wrapped in an OTSpan) with a `followsFrom` relationship.
+     */
+    public func startSpan<Operation: RawRepresentable>(operationName: Operation, followsFrom parent: Span.Context, startTime: Date = Date(), tags: [Tag] = []) -> OTSpan where Operation.RawValue == String {
+        return startSpan(operationName: operationName.rawValue, followsFrom: parent, startTime: startTime, tags: tags)
+    }
+    
+    /**
+     A point of entry the crete a start a new span wrapped in an OTSpan.
+     
+     - Parameter operationName: An operation name which concisely represents the work done by the Span. See [OpenTracing Semantic Specification](https://opentracing.io/specification/) for the naming conventions.
+     - Parameter startTime: The time at which the task was started.
+     - Parameter tags: Tags to be included at the creation of the span.
+     
+     - Returns: A new `Span` (wrapped in an OTSpan) with no relationship. This is a root node.
+     */
+    public func startRootSpan<Operation: RawRepresentable>(operationName: Operation, startTime: Date = Date(), tags: [Tag] = []) -> OTSpan where Operation.RawValue == String {
+        return startRootSpan(operationName: operationName.rawValue, startTime: startTime, tags: tags)
+    }
+}

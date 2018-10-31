@@ -21,6 +21,9 @@
 		328FABDE21889973006C0A89 /* TestUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328FABDD21889973006C0A89 /* TestUtilities.swift */; };
 		328FABE02188C1DD006C0A89 /* JaegerExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328FABDF2188C1DD006C0A89 /* JaegerExtensionsTests.swift */; };
 		328FABE22188D73B006C0A89 /* JaegerModelsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328FABE12188D73B006C0A89 /* JaegerModelsTests.swift */; };
+		32B0ED87218A2A1300408434 /* SpanConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B0ED86218A2A1300408434 /* SpanConvertible.swift */; };
+		32B0ED89218A2A4800408434 /* SpanSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B0ED88218A2A4800408434 /* SpanSender.swift */; };
+		32B0ED8B218A2A5900408434 /* Agent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B0ED8A218A2A5900408434 /* Agent.swift */; };
 		66541CC5217F6698001E088D /* Jaeger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66541CBB217F6698001E088D /* Jaeger.framework */; };
 		66541CCA217F6698001E088D /* OTModelsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66541CC9217F6698001E088D /* OTModelsTests.swift */; };
 		79E4CFC02181185500273142 /* Jaeger.h in Headers */ = {isa = PBXBuildFile; fileRef = 79E4CFBB2181167E00273142 /* Jaeger.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -51,6 +54,9 @@
 		328FABDD21889973006C0A89 /* TestUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUtilities.swift; sourceTree = "<group>"; };
 		328FABDF2188C1DD006C0A89 /* JaegerExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JaegerExtensionsTests.swift; sourceTree = "<group>"; };
 		328FABE12188D73B006C0A89 /* JaegerModelsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JaegerModelsTests.swift; sourceTree = "<group>"; };
+		32B0ED86218A2A1300408434 /* SpanConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpanConvertible.swift; sourceTree = "<group>"; };
+		32B0ED88218A2A4800408434 /* SpanSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpanSender.swift; sourceTree = "<group>"; };
+		32B0ED8A218A2A5900408434 /* Agent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Agent.swift; sourceTree = "<group>"; };
 		66541CBB217F6698001E088D /* Jaeger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Jaeger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		66541CC4217F6698001E088D /* JaegerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JaegerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		66541CC9217F6698001E088D /* OTModelsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTModelsTests.swift; sourceTree = "<group>"; };
@@ -216,6 +222,8 @@
 		79E4CF9A218111F700273142 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				32B0ED8A218A2A5900408434 /* Agent.swift */,
+				32B0ED88218A2A4800408434 /* SpanSender.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -262,6 +270,7 @@
 			isa = PBXGroup;
 			children = (
 				3286EF3E2187966E00A07DDB /* Tracer.swift */,
+				32B0ED86218A2A1300408434 /* SpanConvertible.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -381,10 +390,13 @@
 				3286EF372187956800A07DDB /* Tag.swift in Sources */,
 				3286EF3B218795A300A07DDB /* Span.swift in Sources */,
 				3286EF2C218793E200A07DDB /* TimeInterval+Extensions.swift in Sources */,
+				32B0ED8B218A2A5900408434 /* Agent.swift in Sources */,
 				3286EF412187975500A07DDB /* OTSpan.swift in Sources */,
 				3286EF392187957D00A07DDB /* Log.swift in Sources */,
 				3286EF3F2187966E00A07DDB /* Tracer.swift in Sources */,
 				3286EF2E2187940600A07DDB /* JaegerLog.swift in Sources */,
+				32B0ED87218A2A1300408434 /* SpanConvertible.swift in Sources */,
+				32B0ED89218A2A4800408434 /* SpanSender.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,14 +12,23 @@ import Foundation
  
  See the [Jaeger.Thrift](https://github.com/jaegertracing/jaeger-idl/blob/master/thrift/jaeger.thrift) definition.
  */
-public struct JaegerSpan {
+public struct JaegerSpan: SpanConvertible {
     
     /**
      Creates a Jaeger Span from an OpenTracing Span.
      
      - Parameter span: An OpenTracing Span.
      */
-    init(span: Span) {
+    public static func convert(span: Span) -> JaegerSpan {
+        return JaegerSpan(span: span)
+    }
+
+    /**
+     Creates a Jaeger Span from an OpenTracing Span.
+     
+     - Parameter span: An OpenTracing Span.
+     */
+    public init(span: Span) {
         traceIdLow = Int64(bitPattern: span.spanRef.traceId.firstHalfBits) //generates new ids, since we use the bitPattern!
         traceIdHigh = Int64(bitPattern: span.spanRef.traceId.secondHalfBits) //generates new ids, since we use the bitPattern!
         spanId = Int64(bitPattern: span.spanRef.spanId.firstHalfBits) //generates new ids, since we use the bitPattern!
