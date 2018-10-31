@@ -148,4 +148,59 @@ class JaegerModelsTests: XCTestCase {
         XCTAssertEqual(jaegerSpan.logs?.first?.fields.first?.vStr, "testType")
         XCTAssertEqual(jaegerSpan.duration, Int64(endTime.timeIntervalSince(startTime).microseconds))
     }
+    
+    func testPerformanceJaegerSpanConversion() {
+        let tracer = EmptyTestTracer()
+        let startTime = Date()
+        let tag = Tag(key: "testKey", tagType: .string("testType"))
+        let log = Log(timestamp: startTime, fields: [tag])
+        let uuid = UUID()
+        let name = "oppName"
+        let context =  Span.Context(traceId: uuid, spanId: uuid)
+        let ref = Span.Reference(refType: .childOf, context: context)
+        
+        let span = Span(tracer: tracer,
+                 spanRef: context,
+                 parentSpanId: uuid,
+                 operationName: name,
+                 references: [ref],
+                 flag: .debug,
+                 startTime: startTime,
+                 tags: [tag.key: tag],
+                 logs: [log])
+        
+        self.measure {
+            let jaegerSpan = JaegerSpan(span: span)
+            _ = jaegerSpan.duration
+        }
+    }
+    
+    func testPerformanceSpanCreationAndConversion() {
+        
+        let tracer = EmptyTestTracer()
+        
+        self.measure {
+            
+            let startTime = Date()
+            let tag = Tag(key: "testKey", tagType: .string("testType"))
+            let log = Log(timestamp: startTime, fields: [tag])
+            let uuid = UUID()
+            let name = "oppName"
+            let context =  Span.Context(traceId: uuid, spanId: uuid)
+            let ref = Span.Reference(refType: .childOf, context: context)
+            
+            let span = Span(tracer: tracer,
+                            spanRef: context,
+                            parentSpanId: uuid,
+                            operationName: name,
+                            references: [ref],
+                            flag: .debug,
+                            startTime: startTime,
+                            tags: [tag.key: tag],
+                            logs: [log])
+            
+            let jaegerSpan = JaegerSpan(span: span)
+            _ = jaegerSpan.duration
+        }
+    }
 }
