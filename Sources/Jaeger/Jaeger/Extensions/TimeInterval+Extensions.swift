@@ -8,11 +8,11 @@
 import Foundation
 
 /// A type to express time intervals in microseconds.
-typealias MicroSeconds = Double
+typealias Microseconds = Double
 
 extension TimeInterval {
     /// A time interval expressed in microseconds.
-    var microseconds: MicroSeconds {
+    var microseconds: Microseconds {
         return self * 1e6
     }
 }

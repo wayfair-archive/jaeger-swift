@@ -215,24 +215,7 @@ public struct Span {
 // Implementation of 'Equatable' cannot be automatically synthesized in an extension in a different file to the type
 extension Span.Context: Hashable {} // Autogenereted on all properties.
 
-extension Span.Reference: Hashable {
-    /**
-     The span context and the span reference type are combined together to verify equality.
-     */
-    public static func == (lhs: Span.Reference, rhs: Span.Reference) -> Bool {
-        return lhs.context == rhs.context && lhs.refType == rhs.refType
-    }
-    
-    /**
-     The span context and the span reference type are combined together into the hash function.
-     
-     - Parameter hasher: The hasher to use when combining the components of this instance.
-     */
-    public func hash(into hasher: inout Hasher) {
-        context.hash(into: &hasher)
-        hasher.combine(refType.rawValue)
-    }
-}
+extension Span.Reference: Hashable {} // Autogenereted on all properties.
 
 extension Span: Hashable {
     /**
