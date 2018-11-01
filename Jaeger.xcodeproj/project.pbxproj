@@ -183,7 +183,6 @@
 		79E4CF93218111F700273142 /* Jaeger */ = {
 			isa = PBXGroup;
 			children = (
-				79E4CF94218111F700273142 /* Formatters */,
 				79E4CF95218111F700273142 /* Models */,
 				79E4CF97218111F700273142 /* Extensions */,
 				79E4CF9A218111F700273142 /* Protocols */,
@@ -191,13 +190,6 @@
 			);
 			name = Jaeger;
 			path = Sources/Jaeger/Jaeger;
-			sourceTree = "<group>";
-		};
-		79E4CF94218111F700273142 /* Formatters */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Formatters;
 			sourceTree = "<group>";
 		};
 		79E4CF95218111F700273142 /* Models */ = {
@@ -232,20 +224,12 @@
 			isa = PBXGroup;
 			children = (
 				3286EF332187951400A07DDB /* Utilities */,
-				79E4CFB22181123E00273142 /* Formatters */,
 				79E4CFB32181123E00273142 /* Models */,
 				79E4CFB62181123E00273142 /* Extensions */,
 				79E4CFB72181123E00273142 /* Protocols */,
 			);
 			name = OpenTracing;
 			path = Sources/Jaeger/OpenTracing;
-			sourceTree = "<group>";
-		};
-		79E4CFB22181123E00273142 /* Formatters */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Formatters;
 			sourceTree = "<group>";
 		};
 		79E4CFB32181123E00273142 /* Models */ = {
