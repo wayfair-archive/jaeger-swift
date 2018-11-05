@@ -1,0 +1,21 @@
+language: swift
+osx_image: xcode10.1
+xcode_project: Jaeger.xcodeproj
+xcode_scheme: Jaeger
+xcode_destination: platform=iOS Simulator,OS=12.1,name=iPhone XS
+
+before_deploy: 
+  - openssl aes-256-cbc -K $encrypted_4abc5e356772_key -iv $encrypted_4abc5e356772_iv -in .bin/deploy-key.enc -out .bin/deploy-key -d
+  - chmod 600 .bin/deploy-key
+  - eval `ssh-agent -s`
+  - ssh-add .bin/deploy-key
+  - gem install jazzy
+deploy:
+  verbose: true
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
+  keep-history: true
+  local-dir: docs
+  on:
+    branch: master
