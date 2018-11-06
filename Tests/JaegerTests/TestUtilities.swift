@@ -9,7 +9,7 @@ import XCTest
 @testable import Jaeger
 
 /**
-Useful and reusable constants to help the construction of new tests.
+ Useful and reusable constants to help the construction of new tests.
  */
 enum TestUtilitiesConstants {
     /// Fixed UUID for a `Span`
@@ -21,7 +21,7 @@ enum TestUtilitiesConstants {
 /**
  A stub Tracer.
  
-Useful to test Spans when reporting can be ignored. **Do not use** the `startSpan` function.
+ Useful to test Spans when reporting can be ignored. **Do not use** the `startSpan` function.
  */
 class EmptyTestTracer: Tracer {
     /// **Do not use**
@@ -47,7 +47,7 @@ class CompletionTestTracer: Tracer {
      
      - Parameter reportedSpanCompletion: A completion called every time a span is reported.
      - Parameter span: The reported span.
-
+     
      */
     init(reportedSpanCompletion: @escaping (_ span: Span) -> Void) {
         self.reportedSpanCompletion = reportedSpanCompletion
@@ -64,6 +64,52 @@ class CompletionTestTracer: Tracer {
     func report(span: Span) {
         reportedSpanCompletion(span)
     }
+}
+
+/**
+ A mock `SpanSender`.
+ */
+class TestSender: SpanSender {
+    let sendingCompletion: ([SpanConvertible]) -> Void
+    
+    init(sendingCompletion: @escaping ([SpanConvertible]) -> Void) {
+        self.sendingCompletion = sendingCompletion
+    }
+    func send<RawSpan>(spans: [RawSpan]) where RawSpan : SpanConvertible {
+        sendingCompletion(spans)
+    }
+}
+
+/**
+ A class that can be used to mock network status.
+ */
+class TestReachabilityTracker: ReachabilityTracker {
+    
+    var reachability: Bool
+    
+    init(reachability: Bool) {
+        self.reachability = reachability
+    }
+    
+    func isNetworkReachable() -> Bool {
+        return reachability
+    }
+    
+    func getSatus() -> ReachabilityStatus {
+        return reachability ? .wifi: .notConnected
+    }
+}
+
+/**
+ A mock `SpanConvertible`.
+ */
+struct TestSpanConvertible: SpanConvertible {
+    static func convert(span: Span) -> TestSpanConvertible {
+        return TestSpanConvertible()
+    }
+    
+    init() { }
+    init(span: Span) { }
 }
 
 class TestUtilities {
@@ -84,17 +130,17 @@ class TestUtilities {
      - Parameter logs: Default is `[]`.
      - Parameter tags: Default is `[:]`.
      - Parameter references: Default is `[]`.
-
+     
      */
     static func getNewTestSpan(name: String = "testSpan",
-                            parentUUID: UUID? = nil,
-                            startTime: Date = Date(),
-                            spanUUID: UUID = TestUtilitiesConstants.spanUUID,
-                            traceUUID: UUID = TestUtilitiesConstants.traceUUID,
-                            tracer: Tracer = EmptyTestTracer(),
-                            logs: [Log] = [],
-                            tags: [Tag.Key : Tag] = [:],
-                            references: [Span.Reference] = []) -> Span {
+                               parentUUID: UUID? = nil,
+                               startTime: Date = Date(),
+                               spanUUID: UUID = TestUtilitiesConstants.spanUUID,
+                               traceUUID: UUID = TestUtilitiesConstants.traceUUID,
+                               tracer: Tracer = EmptyTestTracer(),
+                               logs: [Log] = [],
+                               tags: [Tag.Key : Tag] = [:],
+                               references: [Span.Reference] = []) -> Span {
         
         return Span(tracer: tracer,
                     spanRef: Span.Context(traceId: traceUUID, spanId: spanUUID),
@@ -107,7 +153,3 @@ class TestUtilities {
                     logs: logs)
     }
 }
-
-
-
-

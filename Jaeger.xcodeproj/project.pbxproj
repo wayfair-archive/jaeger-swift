@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3257779B2191F74400844EDE /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3257779A2191F74400844EDE /* CoreDataStack.swift */; };
+		3257779D2191F79E00844EDE /* OTCoreDataAgent.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 3257779C2191F79E00844EDE /* OTCoreDataAgent.xcdatamodel */; };
+		3257779F2191F7DC00844EDE /* CoreDataAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3257779E2191F7DC00844EDE /* CoreDataAgent.swift */; };
+		325777A22191F8B100844EDE /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325777A12191F8B100844EDE /* Reachability.swift */; };
+		325777A52191F8DE00844EDE /* CoreDataSpan+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325777A32191F8DE00844EDE /* CoreDataSpan+CoreDataClass.swift */; };
+		325777A62191F8DE00844EDE /* CoreDataSpan+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325777A42191F8DE00844EDE /* CoreDataSpan+CoreDataProperties.swift */; };
+		325777A82191F9C900844EDE /* CoreDataAgentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325777A72191F9C900844EDE /* CoreDataAgentTests.swift */; };
+		325777AA2191FA7000844EDE /* ReachabilityTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325777A92191FA7000844EDE /* ReachabilityTracker.swift */; };
+		325777CE219219FC00844EDE /* OTCoreDataAgent.mom in Resources */ = {isa = PBXBuildFile; fileRef = 325777CD2192194F00844EDE /* OTCoreDataAgent.mom */; };
+		325777ED2192365D00844EDE /* CoreDataStackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325777EB2192365800844EDE /* CoreDataStackTests.swift */; };
 		3286EF2C218793E200A07DDB /* TimeInterval+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3286EF2B218793E200A07DDB /* TimeInterval+Extensions.swift */; };
 		3286EF2E2187940600A07DDB /* JaegerLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3286EF2D2187940600A07DDB /* JaegerLog.swift */; };
 		3286EF302187942200A07DDB /* JaegerTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3286EF2F2187942200A07DDB /* JaegerTag.swift */; };
@@ -40,6 +50,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3257779A2191F74400844EDE /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		3257779C2191F79E00844EDE /* OTCoreDataAgent.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OTCoreDataAgent.xcdatamodel; sourceTree = "<group>"; };
+		3257779E2191F7DC00844EDE /* CoreDataAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataAgent.swift; sourceTree = "<group>"; };
+		325777A12191F8B100844EDE /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		325777A32191F8DE00844EDE /* CoreDataSpan+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreDataSpan+CoreDataClass.swift"; sourceTree = "<group>"; };
+		325777A42191F8DE00844EDE /* CoreDataSpan+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreDataSpan+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		325777A72191F9C900844EDE /* CoreDataAgentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataAgentTests.swift; sourceTree = "<group>"; };
+		325777A92191FA7000844EDE /* ReachabilityTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityTracker.swift; sourceTree = "<group>"; };
+		325777CD2192194F00844EDE /* OTCoreDataAgent.mom */ = {isa = PBXFileReference; lastKnownFileType = file; name = OTCoreDataAgent.mom; path = Jaeger.framework/OTCoreDataAgent.mom; sourceTree = BUILT_PRODUCTS_DIR; };
+		325777EB2192365800844EDE /* CoreDataStackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStackTests.swift; sourceTree = "<group>"; };
 		3286EF2B218793E200A07DDB /* TimeInterval+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Extensions.swift"; sourceTree = "<group>"; };
 		3286EF2D2187940600A07DDB /* JaegerLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JaegerLog.swift; sourceTree = "<group>"; };
 		3286EF2F2187942200A07DDB /* JaegerTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JaegerTag.swift; sourceTree = "<group>"; };
@@ -92,6 +112,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		325777982191F6F800844EDE /* Agent */ = {
+			isa = PBXGroup;
+			children = (
+				3257779E2191F7DC00844EDE /* CoreDataAgent.swift */,
+				325777992191F72900844EDE /* CoreData */,
+			);
+			path = Agent;
+			sourceTree = "<group>";
+		};
+		325777992191F72900844EDE /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				325777A32191F8DE00844EDE /* CoreDataSpan+CoreDataClass.swift */,
+				325777A42191F8DE00844EDE /* CoreDataSpan+CoreDataProperties.swift */,
+				3257779C2191F79E00844EDE /* OTCoreDataAgent.xcdatamodel */,
+				3257779A2191F74400844EDE /* CoreDataStack.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		325777A02191F8A100844EDE /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				325777A12191F8B100844EDE /* Reachability.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		325777CC219218EF00844EDE /* Other Products */ = {
+			isa = PBXGroup;
+			children = (
+				325777CD2192194F00844EDE /* OTCoreDataAgent.mom */,
+			);
+			name = "Other Products";
+			sourceTree = "<group>";
+		};
 		3286EF332187951400A07DDB /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -106,6 +162,7 @@
 				79E4CF92218111DC00273142 /* Sources */,
 				79E4CF8A2180F9A900273142 /* Tests */,
 				66541CBC217F6698001E088D /* Products */,
+				325777CC219218EF00844EDE /* Other Products */,
 				79CC1D6921836FA2000A00C2 /* Supporting Files */,
 				79CC1D6B21836FA2000A00C2 /* xcconfigs */,
 			);
@@ -124,6 +181,8 @@
 			isa = PBXGroup;
 			children = (
 				328FABDD21889973006C0A89 /* TestUtilities.swift */,
+				325777A72191F9C900844EDE /* CoreDataAgentTests.swift */,
+				325777EB2192365800844EDE /* CoreDataStackTests.swift */,
 				66541CC9217F6698001E088D /* OTModelsTests.swift */,
 				328FABDF2188C1DD006C0A89 /* JaegerExtensionsTests.swift */,
 				328FABE12188D73B006C0A89 /* JaegerModelsTests.swift */,
@@ -183,6 +242,8 @@
 		79E4CF93218111F700273142 /* Jaeger */ = {
 			isa = PBXGroup;
 			children = (
+				325777A02191F8A100844EDE /* Utilities */,
+				325777982191F6F800844EDE /* Agent */,
 				79E4CF95218111F700273142 /* Models */,
 				79E4CF97218111F700273142 /* Extensions */,
 				79E4CF9A218111F700273142 /* Protocols */,
@@ -216,6 +277,7 @@
 			children = (
 				32B0ED8A218A2A5900408434 /* Agent.swift */,
 				32B0ED88218A2A4800408434 /* SpanSender.swift */,
+				325777A92191FA7000844EDE /* ReachabilityTracker.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -357,6 +419,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				325777CE219219FC00844EDE /* OTCoreDataAgent.mom in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,19 +430,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3257779B2191F74400844EDE /* CoreDataStack.swift in Sources */,
+				325777AA2191FA7000844EDE /* ReachabilityTracker.swift in Sources */,
 				3286EF3D218795EA00A07DDB /* UUID+Extensions.swift in Sources */,
 				3286EF352187953B00A07DDB /* Utilities.swift in Sources */,
 				3286EF302187942200A07DDB /* JaegerTag.swift in Sources */,
+				3257779D2191F79E00844EDE /* OTCoreDataAgent.xcdatamodel in Sources */,
 				3286EF322187945300A07DDB /* JaegerSpan.swift in Sources */,
 				3286EF372187956800A07DDB /* Tag.swift in Sources */,
 				3286EF3B218795A300A07DDB /* Span.swift in Sources */,
+				325777A52191F8DE00844EDE /* CoreDataSpan+CoreDataClass.swift in Sources */,
 				3286EF2C218793E200A07DDB /* TimeInterval+Extensions.swift in Sources */,
 				32B0ED8B218A2A5900408434 /* Agent.swift in Sources */,
 				3286EF412187975500A07DDB /* OTSpan.swift in Sources */,
 				3286EF392187957D00A07DDB /* Log.swift in Sources */,
 				3286EF3F2187966E00A07DDB /* Tracer.swift in Sources */,
 				3286EF2E2187940600A07DDB /* JaegerLog.swift in Sources */,
+				325777A22191F8B100844EDE /* Reachability.swift in Sources */,
+				325777A62191F8DE00844EDE /* CoreDataSpan+CoreDataProperties.swift in Sources */,
 				32B0ED87218A2A1300408434 /* SpanConvertible.swift in Sources */,
+				3257779F2191F7DC00844EDE /* CoreDataAgent.swift in Sources */,
 				32B0ED89218A2A4800408434 /* SpanSender.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -389,8 +459,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				328FABE02188C1DD006C0A89 /* JaegerExtensionsTests.swift in Sources */,
+				325777ED2192365D00844EDE /* CoreDataStackTests.swift in Sources */,
 				328FABDE21889973006C0A89 /* TestUtilities.swift in Sources */,
 				66541CCA217F6698001E088D /* OTModelsTests.swift in Sources */,
+				325777A82191F9C900844EDE /* CoreDataAgentTests.swift in Sources */,
 				328FABE22188D73B006C0A89 /* JaegerModelsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
