@@ -150,7 +150,7 @@ public struct Span {
      See [OpenTracing Semantic Specification](https://opentracing.io/specification/) for the naming conventions.*/
     public let operationName: String
     /// The list of references to other nodes.
-    public let references: [Span.Reference]
+    public private(set) var references: [Span.Reference]
     /// This flag specifies if the span is a debug span.
     public let flag: Flag
     ///  The time at which the task started.

@@ -18,11 +18,9 @@ class CoreDataAgentTests: XCTestCase {
     }
     
     private func newCDStack() -> CoreDataStack {
-        let modelURL = Bundle(for: CoreDataAgentTests.self).bundleURL.appendingPathComponent("OTCoreDataAgent.mom")
-        guard let model = NSManagedObjectModel(contentsOf: modelURL) else {
-                fatalError()
-        }
-        let stack = CoreDataStack(modelName: "OTCoreDataAgent", model: model, type: .inMemory)
+        let stack = CoreDataStack(modelName: TestUtilities.Constants.coreDataAgentModelName,
+                                  model: TestUtilities.modelForCoreDataAgent,
+                                  type: .inMemory)
         return stack
     }
     

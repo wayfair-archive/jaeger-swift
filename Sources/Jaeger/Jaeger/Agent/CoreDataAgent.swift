@@ -190,7 +190,7 @@ public final class CoreDataAgent<RawSpan: SpanConvertible>: Agent {
         
         do {
             let data = try Constants.jsonEncoder.encode(rawSpan)
-            CoreDataSpan.insertNewSpan(in: self.backgroundContext,startTime: span.startTime, data: data)
+            CoreDataSpan.create(in: self.backgroundContext, startTime: span.startTime, data: data)
         } catch let error {
             print(error)
         }

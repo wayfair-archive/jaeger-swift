@@ -22,7 +22,7 @@ class CoreDataSpan: NSManagedObject {
      - Returns: A new `CoreDataSpan` inserted in the given `NSManagedObjectContext`.
      */
     @discardableResult
-    static func insertNewSpan(in context: NSManagedObjectContext, startTime: Date, data: Data) -> CoreDataSpan {
+    static func create(in context: NSManagedObjectContext, startTime: Date, data: Data) -> CoreDataSpan {
         let entity = NSEntityDescription.entity(forEntityName: "CoreDataSpan", in: context)!
         let span = CoreDataSpan(entity: entity, insertInto: context)
         span.startTime = startTime as NSDate
