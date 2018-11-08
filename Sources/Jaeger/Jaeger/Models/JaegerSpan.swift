@@ -13,7 +13,7 @@ import Foundation
  See the [Jaeger.Thrift](https://github.com/jaegertracing/jaeger-idl/blob/master/thrift/jaeger.thrift) definition.
  */
 public struct JaegerSpan: SpanConvertible {
-    
+
     /**
      Creates a Jaeger Span from an OpenTracing Span.
      
@@ -32,13 +32,13 @@ public struct JaegerSpan: SpanConvertible {
         traceIdLow = Int64(bitPattern: span.spanRef.traceId.firstHalfBits) //generates new ids, since we use the bitPattern!
         traceIdHigh = Int64(bitPattern: span.spanRef.traceId.secondHalfBits) //generates new ids, since we use the bitPattern!
         spanId = Int64(bitPattern: span.spanRef.spanId.firstHalfBits) //generates new ids, since we use the bitPattern!
-        
+
         if let parentSpanId = span.parentSpanId {
             self.parentSpanId = Int64(bitPattern: parentSpanId.firstHalfBits)  //generates new ids, since we use the bitPattern!
         } else { // root span
             self.parentSpanId = 0
         }
-        
+
         operationName = span.operationName
         references = span.references.map { JaegerSpanReference(ref: $0) }
         // usually unsafe, but it is OK when the timeIntervalSince1970 is expressed in microseconds, since this number will be smaller than Int64.max.
@@ -48,21 +48,20 @@ public struct JaegerSpan: SpanConvertible {
         incomplete = !span.isCompleted
         // usually unsafe, but it is OK when the timeIntervalSince1970 is expressed in microseconds, since this number will be smaller than Int64.max.
         duration = Int64(span.endTime?.timeIntervalSince(span.startTime).microseconds ?? 0)
-        
-        
+
         switch span.flag {
         case .debug: flags = 2
         case .sampled: flags = 1
         }
     }
-    
+
     /**
      The Jaeger version of an OpenTracing Span Reference.
      
      See the [Jaeger.Thrift](https://github.com/jaegertracing/jaeger-idl/blob/master/thrift/jaeger.thrift) definition.
      */
     struct JaegerSpanReference: Codable { // Jaeger.Thrift original def
-        
+
         /**
          Creates a Jaeger Span Reference from an OpenTracing Span Reference.
          
@@ -72,7 +71,7 @@ public struct JaegerSpan: SpanConvertible {
             spanId = Int64(bitPattern: ref.context.spanId.firstHalfBits) //generates new ids, since we use the bitPattern!
             traceIdLow = Int64(bitPattern: ref.context.traceId.firstHalfBits) //generates new ids, since we use the bitPattern!
             traceIdHigh = Int64(bitPattern: ref.context.traceId.secondHalfBits) //generates new ids, since we use the bitPattern!
-            
+
             switch ref.refType {
             case .childOf:
                 refType = .childOf
@@ -80,7 +79,7 @@ public struct JaegerSpan: SpanConvertible {
                 refType = .followsFrom
             }
         }
-        
+
         /**
          The Jaeger version of an OpenTracing Span Reference Type.
          
@@ -92,7 +91,7 @@ public struct JaegerSpan: SpanConvertible {
             /// A span that does not depend in any way on the result of a child.
             case followsFrom = "FOLLOWS_FROM"
         }
-        
+
         /// The relationship to the span.
         let refType: JaegerSpanReference.RefType
         /// The least significant 64 bits of a traceid.
@@ -102,7 +101,7 @@ public struct JaegerSpan: SpanConvertible {
         /// The span id.
         let spanId: Int64
     }
-    
+
     /// The least significant 64 bits of a traceid.
     let traceIdLow: Int64
     /// The most significant 64 bits of a traceid. **Set this to 0 when only using 64bit ids.**

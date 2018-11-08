@@ -25,10 +25,10 @@ import Foundation
  
  ````
  */
-public struct Tag: Equatable  {
+public struct Tag: Equatable {
     /// The allowed key type for a tag.
     public typealias Key = String
-    
+
     /**
      A list of all acceptable Swift fundamental types to represent the value of a tag.
      
@@ -52,7 +52,7 @@ public struct Tag: Equatable  {
         /// An array of bytes
         case binary(Binary)
     }
-    
+
     /**
      Creates a new tag from a  **key:value** pair.
      
@@ -63,7 +63,7 @@ public struct Tag: Equatable  {
         self.key = key
         self.tagType  = tagType
     }
-    
+
     /// The key of the **key:value** pair.
     public let key: Tag.Key
     /// The value of the **key:value** pair.

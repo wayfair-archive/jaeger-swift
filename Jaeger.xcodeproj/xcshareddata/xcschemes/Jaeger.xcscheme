@@ -20,6 +20,20 @@
                ReferencedContainer = "container:Jaeger.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "66FB4F552194BFDF00D1B535"
+               BuildableName = "SwiftLint"
+               BlueprintName = "SwiftLint"
+               ReferencedContainer = "container:Jaeger.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction

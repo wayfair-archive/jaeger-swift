@@ -49,7 +49,7 @@ extension Tracer {
         let reference = Span.Reference(refType: .childOf, context: parent)
         return startSpan(operationName: operationName, references: reference, startTime: startTime, tags: tags)
     }
-    
+
     /**
      A point of entry the crete a start a new span wrapped in an OTSpan.
      
@@ -64,7 +64,7 @@ extension Tracer {
         let reference = Span.Reference(refType: .followsFrom, context: parent)
         return startSpan(operationName: operationName, references: reference, startTime: startTime, tags: tags)
     }
-    
+
     /**
      A point of entry the crete a start a new span wrapped in an OTSpan.
      
@@ -80,7 +80,7 @@ extension Tracer {
 }
 
 extension Tracer {
-    
+
     /**
      A point of entry the crete a start a new span wrapped in an OTSpan.
      
@@ -94,8 +94,7 @@ extension Tracer {
     public func startSpan<Operation: RawRepresentable>(operationName: Operation, references: Span.Reference?, startTime: Date, tags: [Tag]) -> OTSpan where Operation.RawValue == String {
         return startSpan(operationName: operationName.rawValue, references: references, startTime: startTime, tags: tags)
     }
-    
-    
+
     /**
      A point of entry the crete a start a new span wrapped in an OTSpan.
      
@@ -109,7 +108,7 @@ extension Tracer {
     public func startSpan<Operation: RawRepresentable>(operationName: Operation, childOf parent: Span.Context, startTime: Date = Date(), tags: [Tag] = []) -> OTSpan where Operation.RawValue == String {
         return startSpan(operationName: operationName.rawValue, childOf: parent, startTime: startTime, tags: tags)
     }
-    
+
     /**
      A point of entry the crete a start a new span wrapped in an OTSpan.
      
@@ -123,7 +122,7 @@ extension Tracer {
     public func startSpan<Operation: RawRepresentable>(operationName: Operation, followsFrom parent: Span.Context, startTime: Date = Date(), tags: [Tag] = []) -> OTSpan where Operation.RawValue == String {
         return startSpan(operationName: operationName.rawValue, followsFrom: parent, startTime: startTime, tags: tags)
     }
-    
+
     /**
      A point of entry the crete a start a new span wrapped in an OTSpan.
      

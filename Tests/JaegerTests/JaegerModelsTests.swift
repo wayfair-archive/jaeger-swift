@@ -9,7 +9,7 @@ import XCTest
 @testable import Jaeger
 
 class JaegerModelsTests: XCTestCase {
-    
+
     func testJaegerTagConversionString() {
         let tag = Tag(key: "testKey", tagType: .string("testType"))
         let jaegerTag = JaegerTag(tag: tag)
@@ -21,7 +21,7 @@ class JaegerModelsTests: XCTestCase {
         XCTAssertNil(jaegerTag.vDouble)
         XCTAssertEqual(jaegerTag.vType, .string)
     }
-    
+
     func testJaegerTagConversionBool() {
         let tag = Tag(key: "testKey", tagType: .bool(false))
         let jaegerTag = JaegerTag(tag: tag)
@@ -33,7 +33,7 @@ class JaegerModelsTests: XCTestCase {
         XCTAssertNil(jaegerTag.vDouble)
         XCTAssertEqual(jaegerTag.vType, .bool)
     }
-    
+
     func testJaegerTagConversionLong() {
         let tag = Tag(key: "testKey", tagType: .int64(42))
         let jaegerTag = JaegerTag(tag: tag)
@@ -45,7 +45,7 @@ class JaegerModelsTests: XCTestCase {
         XCTAssertNil(jaegerTag.vDouble)
         XCTAssertEqual(jaegerTag.vType, .long)
     }
-    
+
     func testJaegerTagConversionBinary() {
         let tag = Tag(key: "testKey", tagType: .binary([UInt8(1)]))
         let jaegerTag = JaegerTag(tag: tag)
@@ -57,7 +57,7 @@ class JaegerModelsTests: XCTestCase {
         XCTAssertNil(jaegerTag.vDouble)
         XCTAssertEqual(jaegerTag.vType, .binary)
     }
-    
+
     func testJaegerTagConversionDouble() {
         let tag = Tag(key: "testKey", tagType: .double(42))
         let jaegerTag = JaegerTag(tag: tag)
@@ -76,40 +76,40 @@ class JaegerModelsTests: XCTestCase {
         let tag2 = Tag(key: "testKey2", tagType: .double(42))
 
         let log = Log(timestamp: date, fields: [tag1, tag2])
-        
+
         let jaegerLog = JaegerLog(log: log)
-        
+
         XCTAssertEqual(jaegerLog.fields.first?.key, "testKey1")
         XCTAssertEqual(jaegerLog.fields.first?.vStr, "testType")
         XCTAssertEqual(jaegerLog.fields.last?.key, "testKey2")
         XCTAssertEqual(jaegerLog.fields.last?.vDouble, 42)
         XCTAssertEqual(jaegerLog.timestamp, Int64(date.timeIntervalSince1970.microseconds))
     }
-    
+
     func testJaegerSpanReferenceChildOfConversion() {
         let uuid = UUID()
         let context =  Span.Context(traceId: uuid, spanId: uuid)
         let ref = Span.Reference(refType: .childOf, context: context)
         let jaegerRef = JaegerSpan.JaegerSpanReference(ref: ref)
-        
+
         XCTAssertEqual(jaegerRef.spanId, Int64(bitPattern: uuid.firstHalfBits))
         XCTAssertEqual(jaegerRef.traceIdLow, Int64(bitPattern: uuid.firstHalfBits))
         XCTAssertEqual(jaegerRef.traceIdHigh, Int64(bitPattern: uuid.secondHalfBits))
         XCTAssertEqual(jaegerRef.refType, .childOf)
     }
-    
+
     func testJaegerSpanReferenceFollowsFromConversion() {
         let uuid = UUID()
         let context =  Span.Context(traceId: uuid, spanId: uuid)
         let ref = Span.Reference(refType: .followsFrom, context: context)
         let jaegerRef = JaegerSpan.JaegerSpanReference(ref: ref)
-        
+
         XCTAssertEqual(jaegerRef.spanId, Int64(bitPattern: uuid.firstHalfBits))
         XCTAssertEqual(jaegerRef.traceIdLow, Int64(bitPattern: uuid.firstHalfBits))
         XCTAssertEqual(jaegerRef.traceIdHigh, Int64(bitPattern: uuid.secondHalfBits))
         XCTAssertEqual(jaegerRef.refType, .followsFrom)
     }
-    
+
     func testJaegerSpanConversion() {
         let tracer = EmptyTestTracer()
         let startTime = Date()
@@ -131,9 +131,9 @@ class JaegerModelsTests: XCTestCase {
                         tags: [tag.key: tag],
                         logs: [log])
         span.finish(at: endTime)
-        
+
         let jaegerSpan = JaegerSpan(span: span)
-        
+
         XCTAssertEqual(jaegerSpan.spanId, Int64(bitPattern: uuid.firstHalfBits))
         XCTAssertEqual(jaegerSpan.traceIdLow, Int64(bitPattern: uuid.firstHalfBits))
         XCTAssertEqual(jaegerSpan.traceIdHigh, Int64(bitPattern: uuid.secondHalfBits))
@@ -148,7 +148,7 @@ class JaegerModelsTests: XCTestCase {
         XCTAssertEqual(jaegerSpan.logs?.first?.fields.first?.vStr, "testType")
         XCTAssertEqual(jaegerSpan.duration, Int64(endTime.timeIntervalSince(startTime).microseconds))
     }
-    
+
     func testPerformanceJaegerSpanConversion() {
         let tracer = EmptyTestTracer()
         let startTime = Date()
@@ -158,7 +158,7 @@ class JaegerModelsTests: XCTestCase {
         let name = "oppName"
         let context =  Span.Context(traceId: uuid, spanId: uuid)
         let ref = Span.Reference(refType: .childOf, context: context)
-        
+
         let span = Span(tracer: tracer,
                  spanRef: context,
                  parentSpanId: uuid,
@@ -168,19 +168,19 @@ class JaegerModelsTests: XCTestCase {
                  startTime: startTime,
                  tags: [tag.key: tag],
                  logs: [log])
-        
+
         self.measure {
             let jaegerSpan = JaegerSpan(span: span)
             _ = jaegerSpan.duration
         }
     }
-    
+
     func testPerformanceSpanCreationAndConversion() {
-        
+
         let tracer = EmptyTestTracer()
-        
+
         self.measure {
-            
+
             let startTime = Date()
             let tag = Tag(key: "testKey", tagType: .string("testType"))
             let log = Log(timestamp: startTime, fields: [tag])
@@ -188,7 +188,7 @@ class JaegerModelsTests: XCTestCase {
             let name = "oppName"
             let context =  Span.Context(traceId: uuid, spanId: uuid)
             let ref = Span.Reference(refType: .childOf, context: context)
-            
+
             let span = Span(tracer: tracer,
                             spanRef: context,
                             parentSpanId: uuid,
@@ -198,7 +198,7 @@ class JaegerModelsTests: XCTestCase {
                             startTime: startTime,
                             tags: [tag.key: tag],
                             logs: [log])
-            
+
             let jaegerSpan = JaegerSpan(span: span)
             _ = jaegerSpan.duration
         }
