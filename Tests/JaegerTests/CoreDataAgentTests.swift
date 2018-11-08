@@ -36,7 +36,7 @@ class CoreDataAgentTests: XCTestCase {
                                                         return
         }
         
-        let agent = CoreDataAgent<TestSpanConvertible>(config: CDAgentConfig,
+        let agent = CDAgent<TestSpanConvertible>(config: CDAgentConfig,
                                                        sender: sender,
                                                        stack: coreDataStack,
                                                        reachabilityTracker: reachability)
@@ -68,7 +68,7 @@ class CoreDataAgentTests: XCTestCase {
                                                         return
         }
         
-        let agent = CoreDataAgent<TestSpanConvertible>(config: CDAgentConfig,
+        let agent = CDAgent<TestSpanConvertible>(config: CDAgentConfig,
                                                        sender: sender,
                                                        stack: coreDataStack,
                                                        reachabilityTracker: reachability)
@@ -96,7 +96,7 @@ class CoreDataAgentTests: XCTestCase {
                                                         return
         }
         
-        let agent = CoreDataAgent<TestSpanConvertible>(config: CDAgentConfig,
+        let agent = CDAgent<TestSpanConvertible>(config: CDAgentConfig,
                                                        sender: sender,
                                                        stack: coreDataStack,
                                                        reachabilityTracker: reachability)
@@ -132,7 +132,7 @@ class CoreDataAgentTests: XCTestCase {
                                                         return
         }
         
-        let agent = CoreDataAgent<TestSpanConvertible>(config: CDAgentConfig,
+        let agent = CDAgent<TestSpanConvertible>(config: CDAgentConfig,
                                                        sender: sender,
                                                        stack: coreDataStack,
                                                        reachabilityTracker: reachability)
@@ -177,7 +177,7 @@ class CoreDataAgentTests: XCTestCase {
                                                         return
         }
         
-        let agent = CoreDataAgent<TestSpanConvertible>(config: CDAgentConfig,
+        let agent = CDAgent<TestSpanConvertible>(config: CDAgentConfig,
                                                        sender: sender,
                                                        stack: coreDataStack,
                                                        reachabilityTracker: reachability)
@@ -198,6 +198,45 @@ class CoreDataAgentTests: XCTestCase {
             let count = try? coreDataStack?.defaultBackgroundContext.count(for: CoreDataSpan.fetchRequest())
             XCTAssertEqual(count, 1)
         }
+    }
+    
+    func testAgentNetworkError() {
+        
+        let reachability = TestReachabilityTracker(reachability: true)
+        let errorSender = XCTestExpectation(description: "error when sending spans")
+        
+        let urlTest = URL(string: "testURL")!
+        let mockSession = URLSessionMock()
+        let testError = NSError(domain: "testError", code: -1, userInfo: nil)
+        
+        mockSession.error = testError
+        
+        let sender = JSONSender(endPoint: urlTest, session: mockSession)
+        
+        let errorDelegate = TestCDAgentErrorDelegate { error in
+            XCTAssertEqual(error as NSError, testError)
+            errorSender.fulfill()
+        }
+        
+        guard let CDAgentConfig = CDAgentConfiguration(averageMaximumSpansPerSecond: 1,
+                                                       savingInterval: 0.1,
+                                                       sendingInterval: 0.15,
+                                                       errorDelegate: errorDelegate,
+                                                       coreDataFolderURL: nil) else {
+                                                        XCTFail()
+                                                        return
+        }
+        
+        let agent = CDAgent<TestSpanConvertible>(config: CDAgentConfig,
+                                                 sender: sender,
+                                                 stack: coreDataStack,
+                                                 reachabilityTracker: reachability)
+        
+        agent.record(span: TestUtilities.getNewTestSpan())
+        
+
+        wait(for: [errorSender], timeout: 1)
+
     }
     
     func testCDAgentConfigSpansPerSecond() {

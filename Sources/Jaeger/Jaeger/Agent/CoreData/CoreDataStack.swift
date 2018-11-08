@@ -88,7 +88,7 @@ final class CoreDataStack {
             guard let error = error  else { return }
             guard let strongSelf = self else { return }
             
-            strongSelf.deleteCoreDataFiles(at: container) // will only work for StoreType.sql
+            try? strongSelf.deleteCoreDataFiles(at: container) // will only work for StoreType.sql
             container.loadPersistentStores { (_, error) in
                 guard error == nil else {
                     fatalError("Unable to load CoreData stack for Jaeger-swift: \(String(describing: error))")
@@ -104,7 +104,7 @@ final class CoreDataStack {
      
      - Parameter container: A CoreData stack.
      */
-    private func deleteCoreDataFiles(at container: NSPersistentContainer) {
+    private func deleteCoreDataFiles(at container: NSPersistentContainer) throws {
         
         guard var sqlUrl = container.persistentStoreDescriptions.first?.url else { return }
         sqlUrl.deletePathExtension()
@@ -113,7 +113,7 @@ final class CoreDataStack {
             return sqlUrl.appendingPathExtension($0)
         }
         
-        try? coreDataFileUrls.forEach {
+        try coreDataFileUrls.forEach {
             guard FileManager.default.fileExists(atPath: $0.relativePath) else { return }
             try FileManager.default.removeItem(at: $0)
         }

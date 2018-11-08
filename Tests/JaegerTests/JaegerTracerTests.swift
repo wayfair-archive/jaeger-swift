@@ -35,7 +35,7 @@ class JaegerTracerTests: XCTestCase {
                                                         return
         }
         
-        let agent = CoreDataAgent<JaegerSpan>(config: CDAgentConfig,
+        let agent = CDAgent<JaegerSpan>(config: CDAgentConfig,
                                               sender: sender,
                                               stack: coreDataStack,
                                               reachabilityTracker: reachability)
@@ -89,7 +89,7 @@ class JaegerTracerTests: XCTestCase {
                                                         return
         }
         
-        let agent = CoreDataAgent<JaegerSpan>(config: CDAgentConfig,
+        let agent = CDAgent<JaegerSpan>(config: CDAgentConfig,
                                               sender: sender,
                                               stack: coreDataStack,
                                               reachabilityTracker: reachability)

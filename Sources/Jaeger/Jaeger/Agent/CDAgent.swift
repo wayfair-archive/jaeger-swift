@@ -21,67 +21,11 @@ fileprivate enum Constants {
 }
 
 /**
- The configuration used by the `CoreDataAgent` agent to set up the core data stack and saving behavior.
- */
-public struct CDAgentConfiguration {
-    
-    /**
-     Creates a new configuration.
-     
-     - Parameter averageMaximumSpansPerSecond: The maximum number of spans per seconds to be saved in memory before the next saving operation on disk.
-     - Parameter savingInterval: The time between each saving operation on disk.
-     - Parameter sendingInterval: The time between each sending tasks to the collector.
-     - Parameter coreDataFolderURL: An optional URL to a folder where the core data files will be saved. When not specified the `NSPersistentContainer.defaultDirectoryURL()` will be used.
-     
-     - Warning:
-     Every parameter should be strictly positive and the sending interval should be greater than the saving interval.
-     */
-    public init?(averageMaximumSpansPerSecond: Int,
-                 savingInterval: TimeInterval,
-                 sendingInterval: TimeInterval,
-                 coreDataFolderURL: URL?) {
-        
-        guard averageMaximumSpansPerSecond > 0,
-            savingInterval > 0,
-            sendingInterval > 0,
-            savingInterval < sendingInterval else {
-                return nil
-        }
-        
-        self.coreDataFolderURL = coreDataFolderURL
-        self.maximumSpansPerSecond = averageMaximumSpansPerSecond
-        self.savingInterval = savingInterval
-        self.sendingInterval = sendingInterval
-        let maxPerSaving = (Double(averageMaximumSpansPerSecond) * savingInterval).rounded(.up)
-        let maxPerSending = (Double(averageMaximumSpansPerSecond) * sendingInterval).rounded(.up)
-        self.maximunSpansPerSavingInterval =  Int(maxPerSaving)
-        self.maximunSpansPerSendingInterval = Int(maxPerSending)
-    }
-    
-    /// The maximum number of spans per seconds to be saved in memory before the next saving operation on disk.
-    public let maximumSpansPerSecond: Int
-    /// The time between each saving operation on disk.
-    public let savingInterval: TimeInterval
-    /// The time between each sending tasks to the collector.
-    public let sendingInterval: TimeInterval
-    /** The maximum number of spans to be saved in memory before the next saving operation on disk.
-     This is the product between the `maximumSpansPerSecond` and the `savingInterval`.
-     */
-    public let maximunSpansPerSavingInterval: Int
-    /**  The maximum number of spans fetched from the disk before sending to the collector.
-     This is the product between the `maximumSpansPerSecond` and the `sendingInterval`.
-     */
-    public let maximunSpansPerSendingInterval: Int
-    /// An optional URL to a folder where the core data files will be saved. When not specified the `NSPersistentContainer.defaultDirectoryURL()` will be used.
-    public let coreDataFolderURL: URL?
-}
-
-/**
  An agent using a Core Data Stack to save a binary representation of a span. The agent will save the spans periodically on disk in order to minimize the memory footprint  and optimize disk writing operations. At regular intervals, spans will be fetched from the disk and send to the provided `SpanSender`.
  
  A SQLite store type is used for the persistent store.
  */
-public final class CoreDataAgent<RawSpan: SpanConvertible>: Agent {
+public final class CDAgent<RawSpan: SpanConvertible>: Agent {
     
     /// The point of entry to report spans to a collector.
     public let spanSender: SpanSender
@@ -89,7 +33,7 @@ public final class CoreDataAgent<RawSpan: SpanConvertible>: Agent {
     /// The configuration applied to this instance.
     private let config: CDAgentConfiguration
     /// The provided core data stack used to save the spans.
-    private let coreStack: CoreDataStack
+    private let coreDataStack: CoreDataStack
     /** The shared background context used to synchronize background operations for Core Data.
      Use the associated serial queue to execute thread safe operations when needed.*/
     private let backgroundContext: NSManagedObjectContext
@@ -143,9 +87,9 @@ public final class CoreDataAgent<RawSpan: SpanConvertible>: Agent {
         
         self.config = config
         self.spanSender = sender
-        self.coreStack = stack
+        self.coreDataStack = stack
         self.reachabilityTracker = reachabilityTracker
-        backgroundContext = coreStack.defaultBackgroundContext
+        backgroundContext = coreDataStack.defaultBackgroundContext
         _ = savingTimer // start timer
         _ = sendingTimer // start timer
         executeSendingTasks() // Send cached data from the last app start.
@@ -192,7 +136,7 @@ public final class CoreDataAgent<RawSpan: SpanConvertible>: Agent {
             let data = try Constants.jsonEncoder.encode(rawSpan)
             CoreDataSpan.create(in: self.backgroundContext, startTime: span.startTime, data: data)
         } catch let error {
-            print(error)
+            config.errorDelegate?.handleError(error)
         }
     }
     
@@ -223,7 +167,7 @@ public final class CoreDataAgent<RawSpan: SpanConvertible>: Agent {
         do {
             try backgroundContext.save()
         } catch let error {
-            print(error)
+            config.errorDelegate?.handleError(error)
         }
     }
     
@@ -244,7 +188,7 @@ public final class CoreDataAgent<RawSpan: SpanConvertible>: Agent {
             guard values.count > 0  else { return }
             handle(results: values)
         } catch let error {
-            print(error)
+            config.errorDelegate?.handleError(error)
         }
     }
     
@@ -261,7 +205,11 @@ public final class CoreDataAgent<RawSpan: SpanConvertible>: Agent {
             return try? Constants.jsonDecoder.decode(RawSpan.self, from: $0.jsonSpan as Data)
         }
         deleteAllSpans()
-        self.spanSender.send(spans: spans)
+        guard spans.count > 0  else { return }
+        self.spanSender.send(spans: spans) { [weak self] error in
+            guard let strongSelf = self, let error = error else { return }
+            strongSelf.config.errorDelegate?.handleError(error)
+        }
     }
     
     /**
@@ -272,7 +220,7 @@ public final class CoreDataAgent<RawSpan: SpanConvertible>: Agent {
      */
     private func deleteAllSpans() {
         
-        switch coreStack.storeType {
+        switch coreDataStack.storeType {
         case .sql: deleteAllSpansSQLStore()
         case .inMemory: deleteAllSpansInMemoryStore()
         }
@@ -292,7 +240,7 @@ public final class CoreDataAgent<RawSpan: SpanConvertible>: Agent {
         do {
             try backgroundContext.execute(deleteResquest)
         } catch let error {
-            print(error)
+            config.errorDelegate?.handleError(error)
         }
     }
     
@@ -309,7 +257,7 @@ public final class CoreDataAgent<RawSpan: SpanConvertible>: Agent {
             result.forEach { backgroundContext.delete($0) }
             try backgroundContext.save()
         } catch let error {
-            print(error)
+            config.errorDelegate?.handleError(error)
         }
     }
 }
