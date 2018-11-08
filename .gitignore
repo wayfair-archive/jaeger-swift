@@ -30,3 +30,7 @@ Carthage/
 # Swift Package Manager
 #
 .build
+
+# Jazzy
+#
+.docs/
