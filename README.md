@@ -1,6 +1,6 @@
 # Jaeger for iOS
 
-[![Build Status](https://travis-ci.org/wayfair/jaeger-swift.svg?branch=master)](https://travis-ci.org/wayfair/jaeger-swift) [![Documentation Coverage](https://wayfair.github.io/jaeger-swift/badge.svg)](https://wayfair.github.io/jaeger-swift)
+[![Build Status](https://travis-ci.org/wayfair/jaeger-swift.svg?branch=master)](https://travis-ci.org/wayfair/jaeger-swift)
 
 :warning: :construction: **UNDER CONSTRUCTION** :construction: :warning:
 
