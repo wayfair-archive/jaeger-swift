@@ -451,7 +451,6 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				ENABLE_TESTABILITY = YES;
 			};
 			name = Debug;
 		};
@@ -461,7 +460,6 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				SWIFT_COMPILATION_MODE = wholemodule;
 			};
 			name = Release;
 		};
@@ -469,7 +467,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 79CC1D8E2183811C000A00C2 /* Jaeger.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 4.2;
 			};
@@ -479,7 +476,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 79CC1D8E2183811C000A00C2 /* Jaeger.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 4.2;
 			};
@@ -506,18 +502,12 @@
 		66FB4F562194BFDF00D1B535 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YB42T69E5P;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
 		66FB4F572194BFDF00D1B535 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YB42T69E5P;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
