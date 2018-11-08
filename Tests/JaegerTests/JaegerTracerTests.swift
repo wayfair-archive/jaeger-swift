@@ -18,9 +18,12 @@ class JaegerTracerTests: XCTestCase {
     }
     
     private func newCDStack() -> CoreDataStack {
-        let stack = CoreDataStack(modelName: TestUtilities.Constants.coreDataAgentModelName,
-                                  model: TestUtilities.modelForCoreDataAgent,
-                                  type: .inMemory)
+        let stack = CoreDataStack(
+            modelName: TestUtilities.Constants.coreDataAgentModelName,
+            model: TestUtilities.modelForCoreDataAgent,
+            type: .inMemory
+        )
+        
         return stack
     }
     
@@ -29,16 +32,22 @@ class JaegerTracerTests: XCTestCase {
         let reachability = TestReachabilityTracker(reachability: true)
         let sender = TestSender { _ in }
         
-        guard let CDAgentConfig = CDAgentConfiguration(averageMaximumSpansPerSecond: 1, savingInterval: 1,
-                                                       sendingInterval: 2, coreDataFolderURL: nil) else {
-                                                        XCTFail()
-                                                        return
+        guard let CDAgentConfig = CDAgentConfiguration(
+            averageMaximumSpansPerSecond: 1,
+            savingInterval: 1,
+            sendingInterval: 2,
+            coreDataFolderURL: nil
+            ) else {
+                return XCTFail()
         }
         
-        let agent = CDAgent<JaegerSpan>(config: CDAgentConfig,
-                                              sender: sender,
-                                              stack: coreDataStack,
-                                              reachabilityTracker: reachability)
+        let agent = CDAgent<JaegerSpan>(
+            config: CDAgentConfig,
+            sender: sender,
+            stack: coreDataStack,
+            reachabilityTracker: reachability
+        )
+        
         // TEST
         let tracer = JaegerTracer(agent: agent)
         let otSpan = tracer.startRootSpan(operationName: "TESTSPANNAME")
@@ -53,8 +62,7 @@ class JaegerTracerTests: XCTestCase {
         wait(for: [getSpanExpectation], timeout: 0.5)
         
         guard let finalSpan = span else {
-            XCTFail()
-            return
+            return XCTFail()
         }
         
         XCTAssertEqual(finalSpan.operationName, "TESTSPANNAME")
@@ -83,16 +91,21 @@ class JaegerTracerTests: XCTestCase {
             spansSent.fulfill()
         }
         
-        guard let CDAgentConfig = CDAgentConfiguration(averageMaximumSpansPerSecond: 1, savingInterval: 0.05,
-                                                       sendingInterval: 0.1, coreDataFolderURL: nil) else {
-                                                        XCTFail()
-                                                        return
+        guard let CDAgentConfig = CDAgentConfiguration(
+            averageMaximumSpansPerSecond: 1,
+            savingInterval: 0.05,
+            sendingInterval: 0.1,
+            coreDataFolderURL: nil) else {
+                return XCTFail()
         }
         
-        let agent = CDAgent<JaegerSpan>(config: CDAgentConfig,
-                                              sender: sender,
-                                              stack: coreDataStack,
-                                              reachabilityTracker: reachability)
+        let agent = CDAgent<JaegerSpan>(
+            config: CDAgentConfig,
+            sender: sender,
+            stack: coreDataStack,
+            reachabilityTracker: reachability
+        )
+        
         // TEST
         let tracer = JaegerTracer(agent: agent)
         let span = tracer.startRootSpan(operationName: "TESTSPANNAME")

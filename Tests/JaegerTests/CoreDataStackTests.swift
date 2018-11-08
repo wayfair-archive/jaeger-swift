@@ -12,9 +12,11 @@ import CoreData
 class CoreDataStackTests: XCTestCase {
     
     func testInitCoreDataStackInMemory() {
-        let stack = CoreDataStack(modelName: TestUtilities.Constants.coreDataAgentModelName,
-                                  model: TestUtilities.modelForCoreDataAgent,
-                                  type: .inMemory)
+        let stack = CoreDataStack(
+            modelName: TestUtilities.Constants.coreDataAgentModelName,
+            model: TestUtilities.modelForCoreDataAgent,
+            type: .inMemory
+        )
         
         XCTAssertEqual(stack.storeType, .inMemory)
         let typeForStore = stack.storeContainer.persistentStoreDescriptions.first?.type

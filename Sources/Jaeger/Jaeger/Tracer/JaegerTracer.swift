@@ -38,15 +38,18 @@ public final class CDTracer<RawSpan: SpanConvertible>: Tracer {
      - Returns: A new `Span` wrapped in an OTSpan.
      */
     public func startSpan(operationName: String, reference: Span.Reference?, startTime: Date, tags: [Tag]) -> OTSpan {
-        let span = Span(tracer: self,
-                        spanRef: .init(traceId: self.tracerId, spanId: UUID()),
-                        parentSpanId: reference?.context.spanId,
-                        operationName: operationName,
-                        references: [],
-                        flag: .sampled,
-                        startTime: startTime,
-                        tags: [:],
-                        logs: [])
+        let span = Span(
+            tracer: self,
+            spanRef: .init(traceId: self.tracerId, spanId: UUID()),
+            parentSpanId: reference?.context.spanId,
+            operationName: operationName,
+            references: [],
+            flag: .sampled,
+            startTime: startTime,
+            tags: [:],
+            logs: []
+        )
+        
         return OTSpan(span: span)
     }
     

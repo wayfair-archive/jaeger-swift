@@ -41,25 +41,29 @@ class TestUtilities {
      - Parameter references: Default is `[]`.
      
      */
-    static func getNewTestSpan(name: String = "testSpan",
-                               parentUUID: UUID? = nil,
-                               startTime: Date = Date(),
-                               spanUUID: UUID = TestUtilities.Constants.spanUUID,
-                               traceUUID: UUID = TestUtilities.Constants.traceUUID,
-                               tracer: Tracer = EmptyTestTracer(),
-                               logs: [Log] = [],
-                               tags: [Tag.Key : Tag] = [:],
-                               references: [Span.Reference] = []) -> Span {
+    static func getNewTestSpan(
+        name: String = "testSpan",
+        parentUUID: UUID? = nil,
+        startTime: Date = Date(),
+        spanUUID: UUID = TestUtilities.Constants.spanUUID,
+        traceUUID: UUID = TestUtilities.Constants.traceUUID,
+        tracer: Tracer = EmptyTestTracer(),
+        logs: [Log] = [],
+        tags: [Tag.Key : Tag] = [:],
+        references: [Span.Reference] = []
+        ) -> Span {
         
-        return Span(tracer: tracer,
-                    spanRef: Span.Context(traceId: traceUUID, spanId: spanUUID),
-                    parentSpanId: parentUUID,
-                    operationName: name,
-                    references: references,
-                    flag: .debug,
-                    startTime: startTime,
-                    tags: tags,
-                    logs: logs)
+        return Span(
+            tracer: tracer,
+            spanRef: Span.Context(traceId: traceUUID, spanId: spanUUID),
+            parentSpanId: parentUUID,
+            operationName: name,
+            references: references,
+            flag: .debug,
+            startTime: startTime,
+            tags: tags,
+            logs: logs
+        )
     }
     
     /** The `OTCoreDataAgent.mom` file is generated during the creation of the Jaeger framework and added to its bundle. A link to the file was added the Jaeger project (drag and drop + setting the location relative to build products and then edit the project file to fix the path). This file was added as a resource for the test bundle in the build phases. Since the framework is added as a dependency of the test target, the file will be created before the compilation of the test project. */

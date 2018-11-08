@@ -24,11 +24,13 @@ public struct CDAgentConfiguration {
      - Warning:
      Every parameter should be strictly positive and the sending interval should be greater than the saving interval.
      */
-    public init?(averageMaximumSpansPerSecond: Int,
-                 savingInterval: TimeInterval,
-                 sendingInterval: TimeInterval,
-                 errorDelegate: CDAgentErrorDelegate? = nil,
-                 coreDataFolderURL: URL?) {
+    public init?(
+        averageMaximumSpansPerSecond: Int,
+        savingInterval: TimeInterval,
+        sendingInterval: TimeInterval,
+        errorDelegate: CDAgentErrorDelegate? = nil,
+        coreDataFolderURL: URL?
+        ) {
         
         guard averageMaximumSpansPerSecond > 0,
             savingInterval > 0,

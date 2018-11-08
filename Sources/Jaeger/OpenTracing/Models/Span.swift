@@ -119,15 +119,17 @@ public struct Span {
      - Parameter logs: The logged events that occurrence before the completion the span.
      */
     
-    init(tracer: Tracer,
-         spanRef: Span.Context,
-         parentSpanId: UUID?,
-         operationName: String,
-         references: [Span.Reference],
-         flag: Flag,
-         startTime: Date,
-         tags: [Tag.Key : Tag],
-         logs: [Log]) {
+    init(
+        tracer: Tracer,
+        spanRef: Span.Context,
+        parentSpanId: UUID?,
+        operationName: String,
+        references: [Span.Reference],
+        flag: Flag,
+        startTime: Date,
+        tags: [Tag.Key : Tag],
+        logs: [Log]
+        ) {
         
         self.tracer = tracer
         self.spanRef = spanRef

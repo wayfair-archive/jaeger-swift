@@ -29,9 +29,11 @@ public final class OTSpan { // final class:  enables direct dispatch
      A common *low* priority synchronizing queue is used.
      */
     convenience init(span: Span) {
-        let defaultSynchronizingQueue = DispatchQueue(label: "com.wayfair.opentracing.otspan",
-                                                             qos: .utility,
-                                                             attributes: .concurrent)
+        let defaultSynchronizingQueue = DispatchQueue(
+            label: "com.wayfair.opentracing.otspan",
+            qos: .utility,
+            attributes: .concurrent
+        )
         
         self.init(span: span, synchronizingQueue: defaultSynchronizingQueue)
     }

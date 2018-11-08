@@ -80,10 +80,12 @@ public final class CDAgent<RawSpan: SpanConvertible>: Agent {
      - Parameter stack: The core data stack.
      - Parameter reachabilityTracker: The tracker used to monitor network accessibility.
      */
-    init(config: CDAgentConfiguration,
-         sender: SpanSender,
-         stack: CoreDataStack,
-         reachabilityTracker: ReachabilityTracker = Reachability()) {
+    init(
+        config: CDAgentConfiguration,
+        sender: SpanSender,
+        stack: CoreDataStack,
+        reachabilityTracker: ReachabilityTracker = Reachability()
+        ) {
         
         self.config = config
         self.spanSender = sender

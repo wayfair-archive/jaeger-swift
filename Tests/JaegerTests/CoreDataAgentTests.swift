@@ -18,9 +18,12 @@ class CoreDataAgentTests: XCTestCase {
     }
     
     private func newCDStack() -> CoreDataStack {
-        let stack = CoreDataStack(modelName: TestUtilities.Constants.coreDataAgentModelName,
-                                  model: TestUtilities.modelForCoreDataAgent,
-                                  type: .inMemory)
+        let stack = CoreDataStack(
+            modelName: TestUtilities.Constants.coreDataAgentModelName,
+            model: TestUtilities.modelForCoreDataAgent,
+            type: .inMemory
+        )
+        
         return stack
     }
     
@@ -30,16 +33,20 @@ class CoreDataAgentTests: XCTestCase {
         let sender = TestSender { _ in }
         let maxPerSec: Int = 2
         
-        guard let CDAgentConfig = CDAgentConfiguration(averageMaximumSpansPerSecond: maxPerSec, savingInterval: 1,
-                                                       sendingInterval: 2, coreDataFolderURL: nil) else {
-                                                        XCTFail()
-                                                        return
+        guard let CDAgentConfig = CDAgentConfiguration(
+            averageMaximumSpansPerSecond: maxPerSec,
+            savingInterval: 1,
+            sendingInterval: 2,
+            coreDataFolderURL: nil) else {
+                return XCTFail()
         }
         
-        let agent = CDAgent<TestSpanConvertible>(config: CDAgentConfig,
-                                                       sender: sender,
-                                                       stack: coreDataStack,
-                                                       reachabilityTracker: reachability)
+        let agent = CDAgent<TestSpanConvertible>(
+            config: CDAgentConfig,
+            sender: sender,
+            stack: coreDataStack,
+            reachabilityTracker: reachability
+        )
         
         agent.record(span: TestUtilities.getNewTestSpan())
         agent.record(span: TestUtilities.getNewTestSpan())
@@ -62,16 +69,20 @@ class CoreDataAgentTests: XCTestCase {
             spansSent.fulfill()
         }
         
-        guard let CDAgentConfig = CDAgentConfiguration(averageMaximumSpansPerSecond: 1, savingInterval: 0.1,
-                                                       sendingInterval: 0.2, coreDataFolderURL: nil) else {
-                                                        XCTFail()
-                                                        return
+        guard let CDAgentConfig = CDAgentConfiguration(
+            averageMaximumSpansPerSecond: 1,
+            savingInterval: 0.1,
+            sendingInterval: 0.2,
+            coreDataFolderURL: nil) else {
+                return XCTFail()
         }
         
-        let agent = CDAgent<TestSpanConvertible>(config: CDAgentConfig,
-                                                       sender: sender,
-                                                       stack: coreDataStack,
-                                                       reachabilityTracker: reachability)
+        let agent = CDAgent<TestSpanConvertible>(
+            config: CDAgentConfig,
+            sender: sender,
+            stack: coreDataStack,
+            reachabilityTracker: reachability
+        )
         
         agent.record(span: TestUtilities.getNewTestSpan())
         agent.record(span: TestUtilities.getNewTestSpan())
@@ -90,16 +101,20 @@ class CoreDataAgentTests: XCTestCase {
         let spansSent = XCTestExpectation(description: "Agent sent spans")
         let sender = TestSender { _ in }
         
-        guard let CDAgentConfig = CDAgentConfiguration(averageMaximumSpansPerSecond: 1, savingInterval: 0.1,
-                                                       sendingInterval: 0.15, coreDataFolderURL: nil) else {
-                                                        XCTFail()
-                                                        return
+        guard let CDAgentConfig = CDAgentConfiguration(
+            averageMaximumSpansPerSecond: 1,
+            savingInterval: 0.1,
+            sendingInterval: 0.15,
+            coreDataFolderURL: nil) else {
+                return XCTFail()
         }
         
-        let agent = CDAgent<TestSpanConvertible>(config: CDAgentConfig,
-                                                       sender: sender,
-                                                       stack: coreDataStack,
-                                                       reachabilityTracker: reachability)
+        let agent = CDAgent<TestSpanConvertible>(
+            config: CDAgentConfig,
+            sender: sender,
+            stack: coreDataStack,
+            reachabilityTracker: reachability
+        )
         
         agent.record(span: TestUtilities.getNewTestSpan())
         
@@ -126,16 +141,20 @@ class CoreDataAgentTests: XCTestCase {
             spansSent.fulfill()
         }
         
-        guard let CDAgentConfig = CDAgentConfiguration(averageMaximumSpansPerSecond: 1, savingInterval: 0.1,
-                                                       sendingInterval: 0.15, coreDataFolderURL: nil) else {
-                                                        XCTFail()
-                                                        return
+        guard let CDAgentConfig = CDAgentConfiguration(
+            averageMaximumSpansPerSecond: 1,
+            savingInterval: 0.1,
+            sendingInterval: 0.15,
+            coreDataFolderURL: nil) else {
+                return XCTFail()
         }
         
-        let agent = CDAgent<TestSpanConvertible>(config: CDAgentConfig,
-                                                       sender: sender,
-                                                       stack: coreDataStack,
-                                                       reachabilityTracker: reachability)
+        let agent = CDAgent<TestSpanConvertible>(
+            config: CDAgentConfig,
+            sender: sender,
+            stack: coreDataStack,
+            reachabilityTracker: reachability
+        )
         
         agent.record(span: TestUtilities.getNewTestSpan())
         
@@ -171,16 +190,20 @@ class CoreDataAgentTests: XCTestCase {
             spansSent.fulfill()
         }
         
-        guard let CDAgentConfig = CDAgentConfiguration(averageMaximumSpansPerSecond: 1, savingInterval: 0.1,
-                                                       sendingInterval: 0.15, coreDataFolderURL: nil) else {
-                                                        XCTFail()
-                                                        return
+        guard let CDAgentConfig = CDAgentConfiguration(
+            averageMaximumSpansPerSecond: 1,
+            savingInterval: 0.1,
+            sendingInterval: 0.15,
+            coreDataFolderURL: nil) else {
+                return XCTFail()
         }
         
-        let agent = CDAgent<TestSpanConvertible>(config: CDAgentConfig,
-                                                       sender: sender,
-                                                       stack: coreDataStack,
-                                                       reachabilityTracker: reachability)
+        let agent = CDAgent<TestSpanConvertible>(
+            config: CDAgentConfig,
+            sender: sender,
+            stack: coreDataStack,
+            reachabilityTracker: reachability
+        )
         
         agent.record(span: TestUtilities.getNewTestSpan())
         
@@ -189,9 +212,7 @@ class CoreDataAgentTests: XCTestCase {
         }
         
         wait(for: [spansSent], timeout: 1)
-        
         agent.record(span: TestUtilities.getNewTestSpan())
-        
         wait(for: [spansNotSent], timeout: 1)
         
         coreDataStack.defaultBackgroundContext.performAndWait { [weak coreDataStack] in
@@ -218,43 +239,50 @@ class CoreDataAgentTests: XCTestCase {
             errorSender.fulfill()
         }
         
-        guard let CDAgentConfig = CDAgentConfiguration(averageMaximumSpansPerSecond: 1,
-                                                       savingInterval: 0.1,
-                                                       sendingInterval: 0.15,
-                                                       errorDelegate: errorDelegate,
-                                                       coreDataFolderURL: nil) else {
-                                                        XCTFail()
-                                                        return
+        guard let CDAgentConfig = CDAgentConfiguration(
+            averageMaximumSpansPerSecond: 1,
+            savingInterval: 0.1,
+            sendingInterval: 0.15,
+            errorDelegate: errorDelegate,
+            coreDataFolderURL: nil) else {
+                return XCTFail()
         }
         
-        let agent = CDAgent<TestSpanConvertible>(config: CDAgentConfig,
-                                                 sender: sender,
-                                                 stack: coreDataStack,
-                                                 reachabilityTracker: reachability)
+        let agent = CDAgent<TestSpanConvertible>(
+            config: CDAgentConfig,
+            sender: sender,
+            stack: coreDataStack,
+            reachabilityTracker: reachability
+        )
         
         agent.record(span: TestUtilities.getNewTestSpan())
         
-
         wait(for: [errorSender], timeout: 1)
-
     }
     
     func testCDAgentConfigSpansPerSecond() {
         
-        let configNegative = CDAgentConfiguration(averageMaximumSpansPerSecond: -1,
-                                                  savingInterval: 1,
-                                                  sendingInterval: 2,
-                                                  coreDataFolderURL: nil)
+        let configNegative = CDAgentConfiguration(
+            averageMaximumSpansPerSecond: -1,
+            savingInterval: 1,
+            sendingInterval: 2,
+            coreDataFolderURL: nil
+        )
         
-        let configZero = CDAgentConfiguration(averageMaximumSpansPerSecond: 0,
-                                              savingInterval: 1,
-                                              sendingInterval: 2,
-                                              coreDataFolderURL: nil)
+        let configZero = CDAgentConfiguration(
+            averageMaximumSpansPerSecond: 0,
+            savingInterval: 1,
+            sendingInterval: 2,
+            coreDataFolderURL: nil
+        )
         
-        let configPositive = CDAgentConfiguration(averageMaximumSpansPerSecond: 1,
-                                                  savingInterval: 1,
-                                                  sendingInterval: 2,
-                                                  coreDataFolderURL: nil)
+        let configPositive = CDAgentConfiguration(
+            averageMaximumSpansPerSecond: 1,
+            savingInterval: 1,
+            sendingInterval: 2,
+            coreDataFolderURL: nil
+        )
+        
         XCTAssertNil(configNegative)
         XCTAssertNil(configZero)
         XCTAssertNotNil(configPositive)
@@ -262,20 +290,27 @@ class CoreDataAgentTests: XCTestCase {
     
     func testCDAgentConfigSavingInterval() {
         
-        let configNegative = CDAgentConfiguration(averageMaximumSpansPerSecond: 1,
-                                                  savingInterval: -1,
-                                                  sendingInterval: 2,
-                                                  coreDataFolderURL: nil)
+        let configNegative = CDAgentConfiguration(
+            averageMaximumSpansPerSecond: 1,
+            savingInterval: -1,
+            sendingInterval: 2,
+            coreDataFolderURL: nil
+        )
         
-        let configZero = CDAgentConfiguration(averageMaximumSpansPerSecond: 1,
-                                              savingInterval: 0,
-                                              sendingInterval: 2,
-                                              coreDataFolderURL: nil)
+        let configZero = CDAgentConfiguration(
+            averageMaximumSpansPerSecond: 1,
+            savingInterval: 0,
+            sendingInterval: 2,
+            coreDataFolderURL: nil
+        )
         
-        let configPositive = CDAgentConfiguration(averageMaximumSpansPerSecond: 1,
-                                                  savingInterval: 1,
-                                                  sendingInterval: 2,
-                                                  coreDataFolderURL: nil)
+        let configPositive = CDAgentConfiguration(
+            averageMaximumSpansPerSecond: 1,
+            savingInterval: 1,
+            sendingInterval: 2,
+            coreDataFolderURL: nil
+        )
+        
         XCTAssertNil(configNegative)
         XCTAssertNil(configZero)
         XCTAssertNotNil(configPositive)
@@ -283,20 +318,27 @@ class CoreDataAgentTests: XCTestCase {
     
     func testCDAgentConfigSendingInterval() {
         
-        let configNegative = CDAgentConfiguration(averageMaximumSpansPerSecond: 1,
-                                                  savingInterval: 1,
-                                                  sendingInterval: -2,
-                                                  coreDataFolderURL: nil)
+        let configNegative = CDAgentConfiguration(
+            averageMaximumSpansPerSecond: 1,
+            savingInterval: 1,
+            sendingInterval: -2,
+            coreDataFolderURL: nil
+        )
         
-        let configZero = CDAgentConfiguration(averageMaximumSpansPerSecond: 1,
-                                              savingInterval: 1,
-                                              sendingInterval: 0,
-                                              coreDataFolderURL: nil)
+        let configZero = CDAgentConfiguration(
+            averageMaximumSpansPerSecond: 1,
+            savingInterval: 1,
+            sendingInterval: 0,
+            coreDataFolderURL: nil
+        )
         
-        let configPositive = CDAgentConfiguration(averageMaximumSpansPerSecond: 1,
-                                                  savingInterval: 1,
-                                                  sendingInterval: 2,
-                                                  coreDataFolderURL: nil)
+        let configPositive = CDAgentConfiguration(
+            averageMaximumSpansPerSecond: 1,
+            savingInterval: 1,
+            sendingInterval: 2,
+            coreDataFolderURL: nil
+        )
+        
         XCTAssertNil(configNegative)
         XCTAssertNil(configZero)
         XCTAssertNotNil(configPositive)
@@ -304,15 +346,19 @@ class CoreDataAgentTests: XCTestCase {
     
     func testCDAgentConfigSavingSendingFrequencyInterval() {
         
-        let configSavingMorefrequentThanSending = CDAgentConfiguration(averageMaximumSpansPerSecond: 1,
-                                                                       savingInterval: 2,
-                                                                       sendingInterval: 4,
-                                                                       coreDataFolderURL: nil)
+        let configSavingMorefrequentThanSending = CDAgentConfiguration(
+            averageMaximumSpansPerSecond: 1,
+            savingInterval: 2,
+            sendingInterval: 4,
+            coreDataFolderURL: nil
+        )
         
-        let configSendingMorefrequentThanSaving = CDAgentConfiguration(averageMaximumSpansPerSecond: 1,
-                                                                       savingInterval: 4,
-                                                                       sendingInterval: 2,
-                                                                       coreDataFolderURL: nil)
+        let configSendingMorefrequentThanSaving = CDAgentConfiguration(
+            averageMaximumSpansPerSecond: 1,
+            savingInterval: 4,
+            sendingInterval: 2,
+            coreDataFolderURL: nil
+        )
         
         XCTAssertNotNil(configSavingMorefrequentThanSending)
         XCTAssertNil(configSendingMorefrequentThanSaving)

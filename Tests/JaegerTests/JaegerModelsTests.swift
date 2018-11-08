@@ -69,12 +69,12 @@ class JaegerModelsTests: XCTestCase {
         XCTAssertEqual(jaegerTag.vDouble, 42)
         XCTAssertEqual(jaegerTag.vType, .double)
     }
-
+    
     func testJaegerLogConversion() {
         let date = Date()
         let tag1 = Tag(key: "testKey1", tagType: .string("testType"))
         let tag2 = Tag(key: "testKey2", tagType: .double(42))
-
+        
         let log = Log(timestamp: date, fields: [tag1, tag2])
         
         let jaegerLog = JaegerLog(log: log)
@@ -120,16 +120,18 @@ class JaegerModelsTests: XCTestCase {
         let name = "oppName"
         let context =  Span.Context(traceId: uuid, spanId: uuid)
         let ref = Span.Reference(refType: .childOf, context: context)
-
-        var span = Span(tracer: tracer,
-                        spanRef: context,
-                        parentSpanId: uuid,
-                        operationName: name,
-                        references: [ref],
-                        flag: .debug,
-                        startTime: startTime,
-                        tags: [tag.key: tag],
-                        logs: [log])
+        
+        var span = Span(
+            tracer: tracer,
+            spanRef: context,
+            parentSpanId: uuid,
+            operationName: name,
+            references: [ref],
+            flag: .debug,
+            startTime: startTime,
+            tags: [tag.key: tag],
+            logs: [log]
+        )
         span.finish(at: endTime)
         
         let jaegerSpan = JaegerSpan(span: span)
@@ -159,15 +161,17 @@ class JaegerModelsTests: XCTestCase {
         let context =  Span.Context(traceId: uuid, spanId: uuid)
         let ref = Span.Reference(refType: .childOf, context: context)
         
-        let span = Span(tracer: tracer,
-                 spanRef: context,
-                 parentSpanId: uuid,
-                 operationName: name,
-                 references: [ref],
-                 flag: .debug,
-                 startTime: startTime,
-                 tags: [tag.key: tag],
-                 logs: [log])
+        let span = Span(
+            tracer: tracer,
+            spanRef: context,
+            parentSpanId: uuid,
+            operationName: name,
+            references: [ref],
+            flag: .debug,
+            startTime: startTime,
+            tags: [tag.key: tag],
+            logs: [log]
+        )
         
         self.measure {
             let jaegerSpan = JaegerSpan(span: span)
@@ -189,15 +193,17 @@ class JaegerModelsTests: XCTestCase {
             let context =  Span.Context(traceId: uuid, spanId: uuid)
             let ref = Span.Reference(refType: .childOf, context: context)
             
-            let span = Span(tracer: tracer,
-                            spanRef: context,
-                            parentSpanId: uuid,
-                            operationName: name,
-                            references: [ref],
-                            flag: .debug,
-                            startTime: startTime,
-                            tags: [tag.key: tag],
-                            logs: [log])
+            let span = Span(
+                tracer: tracer,
+                spanRef: context,
+                parentSpanId: uuid,
+                operationName: name,
+                references: [ref],
+                flag: .debug,
+                startTime: startTime,
+                tags: [tag.key: tag],
+                logs: [log]
+            )
             
             let jaegerSpan = JaegerSpan(span: span)
             _ = jaegerSpan.duration

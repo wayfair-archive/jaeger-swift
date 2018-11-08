@@ -27,14 +27,11 @@ final class Reachability  {
         address.sin_len = UInt8(MemoryLayout<sockaddr_in>.size)
         address.sin_family = sa_family_t(AF_INET)
         
-        // Passes the reference of the struct
-        let reachability = withUnsafePointer(to: &address, { pointer in
-            // Converts to a generic socket address
+        let reachability = withUnsafePointer(to: &address) { pointer in
             return pointer.withMemoryRebound(to: sockaddr.self, capacity: MemoryLayout<sockaddr>.size) {
-                // $0 is the pointer to `sockaddr`
                 return SCNetworkReachabilityCreateWithAddress(nil, $0)
             }
-        })
+        }
         return reachability
     }
     

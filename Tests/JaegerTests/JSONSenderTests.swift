@@ -21,6 +21,7 @@ class JSONSenderTests: XCTestCase {
         let spansSent = XCTestExpectation(description: "sender sent spans")
         
         let jaegerSpan = JaegerSpan(span: TestUtilities.getNewTestSpan())
+        
         sender.send(spans: [jaegerSpan]) { error in
             XCTAssertNil(error)
             spansSent.fulfill()

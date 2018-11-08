@@ -50,10 +50,12 @@ public final class JSONSender: SpanSender {
      
      If this basic implementation does not meet your requirements, simply make your own network service (or wrapper) conform to `SpanSender`.
      */
-    public init(endPoint: URL,
-                session: URLSession = .shared,
-                httpMethod: HttpMethod = .post,
-                requestHeaders: [String: String] = [:]) {
+    public init(
+        endPoint: URL,
+        session: URLSession = .shared,
+        httpMethod: HttpMethod = .post,
+        requestHeaders: [String: String] = [:]
+        ) {
         
         self.endPoint = endPoint
         self.session = session
