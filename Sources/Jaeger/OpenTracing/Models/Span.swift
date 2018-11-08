@@ -16,13 +16,13 @@ import Foundation
  - For more detail see the [OpenTracing Semantic Specification](https://opentracing.io/specification/).
  */
 public struct Span {
-    
+
     /**
      The minimal information needed to reference a span in a trace.
      The context represents the node (span) in a **Trace** without the relationships to other nodes.
      */
     public struct Context {
-        
+
         /**
          Creates a new Context from the trace and span ids.
          
@@ -33,19 +33,19 @@ public struct Span {
             self.traceId = traceId
             self.spanId = spanId
         }
-        
+
         /// The unique number that identifies the (unique) trace in which the node (span) is part of.
         public let traceId: UUID
         /// A unique number to identify a span.
         public let spanId: UUID
     }
-    
+
     /**
      A reference to a span in a Trace with a relationship context called a `ReferenceType`.
      Abstractly it is an edge of the graph (Trace) when used to reference a node (span) from another node (span).
      */
     public struct Reference {
-        
+
         /**
          Creates a new Reference from a parent span.
          
@@ -55,7 +55,7 @@ public struct Span {
         public static func child(of parent: Span.Context) -> Reference {
             return Reference(refType: .childOf, context: parent)
         }
-        
+
         /**
          Creates a new Reference from a parent span with no dependency to its child span.
          
@@ -65,7 +65,7 @@ public struct Span {
         public static func follows(from precedingContext: Span.Context) -> Reference {
             return Reference(refType: .followsFrom, context: precedingContext)
         }
-        
+
         /**
          A list of possible relationship between spans.
          
@@ -80,13 +80,13 @@ public struct Span {
             /// A span that does not depend in any way on the result of a child.
             case followsFrom
         }
-        
+
         /// The relationship to the span.
         public let refType: Reference.ReferenceType
         /// The span reference.
         public let context: Span.Context
     }
-    
+
     /**
      A flag to identify whether a flag is in a debug state.
      
@@ -104,7 +104,7 @@ public struct Span {
         /// A debug span
         case debug
     }
-    
+
     /**
      Creates a new `Span`.
      
@@ -118,7 +118,7 @@ public struct Span {
      - Parameter tags: The tags set before the completion the span.
      - Parameter logs: The logged events that occurrence before the completion the span.
      */
-    
+
     init(tracer: Tracer,
          spanRef: Span.Context,
          parentSpanId: UUID?,
@@ -126,9 +126,9 @@ public struct Span {
          references: [Span.Reference],
          flag: Flag,
          startTime: Date,
-         tags: [Tag.Key : Tag],
+         tags: [Tag.Key: Tag],
          logs: [Log]) {
-        
+
         self.tracer = tracer
         self.spanRef = spanRef
         self.parentSpanId = parentSpanId
@@ -139,7 +139,7 @@ public struct Span {
         self.tags = tags
         self.logs = logs
     }
-    
+
     /// The `Tracer` that created this span.
     private let tracer: Tracer
     /// The unique identification of the span and its trace.
@@ -156,24 +156,24 @@ public struct Span {
     ///  The time at which the task started.
     public let startTime: Date
     ///  The time at which the task ended.
-    public private(set) var endTime: Date? = nil
+    public private(set) var endTime: Date?
     /**  The tags set before the completion the span.
      
      As specified in the OpenTracing documentation, the `tags` property can only be modified before the span ends.
      */
-    public private(set) var tags: [Tag.Key : Tag]
+    public private(set) var tags: [Tag.Key: Tag]
     /**  The logged events that occurrence before the completion the span.
      
      - As specified in the OpenTracing documentation, the `logs` property can only be modified before the span ends.
      - As mentioned in the `Tag` documentation, a dictionary is used instead of an array for performance reasons.
      */
     public private(set) var logs: [Log]
-    
+
     /// A boolean indicating if the task is completed.
     public var isCompleted: Bool {
         return endTime != nil
     }
-    
+
     /**
      Add or modify an exciting tag.
      
@@ -185,7 +185,7 @@ public struct Span {
         guard !isCompleted else {return}
         tags[tag.key] = tag
     }
-    
+
     /**
      Add a new log.
      
@@ -197,7 +197,7 @@ public struct Span {
         guard !isCompleted else {return}
         logs.append(log)
     }
-    
+
     /**
      An action to indicate that the task was completed.
      
@@ -224,7 +224,7 @@ extension Span: Hashable {
     public static func == (lhs: Span, rhs: Span) -> Bool {
         return lhs.spanRef == rhs.spanRef
     }
-    
+
     /**
      Only the span context is combined into the hasher.
      

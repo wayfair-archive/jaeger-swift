@@ -20,7 +20,7 @@ public protocol Agent: class {
      An Agent needs a SpanSender reference that implements the necessary networking functionality to report spans.
      */
     var spanSender: SpanSender { get }
-    
+
     /**
      Implement necessary logic to record the span data here. Recording includes any caching logic necessary to temporarily hold on to spans and also calling SpanSender's send function to report the spans to the collector.
      

@@ -9,7 +9,7 @@ import XCTest
 @testable import Jaeger
 
 /**
-Useful and reusable constants to help the construction of new tests.
+ Useful and reusable constants to help the construction of new tests.
  */
 enum TestUtilitiesConstants {
     /// Fixed UUID for a `Span`
@@ -21,14 +21,14 @@ enum TestUtilitiesConstants {
 /**
  A stub Tracer.
  
-Useful to test Spans when reporting can be ignored. **Do not use** the `startSpan` function.
+ Useful to test Spans when reporting can be ignored. **Do not use** the `startSpan` function.
  */
 class EmptyTestTracer: Tracer {
     /// **Do not use**
     func startSpan(operationName: String, references: Span.Reference?, startTime: Date, tags: [Tag]) -> OTSpan {
         fatalError()
     }
-    
+
     /// It does nothing.
     func report(span: Span) { }
 }
@@ -39,25 +39,25 @@ class EmptyTestTracer: Tracer {
  Useful to test Spans when the result of the report function is needed. **Do not use** the `startSpan` function.
  */
 class CompletionTestTracer: Tracer {
-    
+
     private let reportedSpanCompletion: (Span) -> Void
-    
+
     /**
      A Mock Tracer.
      
      - Parameter reportedSpanCompletion: A completion called every time a span is reported.
      - Parameter span: The reported span.
-
+     
      */
     init(reportedSpanCompletion: @escaping (_ span: Span) -> Void) {
         self.reportedSpanCompletion = reportedSpanCompletion
     }
-    
+
     /// **Do not use**
     func startSpan(operationName: String, references: Span.Reference?, startTime: Date, tags: [Tag]) -> OTSpan {
         fatalError()
     }
-    
+
     /**
      Will call the `reportedSpanCompletion` block.
      */
@@ -67,9 +67,9 @@ class CompletionTestTracer: Tracer {
 }
 
 class TestUtilities {
-    
+
     private init() {} // Only static methods for the class.
-    
+
     /**
      A span constructor with default parameters for all fields.
      
@@ -84,18 +84,18 @@ class TestUtilities {
      - Parameter logs: Default is `[]`.
      - Parameter tags: Default is `[:]`.
      - Parameter references: Default is `[]`.
-
+     
      */
     static func getNewTestSpan(name: String = "testSpan",
-                            parentUUID: UUID? = nil,
-                            startTime: Date = Date(),
-                            spanUUID: UUID = TestUtilitiesConstants.spanUUID,
-                            traceUUID: UUID = TestUtilitiesConstants.traceUUID,
-                            tracer: Tracer = EmptyTestTracer(),
-                            logs: [Log] = [],
-                            tags: [Tag.Key : Tag] = [:],
-                            references: [Span.Reference] = []) -> Span {
-        
+                               parentUUID: UUID? = nil,
+                               startTime: Date = Date(),
+                               spanUUID: UUID = TestUtilitiesConstants.spanUUID,
+                               traceUUID: UUID = TestUtilitiesConstants.traceUUID,
+                               tracer: Tracer = EmptyTestTracer(),
+                               logs: [Log] = [],
+                               tags: [Tag.Key: Tag] = [:],
+                               references: [Span.Reference] = []) -> Span {
+
         return Span(tracer: tracer,
                     spanRef: Span.Context(traceId: traceUUID, spanId: spanUUID),
                     parentSpanId: parentUUID,
@@ -107,7 +107,3 @@ class TestUtilities {
                     logs: logs)
     }
 }
-
-
-
-

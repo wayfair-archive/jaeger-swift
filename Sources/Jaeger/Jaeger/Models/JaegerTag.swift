@@ -13,7 +13,7 @@ import Foundation
  See the [Jaeger.Thrift](https://github.com/jaegertracing/jaeger-idl/blob/master/thrift/jaeger.thrift) definition.
  */
 struct JaegerTag: Codable {
-    
+
     /**
      Creates a Jaeger Tag from an OpenTracing Tag.
      
@@ -33,7 +33,7 @@ struct JaegerTag: Codable {
             self.init(key: tag.key, binary: binary)
         }
     }
-    
+
     /**
      Creates a Jaeger Tag from a `String` and a key.
      
@@ -51,7 +51,7 @@ struct JaegerTag: Codable {
         vLong = nil
         vBinary = nil
     }
-    
+
     /**
      Creates a Jaeger Tag from a `Double` and a key.
      
@@ -69,7 +69,7 @@ struct JaegerTag: Codable {
         vLong = nil
         vBinary = nil
     }
-    
+
     /**
      Creates a Jaeger Tag from a `Bool` and a key.
      
@@ -87,7 +87,7 @@ struct JaegerTag: Codable {
         vLong = nil
         vBinary = nil
     }
-    
+
     /**
      Creates a Jaeger Tag from an `Int64` and a key.
      
@@ -105,7 +105,7 @@ struct JaegerTag: Codable {
         vLong = long
         vBinary = nil
     }
-    
+
     /**
      Creates a Jaeger Tag from a `Binary` and a key.
      
@@ -123,7 +123,7 @@ struct JaegerTag: Codable {
         vLong = nil
         vBinary = binary
     }
-    
+
     /**
      A list of all acceptable Thrift fundamental types to represent the value of a tag.
      
@@ -147,7 +147,7 @@ struct JaegerTag: Codable {
         ///  A Thrift Binary
         case binary = "BINARY"
     }
-    
+
     /// The string key of the **key:value** pair.
     let key: String
     /// The type associated to the value.

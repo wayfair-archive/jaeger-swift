@@ -6,6 +6,20 @@
 	objectVersion = 50;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		66FB4F552194BFDF00D1B535 /* SwiftLint */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 66FB4F582194BFDF00D1B535 /* Build configuration list for PBXAggregateTarget "SwiftLint" */;
+			buildPhases = (
+				66FB4F752194C00200D1B535 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = SwiftLint;
+			productName = SwiftLint;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		3286EF2C218793E200A07DDB /* TimeInterval+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3286EF2B218793E200A07DDB /* TimeInterval+Extensions.swift */; };
 		3286EF2E2187940600A07DDB /* JaegerLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3286EF2D2187940600A07DDB /* JaegerLog.swift */; };
@@ -316,7 +330,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1000;
-				LastUpgradeCheck = 1000;
+				LastUpgradeCheck = 1010;
 				TargetAttributes = {
 					66541CBA217F6698001E088D = {
 						CreatedOnToolsVersion = 10.0;
@@ -324,6 +338,9 @@
 					};
 					66541CC3217F6698001E088D = {
 						CreatedOnToolsVersion = 10.0;
+					};
+					66FB4F552194BFDF00D1B535 = {
+						CreatedOnToolsVersion = 10.1;
 					};
 				};
 			};
@@ -341,6 +358,7 @@
 			targets = (
 				66541CBA217F6698001E088D /* Jaeger */,
 				66541CC3217F6698001E088D /* JaegerTests */,
+				66FB4F552194BFDF00D1B535 /* SwiftLint */,
 			);
 		};
 /* End PBXProject section */
@@ -361,6 +379,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		66FB4F752194C00200D1B535 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"$CARTHAGE\" == 'YES' ]; then \n    exit\nfi\n\nif command -v swiftlint >/dev/null; then\n    swiftlint lint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		66541CB7217F6698001E088D /* Sources */ = {
@@ -412,6 +451,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_TESTABILITY = YES;
 			};
 			name = Debug;
 		};
@@ -421,6 +461,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
+				SWIFT_COMPILATION_MODE = wholemodule;
 			};
 			name = Release;
 		};
@@ -428,6 +469,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 79CC1D8E2183811C000A00C2 /* Jaeger.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 4.2;
 			};
@@ -437,6 +479,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 79CC1D8E2183811C000A00C2 /* Jaeger.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 4.2;
 			};
@@ -457,6 +500,24 @@
 			buildSettings = {
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
+		66FB4F562194BFDF00D1B535 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YB42T69E5P;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		66FB4F572194BFDF00D1B535 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YB42T69E5P;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -486,6 +547,15 @@
 			buildConfigurations = (
 				66541CCF217F6698001E088D /* Debug */,
 				66541CD0217F6698001E088D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		66FB4F582194BFDF00D1B535 /* Build configuration list for PBXAggregateTarget "SwiftLint" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66FB4F562194BFDF00D1B535 /* Debug */,
+				66FB4F572194BFDF00D1B535 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

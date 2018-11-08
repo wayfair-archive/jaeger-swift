@@ -17,10 +17,10 @@ import Foundation
  
  */
 public final class OTSpan { // final class:  enables direct dispatch
-    
+
     /// The synchronizing queue for all span operations.
     private let synchronizingQueue: DispatchQueue
-    
+
     /**
      Creates a new `OTSpan` from a `Span`.
      
@@ -32,10 +32,10 @@ public final class OTSpan { // final class:  enables direct dispatch
         let defaultSynchronizingQueue = DispatchQueue(label: "com.wayfair.opentracing.otspan",
                                                              qos: .utility,
                                                              attributes: .concurrent)
-        
+
         self.init(span: span, synchronizingQueue: defaultSynchronizingQueue)
     }
-    
+
     /**
      Creates a new `OTSpan` synchronized a specify queue. **Only use this init for test purpose.**
      
@@ -48,10 +48,10 @@ public final class OTSpan { // final class:  enables direct dispatch
         self.synchronizingQueue = synchronizingQueue
         self.backingSpan = span
     }
-    
+
     /// The span value synchronized by the concurrent queue.
     private var backingSpan: Span
-    
+
     /**
      The asynchronous setter of the span.
      
@@ -64,7 +64,7 @@ public final class OTSpan { // final class:  enables direct dispatch
             closure(&self.backingSpan)
         }
     }
-    
+
     /**
      The asynchronous getter of the span.
      
@@ -77,7 +77,7 @@ public final class OTSpan { // final class:  enables direct dispatch
             closure(self.backingSpan)
         }
     }
-    
+
     /**
      An action to indicate that the task was completed.
      This function will forward the request to the span by using the specified date or the current date.
