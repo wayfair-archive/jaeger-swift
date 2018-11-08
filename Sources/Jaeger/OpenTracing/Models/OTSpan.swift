@@ -49,7 +49,11 @@ public final class OTSpan { // final class:  enables direct dispatch
     init(span: Span, synchronizingQueue: DispatchQueue) {
         self.synchronizingQueue = synchronizingQueue
         self.backingSpan = span
+        self.spanRef = span.spanRef
     }
+    
+    /// The reference for the current span. Useful to create a child span.
+    public let spanRef: Span.Context
     
     /// The span value synchronized by the concurrent queue.
     private var backingSpan: Span

@@ -23,7 +23,10 @@ class CoreDataSpan: NSManagedObject {
      */
     @discardableResult
     static func create(in context: NSManagedObjectContext, startTime: Date, data: Data) -> CoreDataSpan {
-        let entity = NSEntityDescription.entity(forEntityName: "CoreDataSpan", in: context)!
+        guard let entity = NSEntityDescription.entity(forEntityName: "CoreDataSpan", in: context) else {
+            fatalError("")
+        }
+        
         let span = CoreDataSpan(entity: entity, insertInto: context)
         span.startTime = startTime as NSDate
         span.jsonSpan = data as NSData
