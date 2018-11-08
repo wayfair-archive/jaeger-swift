@@ -3,14 +3,3 @@ osx_image: xcode10.1
 xcode_project: Jaeger.xcodeproj
 xcode_scheme: Jaeger
 xcode_destination: platform=iOS Simulator,OS=12.1,name=iPhone XS
-before_deploy:
-  - gem install jazzy
-deploy:
-  verbose: true
-  provider: pages
-  skip-cleanup: true
-  keep-history: true
-  github-token: $GITHUB_TOKEN
-  local-dir: .docs
-  on:
-    branch: master
