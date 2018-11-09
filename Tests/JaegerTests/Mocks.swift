@@ -15,7 +15,7 @@ import XCTest
  */
 class EmptyTestTracer: Tracer {
     /// **Do not use**
-    func startSpan(operationName: String, reference: Span.Reference?, startTime: Date, tags: [Tag]) -> OTSpan {
+    func startSpan(operationName: String, referencing reference: Span.Reference?, startTime: Date, tags: [Tag]) -> OTSpan {
         fatalError()
     }
 
@@ -44,7 +44,7 @@ class CompletionTestTracer: Tracer {
     }
 
     /// **Do not use**
-    func startSpan(operationName: String, reference: Span.Reference?, startTime: Date, tags: [Tag]) -> OTSpan {
+    func startSpan(operationName: String, referencing reference: Span.Reference?, startTime: Date, tags: [Tag]) -> OTSpan {
         fatalError()
     }
 

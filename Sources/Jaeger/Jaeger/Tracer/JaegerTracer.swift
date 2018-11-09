@@ -31,13 +31,13 @@ public final class BasicTracer: Tracer {
      A point of entry the crete a start a new span wrapped in an OTSpan.
      
      - Parameter operationName: A human-readable string which concisely represents the work done by the Span. See [OpenTracing Semantic Specification](https://opentracing.io/specification/) for the naming conventions.
-     - Parameter reference: The relationship to a node (span).
+     - Parameter referencing: The relationship to a node (span).
      - Parameter startTime: The time at which the task was started.
      - Parameter tags: Tags to be included at the creation of the span.
      
      - Returns: A new `Span` wrapped in an OTSpan.
      */
-    public func startSpan(operationName: String, reference: Span.Reference?, startTime: Date, tags: [Tag]) -> OTSpan {
+    public func startSpan(operationName: String, referencing reference: Span.Reference?, startTime: Date, tags: [Tag]) -> OTSpan {
         let span = Span(
             tracer: self,
             spanRef: .init(traceId: self.tracerId, spanId: UUID()),

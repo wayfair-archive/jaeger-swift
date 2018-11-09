@@ -23,7 +23,7 @@ public protocol Tracer: class {
      
      - Returns: A new `Span` wrapped in an OTSpan.
      */
-    func startSpan(operationName: String, reference: Span.Reference?, startTime: Date, tags: [Tag]) -> OTSpan
+    func startSpan(operationName: String, referencing reference: Span.Reference?, startTime: Date, tags: [Tag]) -> OTSpan
     /**
      Transfer a **completed** span to the tracer.
      
@@ -47,7 +47,7 @@ extension Tracer {
      */
     public func startSpan(operationName: String, childOf parent: Span.Context, startTime: Date = Date(), tags: [Tag] = []) -> OTSpan {
         let reference = Span.Reference(refType: .childOf, context: parent)
-        return startSpan(operationName: operationName, reference: reference, startTime: startTime, tags: tags)
+        return startSpan(operationName: operationName, referencing: reference, startTime: startTime, tags: tags)
     }
 
     /**
@@ -62,7 +62,7 @@ extension Tracer {
      */
     public func startSpan(operationName: String, followsFrom parent: Span.Context, startTime: Date = Date(), tags: [Tag] = []) -> OTSpan {
         let reference = Span.Reference(refType: .followsFrom, context: parent)
-        return startSpan(operationName: operationName, reference: reference, startTime: startTime, tags: tags)
+        return startSpan(operationName: operationName, referencing: reference, startTime: startTime, tags: tags)
     }
 
     /**
@@ -75,7 +75,7 @@ extension Tracer {
      - Returns: A new `Span` (wrapped in an OTSpan) with no relationship. This is a root node.
      */
     public func startRootSpan(operationName: String, startTime: Date = Date(), tags: [Tag] = []) -> OTSpan {
-        return startSpan(operationName: operationName, reference: nil, startTime: startTime, tags: tags)
+        return startSpan(operationName: operationName, referencing: nil, startTime: startTime, tags: tags)
     }
 }
 
@@ -92,7 +92,7 @@ extension Tracer {
      - Returns: A new `Span` wrapped in an OTSpan.
      */
     public func startSpan<Operation: RawRepresentable>(operationName: Operation, references: Span.Reference?, startTime: Date, tags: [Tag]) -> OTSpan where Operation.RawValue == String {
-        return startSpan(operationName: operationName.rawValue, reference: references, startTime: startTime, tags: tags)
+        return startSpan(operationName: operationName.rawValue, referencing: references, startTime: startTime, tags: tags)
     }
 
     /**
