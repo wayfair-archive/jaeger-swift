@@ -84,7 +84,7 @@ class JaegerTracerTests: XCTestCase {
 
             guard let sentJaegerSpans = spans as? [JaegerSpan] else {
                 XCTFail("Need JaegerSpans!")
-                spansSent.fulfill()
+                spansSent.fulfill() // Avoid waiting 1 sec for the XCTestExpectation to complete.
                 return
             }
             sentSpans = sentJaegerSpans
