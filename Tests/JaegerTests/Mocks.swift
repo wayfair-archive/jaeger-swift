@@ -85,7 +85,7 @@ class TestReachabilityTracker: ReachabilityTracker {
         return reachability
     }
 
-    func getSatus() -> ReachabilityStatus {
+    func getStatus() -> ReachabilityStatus {
         return reachability ? .wifi: .notConnected
     }
 }
@@ -105,7 +105,7 @@ struct TestSpanConvertible: SpanConvertible {
 /**
  A mock `CDAgentErrorDelegate`.
  */
-class TestCDAgentErrorDelegate: CDAgentErrorDelegate {
+class TestCDAgentErrorDelegate: CoreDataAgentErrorDelegate {
 
     let errorCompletion: (Error) -> Void
 

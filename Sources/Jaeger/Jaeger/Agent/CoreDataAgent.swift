@@ -9,7 +9,7 @@ import UIKit
 import CoreData
 
 /// An agent using a Core Data Stack to save a binary representation of a JaegerSpan.
-public typealias JaegerAgent = CDAgent<JaegerSpan>
+public typealias JaegerAgent = CoreDataAgent<JaegerSpan>
 
 /**
  Constants for the CoreDataAgent.
@@ -28,13 +28,13 @@ private enum Constants {
  
  A SQLite store type is used for the persistent store.
  */
-public final class CDAgent<RawSpan: SpanConvertible>: Agent {
+public final class CoreDataAgent<RawSpan: SpanConvertible>: Agent {
 
     /// The point of entry to report spans to a collector.
     public let spanSender: SpanSender
 
     /// The configuration applied to this instance.
-    private let config: CDAgentConfiguration
+    private let config: CoreDataAgentConfiguration
     /// The provided core data stack used to save the spans.
     private let coreDataStack: CoreDataStack
     /** The shared background context used to synchronize background operations for Core Data.
@@ -61,7 +61,7 @@ public final class CDAgent<RawSpan: SpanConvertible>: Agent {
      - Parameter config: The configuration for the core data stack and agent.
      - Parameter sender: The point of entry to report spans to a collector.
      */
-    public convenience init(config: CDAgentConfiguration, sender: SpanSender) {
+    public convenience init(config: CoreDataAgentConfiguration, sender: SpanSender) {
         guard let modelURL = Bundle.main.url(forResource: Constants.modelName, withExtension: "mom"),
             let model = NSManagedObjectModel(contentsOf: modelURL) else { fatalError() }
         let storeType: CoreDataStack.StoreType = .sql
@@ -84,7 +84,7 @@ public final class CDAgent<RawSpan: SpanConvertible>: Agent {
      - Parameter reachabilityTracker: The tracker used to monitor network accessibility.
      */
     init(
-        config: CDAgentConfiguration,
+        config: CoreDataAgentConfiguration,
         sender: SpanSender,
         stack: CoreDataStack,
         reachabilityTracker: ReachabilityTracker = Reachability()
@@ -140,7 +140,7 @@ public final class CDAgent<RawSpan: SpanConvertible>: Agent {
         do {
             let data = try Constants.jsonEncoder.encode(rawSpan)
             CoreDataSpan.create(in: self.backgroundContext, startTime: span.startTime, data: data)
-        } catch let error {
+        } catch {
             config.errorDelegate?.handleError(error)
         }
     }
@@ -171,7 +171,7 @@ public final class CDAgent<RawSpan: SpanConvertible>: Agent {
 
         do {
             try backgroundContext.save()
-        } catch let error {
+        } catch {
             config.errorDelegate?.handleError(error)
         }
     }
@@ -192,7 +192,7 @@ public final class CDAgent<RawSpan: SpanConvertible>: Agent {
             let values = try backgroundContext.fetch(fetchRequest)
             guard values.count > 0  else { return }
             handle(results: values)
-        } catch let error {
+        } catch {
             config.errorDelegate?.handleError(error)
         }
     }
@@ -244,7 +244,7 @@ public final class CDAgent<RawSpan: SpanConvertible>: Agent {
 
         do {
             try backgroundContext.execute(deleteResquest)
-        } catch let error {
+        } catch {
             config.errorDelegate?.handleError(error)
         }
     }
@@ -261,7 +261,7 @@ public final class CDAgent<RawSpan: SpanConvertible>: Agent {
             let result = try backgroundContext.fetch(fetchRequest)
             result.forEach { backgroundContext.delete($0) }
             try backgroundContext.save()
-        } catch let error {
+        } catch {
             config.errorDelegate?.handleError(error)
         }
     }

@@ -97,7 +97,7 @@ public final class JSONSender: SpanSender {
         do {
             let data = try Constants.jsonEncoder.encode(spans)
             sendRequest(for: data, completion: completion)
-        } catch let error {
+        } catch {
             completion?(error)
         }
     }

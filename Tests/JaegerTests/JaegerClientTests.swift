@@ -11,7 +11,7 @@ import CoreData
 
 class JaegerClientTests: XCTestCase {
 
-    private func newCDStack() -> CoreDataStack {
+    private func newStack() -> CoreDataStack {
         let stack = CoreDataStack(
             modelName: TestUtilities.Constants.coreDataAgentModelName,
             model: TestUtilities.modelForCoreDataAgent,
@@ -27,7 +27,7 @@ class JaegerClientTests: XCTestCase {
         guard let endPoint = URL(string: "testURL") else { return nil }
         let sender = JSONSender(endPoint: endPoint, session: session)
 
-        guard let config = CDAgentConfiguration(
+        guard let config = CoreDataAgentConfiguration(
             averageMaximumSpansPerSecond: 100,
             savingInterval: savingInterval ,
             sendingInterval: sendingInterval,
@@ -37,10 +37,10 @@ class JaegerClientTests: XCTestCase {
                 return nil
         }
 
-        let cdAgent = CDAgent<JaegerSpan>(
+        let cdAgent = CoreDataAgent<JaegerSpan>(
             config: config,
             sender: sender,
-            stack: newCDStack(),
+            stack: newStack(),
             reachabilityTracker: reachability
         )
 

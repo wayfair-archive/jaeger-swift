@@ -1,5 +1,5 @@
 //
-//  CDAgentConfiguration.swift
+//  CoreDataAgentConfiguration.swift
 //  JaegerTests
 //
 //  Created by Simon-Pierre Roy on 11/8/18.
@@ -10,7 +10,7 @@ import Foundation
 /**
  The configuration used by the `CoreDataAgent` agent to set up the core data stack and saving behavior.
  */
-public struct CDAgentConfiguration {
+public struct CoreDataAgentConfiguration {
 
     /**
      Creates a new configuration.
@@ -28,7 +28,7 @@ public struct CDAgentConfiguration {
         averageMaximumSpansPerSecond: Int,
         savingInterval: TimeInterval,
         sendingInterval: TimeInterval,
-        errorDelegate: CDAgentErrorDelegate? = nil,
+        errorDelegate: CoreDataAgentErrorDelegate? = nil,
         coreDataFolderURL: URL?
         ) {
 
@@ -51,7 +51,7 @@ public struct CDAgentConfiguration {
     }
 
     /// The error delegate. Any core data error or network error will be forwarded to the delegate.
-    public private(set) weak var errorDelegate: CDAgentErrorDelegate?
+    public private(set) weak var errorDelegate: CoreDataAgentErrorDelegate?
     /// The maximum number of spans per seconds to be saved in memory before the next saving operation on disk.
     public let maximumSpansPerSecond: Int
     /// The time between each saving operation on disk.

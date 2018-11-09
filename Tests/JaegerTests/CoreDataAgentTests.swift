@@ -15,10 +15,10 @@ class CoreDataAgentTests: XCTestCase {
     private var coreDataStack: CoreDataStack!
 
     override func setUp() {
-        coreDataStack = newCDStack()
+        coreDataStack = newStack()
     }
 
-    private func newCDStack() -> CoreDataStack {
+    private func newStack() -> CoreDataStack {
         let stack = CoreDataStack(
             modelName: TestUtilities.Constants.coreDataAgentModelName,
             model: TestUtilities.modelForCoreDataAgent,
@@ -34,7 +34,7 @@ class CoreDataAgentTests: XCTestCase {
         let sender = TestSender { _ in }
         let maxPerSec: Int = 2
 
-        guard let CDAgentConfig = CDAgentConfiguration(
+        guard let CDAgentConfig = CoreDataAgentConfiguration(
             averageMaximumSpansPerSecond: maxPerSec,
             savingInterval: 1,
             sendingInterval: 2,
@@ -42,7 +42,7 @@ class CoreDataAgentTests: XCTestCase {
                 return XCTFail("Invalid CDAgentConfig")
         }
 
-        let agent = CDAgent<TestSpanConvertible>(
+        let agent = CoreDataAgent<TestSpanConvertible>(
             config: CDAgentConfig,
             sender: sender,
             stack: coreDataStack,
@@ -70,7 +70,7 @@ class CoreDataAgentTests: XCTestCase {
             spansSent.fulfill()
         }
 
-        guard let CDAgentConfig = CDAgentConfiguration(
+        guard let CDAgentConfig = CoreDataAgentConfiguration(
             averageMaximumSpansPerSecond: 1,
             savingInterval: 0.1,
             sendingInterval: 0.2,
@@ -78,7 +78,7 @@ class CoreDataAgentTests: XCTestCase {
                 return XCTFail("Invalid CDAgentConfig")
         }
 
-        let agent = CDAgent<TestSpanConvertible>(
+        let agent = CoreDataAgent<TestSpanConvertible>(
             config: CDAgentConfig,
             sender: sender,
             stack: coreDataStack,
@@ -102,7 +102,7 @@ class CoreDataAgentTests: XCTestCase {
         let spansSent = XCTestExpectation(description: "Agent sent spans")
         let sender = TestSender { _ in }
 
-        guard let CDAgentConfig = CDAgentConfiguration(
+        guard let CDAgentConfig = CoreDataAgentConfiguration(
             averageMaximumSpansPerSecond: 1,
             savingInterval: 0.1,
             sendingInterval: 0.15,
@@ -110,7 +110,7 @@ class CoreDataAgentTests: XCTestCase {
                 return XCTFail("Invalid CDAgentConfig")
         }
 
-        let agent = CDAgent<TestSpanConvertible>(
+        let agent = CoreDataAgent<TestSpanConvertible>(
             config: CDAgentConfig,
             sender: sender,
             stack: coreDataStack,
@@ -142,7 +142,7 @@ class CoreDataAgentTests: XCTestCase {
             spansSent.fulfill()
         }
 
-        guard let CDAgentConfig = CDAgentConfiguration(
+        guard let CDAgentConfig = CoreDataAgentConfiguration(
             averageMaximumSpansPerSecond: 1,
             savingInterval: 0.1,
             sendingInterval: 0.15,
@@ -150,7 +150,7 @@ class CoreDataAgentTests: XCTestCase {
                 return XCTFail("Invalid CDAgentConfig")
         }
 
-        let agent = CDAgent<TestSpanConvertible>(
+        let agent = CoreDataAgent<TestSpanConvertible>(
             config: CDAgentConfig,
             sender: sender,
             stack: coreDataStack,
@@ -191,7 +191,7 @@ class CoreDataAgentTests: XCTestCase {
             spansSent.fulfill()
         }
 
-        guard let CDAgentConfig = CDAgentConfiguration(
+        guard let CDAgentConfig = CoreDataAgentConfiguration(
             averageMaximumSpansPerSecond: 1,
             savingInterval: 0.1,
             sendingInterval: 0.15,
@@ -199,7 +199,7 @@ class CoreDataAgentTests: XCTestCase {
                 return XCTFail("Invalid CDAgentConfig")
         }
 
-        let agent = CDAgent<TestSpanConvertible>(
+        let agent = CoreDataAgent<TestSpanConvertible>(
             config: CDAgentConfig,
             sender: sender,
             stack: coreDataStack,
@@ -240,7 +240,7 @@ class CoreDataAgentTests: XCTestCase {
             errorSender.fulfill()
         }
 
-        guard let CDAgentConfig = CDAgentConfiguration(
+        guard let CDAgentConfig = CoreDataAgentConfiguration(
             averageMaximumSpansPerSecond: 1,
             savingInterval: 0.1,
             sendingInterval: 0.15,
@@ -249,7 +249,7 @@ class CoreDataAgentTests: XCTestCase {
                 return XCTFail("Invalid CDAgentConfig")
         }
 
-        let agent = CDAgent<TestSpanConvertible>(
+        let agent = CoreDataAgent<TestSpanConvertible>(
             config: CDAgentConfig,
             sender: sender,
             stack: coreDataStack,
@@ -263,21 +263,21 @@ class CoreDataAgentTests: XCTestCase {
 
     func testCDAgentConfigSpansPerSecond() {
 
-        let configNegative = CDAgentConfiguration(
+        let configNegative = CoreDataAgentConfiguration(
             averageMaximumSpansPerSecond: -1,
             savingInterval: 1,
             sendingInterval: 2,
             coreDataFolderURL: nil
         )
 
-        let configZero = CDAgentConfiguration(
+        let configZero = CoreDataAgentConfiguration(
             averageMaximumSpansPerSecond: 0,
             savingInterval: 1,
             sendingInterval: 2,
             coreDataFolderURL: nil
         )
 
-        let configPositive = CDAgentConfiguration(
+        let configPositive = CoreDataAgentConfiguration(
             averageMaximumSpansPerSecond: 1,
             savingInterval: 1,
             sendingInterval: 2,
@@ -291,21 +291,21 @@ class CoreDataAgentTests: XCTestCase {
 
     func testCDAgentConfigSavingInterval() {
 
-        let configNegative = CDAgentConfiguration(
+        let configNegative = CoreDataAgentConfiguration(
             averageMaximumSpansPerSecond: 1,
             savingInterval: -1,
             sendingInterval: 2,
             coreDataFolderURL: nil
         )
 
-        let configZero = CDAgentConfiguration(
+        let configZero = CoreDataAgentConfiguration(
             averageMaximumSpansPerSecond: 1,
             savingInterval: 0,
             sendingInterval: 2,
             coreDataFolderURL: nil
         )
 
-        let configPositive = CDAgentConfiguration(
+        let configPositive = CoreDataAgentConfiguration(
             averageMaximumSpansPerSecond: 1,
             savingInterval: 1,
             sendingInterval: 2,
@@ -319,21 +319,21 @@ class CoreDataAgentTests: XCTestCase {
 
     func testCDAgentConfigSendingInterval() {
 
-        let configNegative = CDAgentConfiguration(
+        let configNegative = CoreDataAgentConfiguration(
             averageMaximumSpansPerSecond: 1,
             savingInterval: 1,
             sendingInterval: -2,
             coreDataFolderURL: nil
         )
 
-        let configZero = CDAgentConfiguration(
+        let configZero = CoreDataAgentConfiguration(
             averageMaximumSpansPerSecond: 1,
             savingInterval: 1,
             sendingInterval: 0,
             coreDataFolderURL: nil
         )
 
-        let configPositive = CDAgentConfiguration(
+        let configPositive = CoreDataAgentConfiguration(
             averageMaximumSpansPerSecond: 1,
             savingInterval: 1,
             sendingInterval: 2,
@@ -347,14 +347,14 @@ class CoreDataAgentTests: XCTestCase {
 
     func testCDAgentConfigSavingSendingFrequencyInterval() {
 
-        let configSavingMorefrequentThanSending = CDAgentConfiguration(
+        let configSavingMorefrequentThanSending = CoreDataAgentConfiguration(
             averageMaximumSpansPerSecond: 1,
             savingInterval: 2,
             sendingInterval: 4,
             coreDataFolderURL: nil
         )
 
-        let configSendingMorefrequentThanSaving = CDAgentConfiguration(
+        let configSendingMorefrequentThanSaving = CoreDataAgentConfiguration(
             averageMaximumSpansPerSecond: 1,
             savingInterval: 4,
             sendingInterval: 2,

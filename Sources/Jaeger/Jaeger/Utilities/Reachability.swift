@@ -65,7 +65,7 @@ extension Reachability: ReachabilityTracker {
      
      - Returns: The connection type.
      */
-    func getSatus() -> ReachabilityStatus {
+    func getStatus() -> ReachabilityStatus {
 
         guard let currentReachability = defaultNetworkReachability else {
             return .notConnected
@@ -91,7 +91,7 @@ extension Reachability: ReachabilityTracker {
      - Returns: A boolean indication the network reachabilty state of the device.
      */
     func isNetworkReachable() -> Bool {
-        switch getSatus() {
+        switch getStatus() {
         case .mobileData, .wifi: return true
         case .notConnected: return false
         }

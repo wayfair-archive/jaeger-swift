@@ -8,7 +8,7 @@
 import Foundation
 
 /// A Jaeger client using core data as a caching mechanism and a configurable `SpanSender`.
-public final class JaegerCDClient {
+public final class JaegerCoreDataClient {
 
     /// The tracer used to create all spans.
     public let tracer: JaegerTracer
@@ -27,7 +27,7 @@ public final class JaegerCDClient {
      - Parameter session: The underlying `URLSession` to which requests will be forwarded.
 
      */
-    public convenience init(config: CDAgentConfiguration, endPointUrl: URL, session: URLSession = .shared) {
+    public convenience init(config: CoreDataAgentConfiguration, endPointUrl: URL, session: URLSession = .shared) {
         let sender = JSONSender(endPoint: endPointUrl, session: session)
         self.init(config: config, sender: sender)
 
@@ -40,7 +40,7 @@ public final class JaegerCDClient {
      - Parameter sender: The underlying sender used by the agent.
      
      */
-    public init(config: CDAgentConfiguration, sender: SpanSender) {
+    public init(config: CoreDataAgentConfiguration, sender: SpanSender) {
         self.sender = sender
         self.agent = JaegerAgent(config: config, sender: sender)
         self.tracer = JaegerTracer(agent: agent)

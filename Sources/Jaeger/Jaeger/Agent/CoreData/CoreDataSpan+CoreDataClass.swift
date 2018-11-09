@@ -24,7 +24,7 @@ class CoreDataSpan: NSManagedObject {
     @discardableResult
     static func create(in context: NSManagedObjectContext, startTime: Date, data: Data) -> CoreDataSpan {
         guard let entity = NSEntityDescription.entity(forEntityName: "CoreDataSpan", in: context) else {
-            fatalError("")
+            fatalError("Entity CoreDataSpan does not exist in the NSManagedObjectContext!")
         }
 
         let span = CoreDataSpan(entity: entity, insertInto: context)

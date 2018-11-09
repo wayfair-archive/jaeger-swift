@@ -7,10 +7,10 @@
 
 import Foundation
 
-/// A delegate receiving all errors from a `CDAgent`.
-public protocol CDAgentErrorDelegate: class {
+/// A delegate receiving all errors from a `CoreDataAgent`.
+public protocol CoreDataAgentErrorDelegate: class {
     /**
-     Called every time an error occurred in the `CDAgent`.
+     Called every time an error occurred in the `CoreDataAgent`.
 
      - Parameter error: The internal error.
      

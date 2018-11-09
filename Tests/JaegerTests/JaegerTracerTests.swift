@@ -14,10 +14,10 @@ class JaegerTracerTests: XCTestCase {
     private var coreDataStack: CoreDataStack!
 
     override func setUp() {
-        coreDataStack = newCDStack()
+        coreDataStack = newStack()
     }
 
-    private func newCDStack() -> CoreDataStack {
+    private func newStack() -> CoreDataStack {
         let stack = CoreDataStack(
             modelName: TestUtilities.Constants.coreDataAgentModelName,
             model: TestUtilities.modelForCoreDataAgent,
@@ -32,7 +32,7 @@ class JaegerTracerTests: XCTestCase {
         let reachability = TestReachabilityTracker(reachability: true)
         let sender = TestSender { _ in }
 
-        guard let CDAgentConfig = CDAgentConfiguration(
+        guard let CDAgentConfig = CoreDataAgentConfiguration(
             averageMaximumSpansPerSecond: 1,
             savingInterval: 1,
             sendingInterval: 2,
@@ -41,7 +41,7 @@ class JaegerTracerTests: XCTestCase {
                 return XCTFail("Invalid CDAgentConfig")
         }
 
-        let agent = CDAgent<JaegerSpan>(
+        let agent = CoreDataAgent<JaegerSpan>(
             config: CDAgentConfig,
             sender: sender,
             stack: coreDataStack,
@@ -91,7 +91,7 @@ class JaegerTracerTests: XCTestCase {
             spansSent.fulfill()
         }
 
-        guard let CDAgentConfig = CDAgentConfiguration(
+        guard let CDAgentConfig = CoreDataAgentConfiguration(
             averageMaximumSpansPerSecond: 1,
             savingInterval: 0.05,
             sendingInterval: 0.1,
@@ -99,7 +99,7 @@ class JaegerTracerTests: XCTestCase {
                 return XCTFail("Invalid CDAgentConfig")
         }
 
-        let agent = CDAgent<JaegerSpan>(
+        let agent = CoreDataAgent<JaegerSpan>(
             config: CDAgentConfig,
             sender: sender,
             stack: coreDataStack,

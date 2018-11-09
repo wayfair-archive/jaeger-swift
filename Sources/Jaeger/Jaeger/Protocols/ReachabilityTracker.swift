@@ -24,7 +24,7 @@ protocol ReachabilityTracker {
      
      - Returns: The connection type.
      */
-    func getSatus() -> ReachabilityStatus
+    func getStatus() -> ReachabilityStatus
 }
 
 /**
