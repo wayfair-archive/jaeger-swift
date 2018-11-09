@@ -8,7 +8,7 @@
 import Foundation
 
 extension UUID {
-    
+
     /**
      An integer representation of the first 64 bits of the UUID.
      
@@ -17,7 +17,7 @@ extension UUID {
      */
     var firstHalfBits: UInt64 {
         let bytes = self.uuid
-        
+
         let firstHalfBits: UInt64 =  UInt64(bytes.0) |
             UInt64(bytes.1) << 8 |
             UInt64(bytes.2) << 16 |
@@ -26,10 +26,10 @@ extension UUID {
             UInt64(bytes.5) << 40 |
             UInt64(bytes.6) << 48 |
             UInt64(bytes.7) << 56
-        
+
         return firstHalfBits
     }
-    
+
     /**
      An integer representation of the last 64 bits of the UUID.
      
@@ -38,7 +38,7 @@ extension UUID {
      */
     var secondHalfBits: UInt64 {
         let bytes = self.uuid
-        
+
         let secondHalfBits: UInt64 =  UInt64(bytes.8) |
             UInt64(bytes.9) << 8 |
             UInt64(bytes.10) << 16 |
@@ -47,7 +47,7 @@ extension UUID {
             UInt64(bytes.13) << 40 |
             UInt64(bytes.14) << 48 |
             UInt64(bytes.15) << 56
-        
+
         return secondHalfBits
     }
 }

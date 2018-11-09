@@ -11,14 +11,14 @@ import Foundation
  A reachability tracker is responsible for gathering the necessary data to evaluate the network connection a device at any point in time.
  */
 protocol ReachabilityTracker {
-    
+
     /**
      Ask for the network reachabilty state of the device without revealing the underlying type of connection.
      
      - Returns: A boolean indication the network reachabilty state of the device.
      */
     func isNetworkReachable() -> Bool
-    
+
     /**
      Ask for the network reachabilty state with the underlying type of connection.
      

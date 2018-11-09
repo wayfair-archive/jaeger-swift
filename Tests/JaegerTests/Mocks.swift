@@ -18,7 +18,7 @@ class EmptyTestTracer: Tracer {
     func startSpan(operationName: String, reference: Span.Reference?, startTime: Date, tags: [Tag]) -> OTSpan {
         fatalError()
     }
-    
+
     /// It does nothing.
     func report(span: Span) { }
 }
@@ -29,9 +29,9 @@ class EmptyTestTracer: Tracer {
  Useful to test Spans when the result of the report function is needed. **Do not use** the `startSpan` function.
  */
 class CompletionTestTracer: Tracer {
-    
+
     private let reportedSpanCompletion: (Span) -> Void
-    
+
     /**
      A Mock Tracer.
      
@@ -42,12 +42,12 @@ class CompletionTestTracer: Tracer {
     init(reportedSpanCompletion: @escaping (_ span: Span) -> Void) {
         self.reportedSpanCompletion = reportedSpanCompletion
     }
-    
+
     /// **Do not use**
     func startSpan(operationName: String, reference: Span.Reference?, startTime: Date, tags: [Tag]) -> OTSpan {
         fatalError()
     }
-    
+
     /**
      Will call the `reportedSpanCompletion` block.
      */
@@ -61,11 +61,11 @@ class CompletionTestTracer: Tracer {
  */
 class TestSender: SpanSender {
     let sendingCompletion: ([SpanConvertible]) -> Void
-    
+
     init(sendingCompletion: @escaping ([SpanConvertible]) -> Void) {
         self.sendingCompletion = sendingCompletion
     }
-    func send<RawSpan>(spans: [RawSpan], completion: CompletionStatus?) where RawSpan : SpanConvertible {
+    func send<RawSpan>(spans: [RawSpan], completion: CompletionStatus?) where RawSpan: SpanConvertible {
         sendingCompletion(spans)
     }
 }
@@ -74,17 +74,17 @@ class TestSender: SpanSender {
  A class that can be used to mock network status.
  */
 class TestReachabilityTracker: ReachabilityTracker {
-    
+
     var reachability: Bool
-    
+
     init(reachability: Bool) {
         self.reachability = reachability
     }
-    
+
     func isNetworkReachable() -> Bool {
         return reachability
     }
-    
+
     func getSatus() -> ReachabilityStatus {
         return reachability ? .wifi: .notConnected
     }
@@ -97,7 +97,7 @@ struct TestSpanConvertible: SpanConvertible {
     static func convert(span: Span) -> TestSpanConvertible {
         return TestSpanConvertible()
     }
-    
+
     init() { }
     init(span: Span) { }
 }
@@ -106,13 +106,13 @@ struct TestSpanConvertible: SpanConvertible {
  A mock `CDAgentErrorDelegate`.
  */
 class TestCDAgentErrorDelegate: CDAgentErrorDelegate {
-    
+
     let errorCompletion: (Error) -> Void
-    
+
     init(errorCompletion: @escaping (Error) -> Void) {
         self.errorCompletion = errorCompletion
     }
-    
+
     func handleError(_ error: Error) {
         errorCompletion(error)
     }

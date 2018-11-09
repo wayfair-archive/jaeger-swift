@@ -11,7 +11,7 @@ import Foundation
  The configuration used by the `CoreDataAgent` agent to set up the core data stack and saving behavior.
  */
 public struct CDAgentConfiguration {
-    
+
     /**
      Creates a new configuration.
      
@@ -31,14 +31,14 @@ public struct CDAgentConfiguration {
         errorDelegate: CDAgentErrorDelegate? = nil,
         coreDataFolderURL: URL?
         ) {
-        
+
         guard averageMaximumSpansPerSecond > 0,
             savingInterval > 0,
             sendingInterval > 0,
             savingInterval < sendingInterval else {
                 return nil
         }
-        
+
         self.errorDelegate = errorDelegate
         self.coreDataFolderURL = coreDataFolderURL
         self.maximumSpansPerSecond = averageMaximumSpansPerSecond
@@ -49,7 +49,7 @@ public struct CDAgentConfiguration {
         self.maximunSpansPerSavingInterval =  Int(maxPerSaving)
         self.maximunSpansPerSendingInterval = Int(maxPerSending)
     }
-    
+
     /// The error delegate. Any core data error or network error will be forwarded to the delegate.
     public private(set) weak var errorDelegate: CDAgentErrorDelegate?
     /// The maximum number of spans per seconds to be saved in memory before the next saving operation on disk.

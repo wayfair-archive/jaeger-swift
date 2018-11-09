@@ -13,7 +13,7 @@ import Foundation
  See the [Jaeger.Thrift](https://github.com/jaegertracing/jaeger-idl/blob/master/thrift/jaeger.thrift) definition.
  */
 struct JaegerLog: Codable {
-    
+
     /**
      Creates a Jaeger Log from an OpenTracing Log.
      
@@ -24,7 +24,7 @@ struct JaegerLog: Codable {
         timestamp = Int64(log.timestamp.timeIntervalSince1970.microseconds)
         fields = log.fields.map { JaegerTag(tag: $0) }
     }
-    
+
     /// The time at which the event occurred with Unix time in microseconds.
     let timestamp: Int64
     /// An arbitrary set of tags.

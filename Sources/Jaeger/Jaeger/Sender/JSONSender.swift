@@ -9,7 +9,7 @@ import Foundation
 
 /// A `SpanSender` designed to send spans at a specified `URL` using the `JSON` format.
 public final class JSONSender: SpanSender {
-    
+
     /**
      A list of all acceptable `HTTP` methods used by the underlying `URLRequest`.
      
@@ -27,7 +27,7 @@ public final class JSONSender: SpanSender {
         ///  The `GET` method.
         case get = "GET"
     }
-    
+
     /**
      A list of global constants for the `JSONSender`.
      */
@@ -39,7 +39,7 @@ public final class JSONSender: SpanSender {
         /// The string representing the `JSON` content type.
         static let contentType = "application/json"
     }
-    
+
     /**
      Creates a new `JSONSender` by specifying the endpoint.
      
@@ -56,13 +56,13 @@ public final class JSONSender: SpanSender {
         httpMethod: HttpMethod = .post,
         requestHeaders: [String: String] = [:]
         ) {
-        
+
         self.endPoint = endPoint
         self.session = session
         self.httpMethod = httpMethod
         self.requestHeaders = requestHeaders
     }
-    
+
     /// An API endpoint accepting `JSON` formatted spans.
     private let endPoint: URL
     /// The underlying `URLSession` to which requests will be forwarded.
@@ -71,7 +71,7 @@ public final class JSONSender: SpanSender {
     private let httpMethod: HttpMethod
     /// A list of `[HTTPHeaderField: Value]` for the underlying `URLRequest`.
     private let requestHeaders: [String: String]
-    
+
     /**
      Call this function to send spans to a specific endpoint using `JSON` encoding.
      
@@ -86,7 +86,7 @@ public final class JSONSender: SpanSender {
             }
         }
     }
-    
+
     /**
      It converts spans to `Data` and sends it using a `URLSessionDataTask`.
      
@@ -101,7 +101,7 @@ public final class JSONSender: SpanSender {
             completion?(error)
         }
     }
-    
+
     /**
      Sends spans using a `URLSessionDataTask`.
      
@@ -110,19 +110,19 @@ public final class JSONSender: SpanSender {
      */
     private func sendRequest(for data: Data, completion: CompletionStatus?) {
         var request = URLRequest(url: endPoint)
-        
+
         request.httpMethod = httpMethod.rawValue
         request.httpBody = data
         request.setValue(Constants.contentType, forHTTPHeaderField: Constants.contentHeaderName)
-        
+
         for (headerField, value) in requestHeaders {
             request.setValue(value, forHTTPHeaderField: headerField)
         }
-        
+
         let task = session.dataTask(with: request) { (_, _, error) in
             completion?(error)
         }
-        
+
         task.resume()
     }
 }

@@ -12,12 +12,12 @@ public typealias JaegerTracer = CDTracer<JaegerSpan>
 
 /// A tracer using a core data agent for the caching process.
 public final class CDTracer<RawSpan: SpanConvertible>: Tracer {
-    
+
     /// A fixed id for the tracer.
     let tracerId = UUID()
     /// The agent used for the caching process.
     private let agent: CDAgent<RawSpan>
-    
+
     /**
      Creates a new tracer with a unique identifier.
      
@@ -26,7 +26,7 @@ public final class CDTracer<RawSpan: SpanConvertible>: Tracer {
     init(agent: CDAgent<RawSpan>) {
         self.agent = agent
     }
-    
+
     /**
      A point of entry the crete a start a new span wrapped in an OTSpan.
      
@@ -49,10 +49,10 @@ public final class CDTracer<RawSpan: SpanConvertible>: Tracer {
             tags: [:],
             logs: []
         )
-        
+
         return OTSpan(span: span)
     }
-    
+
     /**
      Transfer a **completed** span to the tracer.
      

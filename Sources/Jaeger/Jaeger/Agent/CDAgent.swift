@@ -11,7 +11,7 @@ import CoreData
 /**
  Constants for the CoreDataAgent.
  */
-fileprivate enum Constants {
+private enum Constants {
     /// The shared `JSONEncoder`.
     static let jsonEncoder =  JSONEncoder()
     /// The shared `JSONDecoder`.
@@ -26,10 +26,10 @@ fileprivate enum Constants {
  A SQLite store type is used for the persistent store.
  */
 public final class CDAgent<RawSpan: SpanConvertible>: Agent {
-    
+
     /// The point of entry to report spans to a collector.
     public let spanSender: SpanSender
-    
+
     /// The configuration applied to this instance.
     private let config: CDAgentConfiguration
     /// The provided core data stack used to save the spans.
@@ -42,7 +42,7 @@ public final class CDAgent<RawSpan: SpanConvertible>: Agent {
     private var currentSavingCount: Int = 0
     /// The tracker used to monitor network accessibility.
     private let reachabilityTracker: ReachabilityTracker
-    
+
     /// The timer used to execute saving tasks.
     private lazy var savingTimer = Timer.scheduledTimer(withTimeInterval: TimeInterval(self.config.savingInterval), repeats: true) { [weak self] _ in
         self?.executeSavingTasks()
@@ -51,7 +51,7 @@ public final class CDAgent<RawSpan: SpanConvertible>: Agent {
     private lazy var sendingTimer = Timer.scheduledTimer(withTimeInterval: TimeInterval(self.config.sendingInterval), repeats: true) { [weak self] _ in
         self?.executeSendingTasks()
     }
-    
+
     /**
      Creates a new agent from a specified configuration and span sender.
      
@@ -62,7 +62,7 @@ public final class CDAgent<RawSpan: SpanConvertible>: Agent {
         guard let modelURL = Bundle.main.url(forResource: Constants.modelName, withExtension: "mom"),
             let model = NSManagedObjectModel(contentsOf: modelURL) else { fatalError() }
         let storeType: CoreDataStack.StoreType = .sql
-        
+
         if let url = config.coreDataFolderURL {
             let stack = CoreDataStack(modelName: Constants.modelName, folderURL: url, model: model, type: storeType)
             self.init(config: config, sender: sender, stack: stack)
@@ -71,7 +71,7 @@ public final class CDAgent<RawSpan: SpanConvertible>: Agent {
             self.init(config: config, sender: sender, stack: stack)
         }
     }
-    
+
     /**
      Creates a new agent from a specified configuration and a core data stack.
      
@@ -86,7 +86,7 @@ public final class CDAgent<RawSpan: SpanConvertible>: Agent {
         stack: CoreDataStack,
         reachabilityTracker: ReachabilityTracker = Reachability()
         ) {
-        
+
         self.config = config
         self.spanSender = sender
         self.coreDataStack = stack
@@ -97,7 +97,7 @@ public final class CDAgent<RawSpan: SpanConvertible>: Agent {
         executeSendingTasks() // Send cached data from the last app start.
         addAppWillTerminateActions()
     }
-    
+
     /**
      This function adds and saves the span locally.
      
@@ -108,21 +108,21 @@ public final class CDAgent<RawSpan: SpanConvertible>: Agent {
     public func record(span: Span) {
         backgroundContext.perform { [weak self] in
             guard let strongSelf = self else { return }
-            guard (strongSelf.currentSavingCount < strongSelf.config.maximunSpansPerSavingInterval) else { return }
+            guard strongSelf.currentSavingCount < strongSelf.config.maximunSpansPerSavingInterval else { return }
             strongSelf.currentSavingCount += 1
             strongSelf.addAndSaveSpanInContext(span)
         }
     }
-    
+
     /// Add an action to save spans to disk when the application will terminate.
     private func addAppWillTerminateActions() {
-        NotificationCenter.default.addObserver(forName: UIApplication.willTerminateNotification, object: nil, queue: nil) { [weak self] _ in
+        _ = NotificationCenter.default.addObserver(forName: UIApplication.willTerminateNotification, object: nil, queue: nil) { [weak self] _ in
             self?.backgroundContext.performAndWait { [weak self] in
                 self?.save()
             }
         }
     }
-    
+
     /**
      This function will add a span to the `backgroundContext`.
      
@@ -133,7 +133,7 @@ public final class CDAgent<RawSpan: SpanConvertible>: Agent {
      */
     private func addAndSaveSpanInContext(_ span: Span) {
         let rawSpan = RawSpan.convert(span: span)
-        
+
         do {
             let data = try Constants.jsonEncoder.encode(rawSpan)
             CoreDataSpan.create(in: self.backgroundContext, startTime: span.startTime, data: data)
@@ -141,7 +141,7 @@ public final class CDAgent<RawSpan: SpanConvertible>: Agent {
             config.errorDelegate?.handleError(error)
         }
     }
-    
+
     /// Call this to save the `backgroundContext` and reset the saving count. (thread safe)
     private func executeSavingTasks() {
         backgroundContext.perform { [weak self] in
@@ -149,14 +149,14 @@ public final class CDAgent<RawSpan: SpanConvertible>: Agent {
             self?.save()
         }
     }
-    
+
     /// Call this to fetch and send spans to the collector. (thread safe)
     private func executeSendingTasks() {
         backgroundContext.perform { [weak self] in
             self?.sendAllSavedSpans()
         }
     }
-    
+
     /**
      This function will save the `backgroundContext`.
      
@@ -165,14 +165,14 @@ public final class CDAgent<RawSpan: SpanConvertible>: Agent {
      */
     private func save() {
         guard backgroundContext.hasChanges else { return }
-        
+
         do {
             try backgroundContext.save()
         } catch let error {
             config.errorDelegate?.handleError(error)
         }
     }
-    
+
     /**
      It will fetch all spans when the network is available and it will forward the data to the `SpanSender`.
      
@@ -180,9 +180,9 @@ public final class CDAgent<RawSpan: SpanConvertible>: Agent {
      Only call this method from the `backgroundContext` queue.
      */
     private func sendAllSavedSpans() {
-        
+
         guard reachabilityTracker.isNetworkReachable() else { return }
-        
+
         do {
             let fetchRequest: NSFetchRequest<CoreDataSpan> = CoreDataSpan.fetchRequest()
             fetchRequest.fetchLimit = self.config.maximunSpansPerSendingInterval
@@ -193,7 +193,7 @@ public final class CDAgent<RawSpan: SpanConvertible>: Agent {
             config.errorDelegate?.handleError(error)
         }
     }
-    
+
     /**
      It will map the core data spans to the original object, delete all data in the persistent store and forward the data to the `SpanSender`.
      
@@ -213,7 +213,7 @@ public final class CDAgent<RawSpan: SpanConvertible>: Agent {
             strongSelf.config.errorDelegate?.handleError(error)
         }
     }
-    
+
     /**
      Delete all data in the persistent store. It will create a delete request according to the store type.
      
@@ -221,13 +221,13 @@ public final class CDAgent<RawSpan: SpanConvertible>: Agent {
      Only call this method from the `backgroundContext` queue.
      */
     private func deleteAllSpans() {
-        
+
         switch coreDataStack.storeType {
         case .sql: deleteAllSpansSQLStore()
         case .inMemory: deleteAllSpansInMemoryStore()
         }
     }
-    
+
     /**
      Delete all data in the SQL persistent store.
      
@@ -238,14 +238,14 @@ public final class CDAgent<RawSpan: SpanConvertible>: Agent {
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = CoreDataSpan.fetchRequest()
         let deleteResquest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         deleteResquest.resultType = .resultTypeCount
-        
+
         do {
             try backgroundContext.execute(deleteResquest)
         } catch let error {
             config.errorDelegate?.handleError(error)
         }
     }
-    
+
     /**
      Delete all data in the in-memory persistent store.
      

@@ -11,7 +11,7 @@ import Foundation
  Use this protocol if you need to create a customized representation of a Span which your collector can injest.
  */
 public protocol SpanConvertible: Codable {
-    
+
     /**
      To be used to convert a Span to a SpanConvertible compliant representation of the Span.
      
@@ -19,7 +19,7 @@ public protocol SpanConvertible: Codable {
      - Returns: A `Reference` to a SpanConvertible compliant object.
      */
     static func convert(span: Span) -> Self
-    
+
     /**
      To be used to convert a Span to a SpanConvertible compliant representation of the Span.
      

@@ -10,60 +10,68 @@ import XCTest
 import CoreData
 
 class JaegerClientTests: XCTestCase {
-    
-    private var cdStack: CoreDataStack!
-    
-    override func setUp() {
-        cdStack = newCDStack()
-    }
-    
+
     private func newCDStack() -> CoreDataStack {
         let stack = CoreDataStack(
             modelName: TestUtilities.Constants.coreDataAgentModelName,
             model: TestUtilities.modelForCoreDataAgent,
             type: .inMemory
         )
-        
+
         return stack
     }
-    
-    func testJaegerClientTrace() {
-        
-        let spanSent = expectation(description: "span sent")
+
+    private func newTracer(session: URLSession, savingInterval: Double, sendingInterval: Double) -> JaegerTracer? {
+
         let reachability = TestReachabilityTracker(reachability: true)
+        guard let endPoint = URL(string: "testURL") else { return nil }
+        let sender = JSONSender(endPoint: endPoint, session: session)
+
+        guard let config = CDAgentConfiguration(
+            averageMaximumSpansPerSecond: 100,
+            savingInterval: savingInterval ,
+            sendingInterval: sendingInterval,
+            errorDelegate: nil,
+            coreDataFolderURL: nil
+            ) else {
+                return nil
+        }
+
+        let cdAgent = CDAgent<JaegerSpan>(
+            config: config,
+            sender: sender,
+            stack: newCDStack(),
+            reachabilityTracker: reachability
+        )
+
+        let tracer = JaegerTracer(agent: cdAgent)
+
+        return tracer
+    }
+
+    func testJaegerClientTrace() {
+
+        let spanSent = expectation(description: "span sent")
         let session = URLSessionMock()
-        
+
         var httpData: Data?
         session.dataTaskExcuted = { request in
             httpData = request.httpBody
             spanSent.fulfill()
         }
-        
-        let sender = JSONSender(endPoint: URL(string: "testURL")!, session: session)
-        
-        guard let config = CDAgentConfiguration(
-            averageMaximumSpansPerSecond: 100,
-            savingInterval: 0.10 ,
-            sendingInterval: 0.25,
-            errorDelegate: nil,
-            coreDataFolderURL: nil
+
+        guard let tracer = newTracer(
+            session: session,
+            savingInterval: 0.10,
+            sendingInterval: 0.25
             ) else {
-                return XCTFail()
+            return XCTFail("Invalid CDAgentConfig")
         }
-        
-        let cdAgent = CDAgent<JaegerSpan>(
-            config: config,
-            sender: sender,
-            stack: cdStack,
-            reachabilityTracker: reachability
-        )
-        
-        let tracer = JaegerTracer(agent: cdAgent)
-        
+
         // TEST
         let span1 = tracer.startRootSpan(operationName: "TestSpan1")
         let span2 = tracer.startSpan(operationName: "TestSpan2", childOf: span1.spanRef)
-        
+
         DispatchQueue.global(qos: .userInteractive).asyncAfter(deadline: .now() + 0.07) {
             span1.finish()
         }
@@ -73,19 +81,19 @@ class JaegerClientTests: XCTestCase {
             span2.set { $0.set(tag: tag) }
             span2.finish()
         }
-        
+
         wait(for: [spanSent], timeout: 1)
-        
+
         guard let data = httpData  else {
-            return XCTFail()
+            return XCTFail("Spans need to be included in the URLRequest")
         }
-        
+
         let spans = try? JSONDecoder().decode([JaegerSpan].self, from: data)
         XCTAssertEqual(spans?.count, 2)
-        
-        guard let jaegerSpan1 = spans?.first else { return XCTFail() }
-        guard let jaegerSpan2 = spans?.last else { return XCTFail() }
-        
+
+        guard let jaegerSpan1 = spans?.first else { return XCTFail("Expecting 2 spans!") }
+        guard let jaegerSpan2 = spans?.last else { return XCTFail("Expecting 2 spans!") }
+
         XCTAssertEqual(jaegerSpan1.operationName, "TestSpan1")
         XCTAssertEqual(jaegerSpan2.operationName, "TestSpan2")
         XCTAssertEqual(jaegerSpan2.parentSpanId, jaegerSpan1.spanId)
@@ -94,10 +102,10 @@ class JaegerClientTests: XCTestCase {
         XCTAssertEqual(jaegerSpan1.traceIdHigh, jaegerSpan2.traceIdHigh)
         XCTAssertEqual(jaegerSpan2.tags?.first?.key, "TestTag")
         XCTAssertEqual(jaegerSpan2.tags?.first?.vBool, true)
-        
+
         XCTAssertGreaterThan(jaegerSpan1.duration, 70000) // 0.07s to 0.14s
         XCTAssertLessThan(jaegerSpan1.duration, 140000)
-        
+
         XCTAssertGreaterThan(jaegerSpan2.duration, 130000) // 0.13s to 0.26s
         XCTAssertLessThan(jaegerSpan2.duration, 260000)
     }

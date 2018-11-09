@@ -11,7 +11,7 @@ import Foundation
  An event that occurred at a specific point in time with the information stored as **key:value** pairs.
  */
 public struct Log: Equatable {
-    
+
     /**
      Creates a new tag from a log event.
      
@@ -22,7 +22,7 @@ public struct Log: Equatable {
         self.timestamp = timestamp
         self.fields  = fields
     }
-    
+
     /// The time at which the event occurred.
     public let timestamp: Date
     /// The information associated with the event.
