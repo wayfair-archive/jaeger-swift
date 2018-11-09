@@ -7,23 +7,23 @@
 
 import Foundation
 
-/// A tracer for Jaeger spans using a core data agent for the caching process.
-public typealias JaegerTracer = CDTracer<JaegerSpan>
+/// A tracer for Jaeger spans.
+public typealias JaegerTracer = BasicTracer
 
-/// A tracer using a core data agent for the caching process.
-public final class CDTracer<RawSpan: SpanConvertible>: Tracer {
+/// A tracer using a generic agent for the caching process.
+public final class BasicTracer: Tracer {
 
     /// A fixed id for the tracer.
     let tracerId = UUID()
     /// The agent used for the caching process.
-    private let agent: CDAgent<RawSpan>
+    private let agent: Agent
 
     /**
      Creates a new tracer with a unique identifier.
      
      - Parameter agent: The agent used for the caching process.
      */
-    init(agent: CDAgent<RawSpan>) {
+    init(agent: Agent) {
         self.agent = agent
     }
 

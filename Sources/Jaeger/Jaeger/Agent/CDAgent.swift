@@ -8,6 +8,9 @@
 import UIKit
 import CoreData
 
+/// An agent using a Core Data Stack to save a binary representation of a JaegerSpan.
+public typealias JaegerAgent = CDAgent<JaegerSpan>
+
 /**
  Constants for the CoreDataAgent.
  */

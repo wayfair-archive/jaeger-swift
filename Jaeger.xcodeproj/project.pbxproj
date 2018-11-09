@@ -57,6 +57,7 @@
 		32B0ED87218A2A1300408434 /* SpanConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B0ED86218A2A1300408434 /* SpanConvertible.swift */; };
 		32B0ED89218A2A4800408434 /* SpanSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B0ED88218A2A4800408434 /* SpanSender.swift */; };
 		32B0ED8B218A2A5900408434 /* Agent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B0ED8A218A2A5900408434 /* Agent.swift */; };
+		32FB05182195CDB7006284AD /* JaegerClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FB05172195CDB7006284AD /* JaegerClient.swift */; };
 		66541CC5217F6698001E088D /* Jaeger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66541CBB217F6698001E088D /* Jaeger.framework */; };
 		66541CCA217F6698001E088D /* OTModelsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66541CC9217F6698001E088D /* OTModelsTests.swift */; };
 		79E4CFC02181185500273142 /* Jaeger.h in Headers */ = {isa = PBXBuildFile; fileRef = 79E4CFBB2181167E00273142 /* Jaeger.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -109,6 +110,7 @@
 		32B0ED86218A2A1300408434 /* SpanConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpanConvertible.swift; sourceTree = "<group>"; };
 		32B0ED88218A2A4800408434 /* SpanSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpanSender.swift; sourceTree = "<group>"; };
 		32B0ED8A218A2A5900408434 /* Agent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Agent.swift; sourceTree = "<group>"; };
+		32FB05172195CDB7006284AD /* JaegerClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JaegerClient.swift; sourceTree = "<group>"; };
 		66541CBB217F6698001E088D /* Jaeger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Jaeger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		66541CC4217F6698001E088D /* JaegerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JaegerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		66541CC9217F6698001E088D /* OTModelsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTModelsTests.swift; sourceTree = "<group>"; };
@@ -206,6 +208,14 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		32FB05162195CD99006284AD /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				32FB05172195CDB7006284AD /* JaegerClient.swift */,
+			);
+			path = Client;
+			sourceTree = "<group>";
+		};
 		66541CAF217F666E001E088D = {
 			isa = PBXGroup;
 			children = (
@@ -297,6 +307,7 @@
 		79E4CF93218111F700273142 /* Jaeger */ = {
 			isa = PBXGroup;
 			children = (
+				32FB05162195CD99006284AD /* Client */,
 				322100DC219397C1007774A2 /* Sender */,
 				325777A02191F8A100844EDE /* Utilities */,
 				322100D521935E90007774A2 /* Tracer */,
@@ -514,6 +525,7 @@
 			files = (
 				322100E9219490FA007774A2 /* CDAgentConfiguration.swift in Sources */,
 				3257779B2191F74400844EDE /* CoreDataStack.swift in Sources */,
+				32FB05182195CDB7006284AD /* JaegerClient.swift in Sources */,
 				325777AA2191FA7000844EDE /* ReachabilityTracker.swift in Sources */,
 				3286EF3D218795EA00A07DDB /* UUID+Extensions.swift in Sources */,
 				3286EF352187953B00A07DDB /* Utilities.swift in Sources */,
