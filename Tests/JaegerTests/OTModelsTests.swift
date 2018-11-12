@@ -168,15 +168,17 @@ class OTModelsTests: XCTestCase {
         let ref = Span.Reference(refType: .childOf, context: context)
 
         self.measure {
-            let span = Span(tracer: tracer,
-                     spanRef: context,
-                     parentSpanId: uuid,
-                     operationName: name,
-                     references: [ref],
-                     flag: .debug,
-                     startTime: startTime,
-                     tags: [tag.key: tag],
-                     logs: [log])
+            let span = Span(
+                tracer: tracer,
+                spanRef: context,
+                parentSpanId: uuid,
+                operationName: name,
+                references: [ref],
+                flag: .debug,
+                startTime: startTime,
+                tags: [tag.key: tag],
+                logs: [log]
+            )
             _ = span.endTime
         }
     }

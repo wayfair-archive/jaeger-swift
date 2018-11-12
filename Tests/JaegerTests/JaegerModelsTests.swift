@@ -121,15 +121,17 @@ class JaegerModelsTests: XCTestCase {
         let context =  Span.Context(traceId: uuid, spanId: uuid)
         let ref = Span.Reference(refType: .childOf, context: context)
 
-        var span = Span(tracer: tracer,
-                        spanRef: context,
-                        parentSpanId: uuid,
-                        operationName: name,
-                        references: [ref],
-                        flag: .debug,
-                        startTime: startTime,
-                        tags: [tag.key: tag],
-                        logs: [log])
+        var span = Span(
+            tracer: tracer,
+            spanRef: context,
+            parentSpanId: uuid,
+            operationName: name,
+            references: [ref],
+            flag: .debug,
+            startTime: startTime,
+            tags: [tag.key: tag],
+            logs: [log]
+        )
         span.finish(at: endTime)
 
         let jaegerSpan = JaegerSpan(span: span)
@@ -159,15 +161,17 @@ class JaegerModelsTests: XCTestCase {
         let context =  Span.Context(traceId: uuid, spanId: uuid)
         let ref = Span.Reference(refType: .childOf, context: context)
 
-        let span = Span(tracer: tracer,
-                 spanRef: context,
-                 parentSpanId: uuid,
-                 operationName: name,
-                 references: [ref],
-                 flag: .debug,
-                 startTime: startTime,
-                 tags: [tag.key: tag],
-                 logs: [log])
+        let span = Span(
+            tracer: tracer,
+            spanRef: context,
+            parentSpanId: uuid,
+            operationName: name,
+            references: [ref],
+            flag: .debug,
+            startTime: startTime,
+            tags: [tag.key: tag],
+            logs: [log]
+        )
 
         self.measure {
             let jaegerSpan = JaegerSpan(span: span)
@@ -189,15 +193,17 @@ class JaegerModelsTests: XCTestCase {
             let context =  Span.Context(traceId: uuid, spanId: uuid)
             let ref = Span.Reference(refType: .childOf, context: context)
 
-            let span = Span(tracer: tracer,
-                            spanRef: context,
-                            parentSpanId: uuid,
-                            operationName: name,
-                            references: [ref],
-                            flag: .debug,
-                            startTime: startTime,
-                            tags: [tag.key: tag],
-                            logs: [log])
+            let span = Span(
+                tracer: tracer,
+                spanRef: context,
+                parentSpanId: uuid,
+                operationName: name,
+                references: [ref],
+                flag: .debug,
+                startTime: startTime,
+                tags: [tag.key: tag],
+                logs: [log]
+            )
 
             let jaegerSpan = JaegerSpan(span: span)
             _ = jaegerSpan.duration

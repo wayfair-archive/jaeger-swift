@@ -119,15 +119,17 @@ public struct Span {
      - Parameter logs: The logged events that occurrence before the completion the span.
      */
 
-    init(tracer: Tracer,
-         spanRef: Span.Context,
-         parentSpanId: UUID?,
-         operationName: String,
-         references: [Span.Reference],
-         flag: Flag,
-         startTime: Date,
-         tags: [Tag.Key: Tag],
-         logs: [Log]) {
+    init(
+        tracer: Tracer,
+        spanRef: Span.Context,
+        parentSpanId: UUID?,
+        operationName: String,
+        references: [Span.Reference],
+        flag: Flag,
+        startTime: Date,
+        tags: [Tag.Key: Tag],
+        logs: [Log]
+        ) {
 
         self.tracer = tracer
         self.spanRef = spanRef
@@ -150,7 +152,7 @@ public struct Span {
      See [OpenTracing Semantic Specification](https://opentracing.io/specification/) for the naming conventions.*/
     public let operationName: String
     /// The list of references to other nodes.
-    public let references: [Span.Reference]
+    public private(set) var references: [Span.Reference]
     /// This flag specifies if the span is a debug span.
     public let flag: Flag
     ///  The time at which the task started.

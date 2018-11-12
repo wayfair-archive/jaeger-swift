@@ -7,66 +7,21 @@
 
 import XCTest
 @testable import Jaeger
-
-/**
- Useful and reusable constants to help the construction of new tests.
- */
-enum TestUtilitiesConstants {
-    /// Fixed UUID for a `Span`
-    static let spanUUID = UUID(uuidString: "271C452F-D78A-4612-9425-79BCC21B3811")!
-    /// Fixed UUID for a `Trace`
-    static let traceUUID = UUID(uuidString: "54186C03-8F55-403F-97D0-CF602CE3D903")!
-}
-
-/**
- A stub Tracer.
- 
- Useful to test Spans when reporting can be ignored. **Do not use** the `startSpan` function.
- */
-class EmptyTestTracer: Tracer {
-    /// **Do not use**
-    func startSpan(operationName: String, references: Span.Reference?, startTime: Date, tags: [Tag]) -> OTSpan {
-        fatalError()
-    }
-
-    /// It does nothing.
-    func report(span: Span) { }
-}
-
-/**
- A mock Tracer.
- 
- Useful to test Spans when the result of the report function is needed. **Do not use** the `startSpan` function.
- */
-class CompletionTestTracer: Tracer {
-
-    private let reportedSpanCompletion: (Span) -> Void
-
-    /**
-     A Mock Tracer.
-     
-     - Parameter reportedSpanCompletion: A completion called every time a span is reported.
-     - Parameter span: The reported span.
-     
-     */
-    init(reportedSpanCompletion: @escaping (_ span: Span) -> Void) {
-        self.reportedSpanCompletion = reportedSpanCompletion
-    }
-
-    /// **Do not use**
-    func startSpan(operationName: String, references: Span.Reference?, startTime: Date, tags: [Tag]) -> OTSpan {
-        fatalError()
-    }
-
-    /**
-     Will call the `reportedSpanCompletion` block.
-     */
-    func report(span: Span) {
-        reportedSpanCompletion(span)
-    }
-}
+import CoreData
 
 class TestUtilities {
+
+    /**
+     Useful and reusable constants to help the construction of new tests.
+     */
+    enum Constants {
+        /// Fixed UUID for a `Span`
+        static let spanUUID = UUID(uuidString: "271C452F-D78A-4612-9425-79BCC21B3811")!
+        /// Fixed UUID for a `Trace`
+        static let traceUUID = UUID(uuidString: "54186C03-8F55-403F-97D0-CF602CE3D903")!
+        /// The name of the core data agent model file.
+        static let coreDataAgentModelName = "OTCoreDataAgent"
+    }
 
     private init() {} // Only static methods for the class.
 
@@ -86,24 +41,39 @@ class TestUtilities {
      - Parameter references: Default is `[]`.
      
      */
-    static func getNewTestSpan(name: String = "testSpan",
-                               parentUUID: UUID? = nil,
-                               startTime: Date = Date(),
-                               spanUUID: UUID = TestUtilitiesConstants.spanUUID,
-                               traceUUID: UUID = TestUtilitiesConstants.traceUUID,
-                               tracer: Tracer = EmptyTestTracer(),
-                               logs: [Log] = [],
-                               tags: [Tag.Key: Tag] = [:],
-                               references: [Span.Reference] = []) -> Span {
+    static func getNewTestSpan(
+        name: String = "testSpan",
+        parentUUID: UUID? = nil,
+        startTime: Date = Date(),
+        spanUUID: UUID = TestUtilities.Constants.spanUUID,
+        traceUUID: UUID = TestUtilities.Constants.traceUUID,
+        tracer: Tracer = EmptyTestTracer(),
+        logs: [Log] = [],
+        tags: [Tag.Key: Tag] = [:],
+        references: [Span.Reference] = []
+        ) -> Span {
 
-        return Span(tracer: tracer,
-                    spanRef: Span.Context(traceId: traceUUID, spanId: spanUUID),
-                    parentSpanId: parentUUID,
-                    operationName: name,
-                    references: references,
-                    flag: .debug,
-                    startTime: startTime,
-                    tags: tags,
-                    logs: logs)
+        return Span(
+            tracer: tracer,
+            spanRef: Span.Context(traceId: traceUUID, spanId: spanUUID),
+            parentSpanId: parentUUID,
+            operationName: name,
+            references: references,
+            flag: .debug,
+            startTime: startTime,
+            tags: tags,
+            logs: logs
+        )
     }
+
+    /** The `OTCoreDataAgent.mom` file is generated during the creation of the Jaeger framework and added to its bundle. A link to the file was added the Jaeger project (drag and drop + setting the location relative to build products and then edit the project file to fix the path). This file was added as a resource for the test bundle in the build phases. Since the framework is added as a dependency of the test target, the file will be created before the compilation of the test project. */
+    private static let URLForCoreDataAgentModel = Bundle(for: TestUtilities.self).bundleURL.appendingPathComponent(Constants.coreDataAgentModelName + ".mom")
+
+    /** A shared model for the OTCoreDataAgent file. The model is shared in order to avoid having multiple `NSManagedObjectModel` claiming the class `CoreDataSpan`. This would happen since each test function is associated to a new instance of the `XCTestCase` class! Not using a shared model would result in multiples core data warnings. */
+    static let modelForCoreDataAgent: NSManagedObjectModel = {
+        guard let model = NSManagedObjectModel(contentsOf: URLForCoreDataAgentModel) else {
+            fatalError()
+        }
+        return model
+    }()
 }

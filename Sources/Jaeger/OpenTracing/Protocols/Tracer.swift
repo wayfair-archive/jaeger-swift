@@ -17,13 +17,13 @@ public protocol Tracer: class {
      A point of entry the crete a start a new span wrapped in an OTSpan.
      
      - Parameter operationName: A human-readable string which concisely represents the work done by the Span. See [OpenTracing Semantic Specification](https://opentracing.io/specification/) for the naming conventions.
-     - Parameter references: The relationship to a node (span).
+     - Parameter reference: The relationship to a node (span).
      - Parameter startTime: The time at which the task was started.
      - Parameter tags: Tags to be included at the creation of the span.
      
      - Returns: A new `Span` wrapped in an OTSpan.
      */
-    func startSpan(operationName: String, references: Span.Reference?, startTime: Date, tags: [Tag]) -> OTSpan
+    func startSpan(operationName: String, referencing reference: Span.Reference?, startTime: Date, tags: [Tag]) -> OTSpan
     /**
      Transfer a **completed** span to the tracer.
      
@@ -47,7 +47,7 @@ extension Tracer {
      */
     public func startSpan(operationName: String, childOf parent: Span.Context, startTime: Date = Date(), tags: [Tag] = []) -> OTSpan {
         let reference = Span.Reference(refType: .childOf, context: parent)
-        return startSpan(operationName: operationName, references: reference, startTime: startTime, tags: tags)
+        return startSpan(operationName: operationName, referencing: reference, startTime: startTime, tags: tags)
     }
 
     /**
@@ -62,7 +62,7 @@ extension Tracer {
      */
     public func startSpan(operationName: String, followsFrom parent: Span.Context, startTime: Date = Date(), tags: [Tag] = []) -> OTSpan {
         let reference = Span.Reference(refType: .followsFrom, context: parent)
-        return startSpan(operationName: operationName, references: reference, startTime: startTime, tags: tags)
+        return startSpan(operationName: operationName, referencing: reference, startTime: startTime, tags: tags)
     }
 
     /**
@@ -75,7 +75,7 @@ extension Tracer {
      - Returns: A new `Span` (wrapped in an OTSpan) with no relationship. This is a root node.
      */
     public func startRootSpan(operationName: String, startTime: Date = Date(), tags: [Tag] = []) -> OTSpan {
-        return startSpan(operationName: operationName, references: nil, startTime: startTime, tags: tags)
+        return startSpan(operationName: operationName, referencing: nil, startTime: startTime, tags: tags)
     }
 }
 
@@ -92,7 +92,7 @@ extension Tracer {
      - Returns: A new `Span` wrapped in an OTSpan.
      */
     public func startSpan<Operation: RawRepresentable>(operationName: Operation, references: Span.Reference?, startTime: Date, tags: [Tag]) -> OTSpan where Operation.RawValue == String {
-        return startSpan(operationName: operationName.rawValue, references: references, startTime: startTime, tags: tags)
+        return startSpan(operationName: operationName.rawValue, referencing: references, startTime: startTime, tags: tags)
     }
 
     /**
