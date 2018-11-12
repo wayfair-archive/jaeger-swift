@@ -13,6 +13,11 @@ import CoreData
 @objc(CoreDataSpan)
 class CoreDataSpan: NSManagedObject {
 
+    /// Binary representation of the span.
+    @NSManaged var jsonSpan: NSData
+    /// Start time of the stored span.
+    @NSManaged var startTime: NSDate
+
     /**
      Creates and adds a new `CoreDataSpan` in a given `NSManagedObjectContext`.
      
@@ -31,5 +36,10 @@ class CoreDataSpan: NSManagedObject {
         span.startTime = startTime as NSDate
         span.jsonSpan = data as NSData
         return span
+    }
+
+    /// Auto-generated function to get a specialized fetch request.
+    @nonobjc class func fetchRequest() -> NSFetchRequest<CoreDataSpan> {
+        return NSFetchRequest<CoreDataSpan>(entityName: "CoreDataSpan")
     }
 }
