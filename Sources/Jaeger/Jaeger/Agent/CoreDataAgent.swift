@@ -60,9 +60,10 @@ public final class CoreDataAgent<RawSpan: SpanConvertible>: Agent {
      
      - Parameter config: The configuration for the core data stack and agent.
      - Parameter sender: The point of entry to report spans to a collector.
+     - Parameter objectModelBundle: The bundle where the OTCoreDataAgent.mom file was copied.
      */
-    public convenience init(config: CoreDataAgentConfiguration, sender: SpanSender) {
-        guard let modelURL = Bundle.main.url(forResource: Constants.modelName, withExtension: "mom"),
+    public convenience init(config: CoreDataAgentConfiguration, sender: SpanSender, objectModelBundle: Bundle = .main) {
+        guard let modelURL = objectModelBundle.url(forResource: Constants.modelName, withExtension: "mom"),
             let model = NSManagedObjectModel(contentsOf: modelURL) else { fatalError() }
         let storeType: CoreDataStack.StoreType = .sql
 
