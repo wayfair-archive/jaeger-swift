@@ -21,9 +21,13 @@ class JaegerClientTests: XCTestCase {
         return stack
     }
 
-    private func newTracer(session: URLSession, savingInterval: Double, sendingInterval: Double) -> JaegerTracer? {
+    private func newTracer(
+        session: URLSession,
+        savingInterval: Double,
+        sendingInterval: Double,
+        tracker: ReachabilityTracker = TestReachabilityTracker(reachability: true)
+        ) -> JaegerTracer? {
 
-        let reachability = TestReachabilityTracker(reachability: true)
         guard let endPoint = URL(string: "testURL") else { return nil }
         let sender = JSONSender(endPoint: endPoint, session: session)
 
@@ -41,7 +45,7 @@ class JaegerClientTests: XCTestCase {
             config: config,
             sender: sender,
             stack: newStack(),
-            reachabilityTracker: reachability
+            reachabilityTracker: tracker
         )
 
         let tracer = JaegerTracer(agent: cdAgent)
@@ -108,5 +112,61 @@ class JaegerClientTests: XCTestCase {
 
         XCTAssertGreaterThan(jaegerSpan2.duration, 130000) // 0.13s to 0.26s
         XCTAssertLessThan(jaegerSpan2.duration, 260000)
+    }
+
+    func testPerformanceCreateSpanFromCoreDataTracer() {
+        var span: OTSpan?
+        guard let tracer = newTracer(
+            session: .shared,
+            savingInterval: 0.10,
+            sendingInterval: 0.25,
+            tracker: Reachability()
+            ) else {
+                return XCTFail("Invalid CDAgentConfig")
+        }
+
+        measure {
+            span = tracer.startRootSpan(operationName: "Test")
+        }
+
+        XCTAssertNotNil(span)
+    }
+
+    func testPerformanceCreationCoreDataTracer() {
+
+        guard let endPoint = URL(string: "testURL") else { return XCTFail("Needed to test init of object") }
+        var tracer: JaegerTracer?
+
+        measure {
+
+            let sender = JSONSender(endPoint: endPoint)
+
+            guard let config = CoreDataAgentConfiguration(
+                averageMaximumSpansPerSecond: 100,
+                savingInterval: 5 ,
+                sendingInterval: 10,
+                errorDelegate: nil,
+                coreDataFolderURL: nil
+                ) else {
+                    return XCTFail("Needed to test init of object")
+            }
+
+            let stack = CoreDataStack(
+                modelName: TestUtilities.Constants.coreDataAgentModelName,
+                model: TestUtilities.modelForCoreDataAgent,
+                type: .inMemory
+            )
+
+            let cdAgent = CoreDataAgent<JaegerSpan>(
+                config: config,
+                sender: sender,
+                stack: stack,
+                reachabilityTracker: Reachability()
+            )
+
+            tracer = JaegerTracer(agent: cdAgent)
+        }
+
+        XCTAssertNotNil(tracer)
     }
 }

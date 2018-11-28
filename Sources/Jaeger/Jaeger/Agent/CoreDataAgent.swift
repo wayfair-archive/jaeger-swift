@@ -112,7 +112,7 @@ public final class CoreDataAgent<RawSpan: SpanConvertible>: Agent {
     public func record(span: Span) {
         backgroundContext.perform { [weak self] in
             guard let strongSelf = self else { return }
-            guard strongSelf.currentSavingCount < strongSelf.config.maximunSpansPerSavingInterval else { return }
+            guard strongSelf.currentSavingCount < strongSelf.config.maximumSpansPerSavingInterval else { return }
             strongSelf.currentSavingCount += 1
             strongSelf.addAndSaveSpanInContext(span)
         }
@@ -189,7 +189,7 @@ public final class CoreDataAgent<RawSpan: SpanConvertible>: Agent {
 
         do {
             let fetchRequest: NSFetchRequest<CoreDataSpan> = CoreDataSpan.fetchRequest()
-            fetchRequest.fetchLimit = self.config.maximunSpansPerSendingInterval
+            fetchRequest.fetchLimit = self.config.maximumSpansPerSendingInterval
             let values = try backgroundContext.fetch(fetchRequest)
             guard values.count > 0  else { return }
             handle(results: values)
