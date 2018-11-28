@@ -46,8 +46,8 @@ public struct CoreDataAgentConfiguration {
         self.sendingInterval = sendingInterval
         let maxPerSaving = (Double(averageMaximumSpansPerSecond) * savingInterval).rounded(.up)
         let maxPerSending = (Double(averageMaximumSpansPerSecond) * sendingInterval).rounded(.up)
-        self.maximunSpansPerSavingInterval =  Int(maxPerSaving)
-        self.maximunSpansPerSendingInterval = Int(maxPerSending)
+        self.maximumSpansPerSavingInterval =  Int(maxPerSaving)
+        self.maximumSpansPerSendingInterval = Int(maxPerSending)
     }
 
     /// The error delegate. Any core data error or network error will be forwarded to the delegate.
@@ -61,11 +61,11 @@ public struct CoreDataAgentConfiguration {
     /** The maximum number of spans to be saved in memory before the next saving operation on disk.
      This is the product between the `maximumSpansPerSecond` and the `savingInterval`.
      */
-    public let maximunSpansPerSavingInterval: Int
+    public let maximumSpansPerSavingInterval: Int
     /**  The maximum number of spans fetched from the disk before sending to the collector.
      This is the product between the `maximumSpansPerSecond` and the `sendingInterval`.
      */
-    public let maximunSpansPerSendingInterval: Int
+    public let maximumSpansPerSendingInterval: Int
     /// An optional URL to a folder where the core data files will be saved. When not specified the `NSPersistentContainer.defaultDirectoryURL()` will be used.
     public let coreDataFolderURL: URL?
 }
