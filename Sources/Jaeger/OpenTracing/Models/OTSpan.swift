@@ -17,6 +17,20 @@ import Foundation
  
  */
 public final class OTSpan { // final class:  enables direct dispatch
+    /**
+     A list of global constants for OTSpan.
+     */
+    private enum Constants {
+        /// The name of the synchronizing queue for all span operations.
+        static let otSpanSynchronizingQueueName = "com.wayfair.opentracing.otspan"
+    }
+
+    /// The *low* priority synchronizing queue for all span operations.
+    private static let defaultSynchronizingQueue = DispatchQueue(
+        label: Constants.otSpanSynchronizingQueueName,
+        qos: .utility,
+        attributes: .concurrent
+    ) // Work takes a few seconds to a few minutes.
 
     /// The synchronizing queue for all span operations.
     private let synchronizingQueue: DispatchQueue
@@ -29,13 +43,7 @@ public final class OTSpan { // final class:  enables direct dispatch
      A common *low* priority synchronizing queue is used.
      */
     convenience init(span: Span) {
-        let defaultSynchronizingQueue = DispatchQueue(
-            label: "com.wayfair.opentracing.otspan",
-            qos: .utility,
-            attributes: .concurrent
-        )
-
-        self.init(span: span, synchronizingQueue: defaultSynchronizingQueue)
+        self.init(span: span, synchronizingQueue: OTSpan.defaultSynchronizingQueue)
     }
 
     /**
