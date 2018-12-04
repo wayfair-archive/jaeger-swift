@@ -114,7 +114,6 @@
 		66541CC9217F6698001E088D /* OTModelsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTModelsTests.swift; sourceTree = "<group>"; };
 		79CC1D6A21836FA2000A00C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		79CC1D6D21836FA2000A00C2 /* CompilerWarnings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = CompilerWarnings.xcconfig; sourceTree = "<group>"; };
-		79CC1D6E21836FA2000A00C2 /* CodeSigning.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = CodeSigning.xcconfig; sourceTree = "<group>"; };
 		79CC1D6F21836FA2000A00C2 /* Target.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Target.xcconfig; sourceTree = "<group>"; };
 		79CC1D7021836FA2000A00C2 /* Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
 		79CC1D8C21837BF8000A00C2 /* Framework.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Framework.xcconfig; sourceTree = "<group>"; };
@@ -276,7 +275,6 @@
 			isa = PBXGroup;
 			children = (
 				79CC1D6D21836FA2000A00C2 /* CompilerWarnings.xcconfig */,
-				79CC1D6E21836FA2000A00C2 /* CodeSigning.xcconfig */,
 				79CC1D6F21836FA2000A00C2 /* Target.xcconfig */,
 				79CC1D8C21837BF8000A00C2 /* Framework.xcconfig */,
 				79CC1D8D2183805A000A00C2 /* XCTest.xcconfig */,
