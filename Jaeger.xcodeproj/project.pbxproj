@@ -581,6 +581,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 79CC1D7021836FA2000A00C2 /* Project.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 			};
@@ -590,6 +591,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 79CC1D7021836FA2000A00C2 /* Project.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 			};
@@ -599,6 +601,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 79CC1D8E2183811C000A00C2 /* Jaeger.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 4.2;
 			};
@@ -608,6 +613,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 79CC1D8E2183811C000A00C2 /* Jaeger.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 4.2;
 			};
