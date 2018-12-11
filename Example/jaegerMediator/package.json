@@ -12,6 +12,7 @@
     "path": "^0.12.7",
     "thriftrw": "^3.11.3"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "Wayfair LLC",
+  "license": "BSD-2-Clause",
+  "private": "true"
 }
