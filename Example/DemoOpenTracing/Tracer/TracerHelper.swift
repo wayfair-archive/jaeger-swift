@@ -22,6 +22,11 @@ class ConsoleSpanSender: SpanSender {
 }
 
 class NoopTracer: WrapTracer {
+
+    func startSpan<Caller>(callerType: Caller.Type, callerFunction: String, followsFrom: WrapSpan?) -> WrapSpan {
+        return .noop
+    }
+
     func startSpan<Caller>(callerType: Caller.Type, callerFunction: String, childOf: WrapSpan?) -> WrapSpan {
         return .noop
     }

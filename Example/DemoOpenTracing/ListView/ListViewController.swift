@@ -42,13 +42,37 @@ class ListViewController: UIViewController {
     }
 
     func addNew(puppies: [ListViewModel.PuppyModel], fromAction span: WrapSpan?) {
-        let createAndAddRowSpan = presenter.tracer.startSpan(callerType: ListViewController.self, childOf: span)
-        createAndAddRowSpan.addOnMainThreadTag()
-        addNew(puppies: puppies)
-        createAndAddRowSpan.finish()
+        addNewDataInTableView(puppies: puppies)
+        fakeWork(from: span)
     }
 
-    private func addNew(puppies: [ListViewModel.PuppyModel]) {
+    private func fakeWork(from span: WrapSpan?) {
+
+        let loadRows = presenter.tracer.startSpan(
+            callerType: ListViewController.self,
+            callerFunction: "loadRows()",
+            followsFrom: span
+        )
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+            
+            let updateTableView = self?.presenter.tracer.startChildSpan(
+                callerType: ListViewController.self,
+                callerFunction: "updateTableView()",
+                chilfOf: loadRows
+            )
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + Double.random(in: 0.3...0.6)) {
+                updateTableView?.finish()
+            }
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            loadRows.finish()
+        }
+    }
+
+    private func addNewDataInTableView(puppies: [ListViewModel.PuppyModel]) {
         self.tableView.performBatchUpdates({
 
             if self.rows.last == Row.loading {
@@ -66,7 +90,7 @@ class ListViewController: UIViewController {
             let rows = indexes.map { return IndexPath(row: $0, section: 0) }
 
             self.tableView.insertRows(at: rows, with: .automatic)
-
+            
         }, completion: nil)
     }
 

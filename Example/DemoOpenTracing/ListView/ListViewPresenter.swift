@@ -105,7 +105,7 @@ class ListViewPresenter: ListViewPresentable {
     }
 
     private func handle(newPuppies puppies: [Puppy], fromAction action: WrapSpan?) {
-        let mapPuppiesSpan = tracer.startSpan(callerType: ListViewPresenter.self, childOf: action)
+        let mapPuppiesSpan = tracer.startSpan(callerType: ListViewPresenter.self, followsFrom: action)
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             let modelPuppies = puppies.map { return ListViewModel.PuppyModel(puppy: $0) }
             DispatchQueue.main.async { [weak self] in
@@ -119,7 +119,7 @@ class ListViewPresenter: ListViewPresentable {
     }
 
     private func updateModel(forNewpuppies puppies: [ListViewModel.PuppyModel], fromAction action: WrapSpan?) {
-        let saveSpan = tracer.startSpan(callerType: ListViewPresenter.self, childOf: action)
+        let saveSpan = tracer.startSpan(callerType: ListViewPresenter.self, followsFrom: action)
         saveSpan.addOnMainThreadTag()
         self.model.puppies.append(contentsOf: puppies)
         saveSpan.finish()
