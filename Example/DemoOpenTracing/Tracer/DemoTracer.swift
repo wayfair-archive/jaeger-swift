@@ -10,12 +10,17 @@ import Foundation
 import Jaeger
 
 protocol WrapTracer: class {
+    func startSpan<Caller>(callerType: Caller.Type, callerFunction: String, followsFrom: WrapSpan?) -> WrapSpan
     func startSpan<Caller>(callerType: Caller.Type, callerFunction: String, childOf: WrapSpan?) -> WrapSpan
 }
 
 extension WrapTracer {
-    func startSpan<Caller>(callerType: Caller.Type, callerFunction: String = #function, childOf: WrapSpan? = nil) -> WrapSpan {
-        return startSpan(callerType: callerType, callerFunction: callerFunction, childOf: childOf)
+    func startSpan<Caller>(callerType: Caller.Type, callerFunction: String = #function, followsFrom: WrapSpan? = nil) -> WrapSpan {
+        return startSpan(callerType: callerType, callerFunction: callerFunction, followsFrom: followsFrom)
+    }
+
+    func startChildSpan<Caller>(callerType: Caller.Type, callerFunction: String = #function, chilfOf: WrapSpan? = nil) -> WrapSpan {
+        return startSpan(callerType: callerType, callerFunction: callerFunction, childOf: chilfOf)
     }
 }
 
@@ -62,6 +67,23 @@ class DemoTracer: WrapTracer {
 
         guard let CDconfig = config else { fatalError() }
         self.client = JaegerCoreDataClient(config: CDconfig, sender: sender)
+    }
+
+    func startSpan<Caller>(
+        callerType: Caller.Type,
+        callerFunction: String  = #function,
+        followsFrom: WrapSpan? = nil
+        ) -> WrapSpan {
+
+        let callerName = String(describing: callerType)
+        let spanName: String = callerName + "." + callerFunction
+        if let followsFrom = followsFrom, case let .span(span) = followsFrom {
+            let newSpan = client.tracer.startSpan(operationName: spanName, followsFrom: span.spanRef)
+            return WrapSpan.span(newSpan)
+        } else {
+            let span = client.tracer.startRootSpan(operationName: spanName)
+            return WrapSpan.span(span)
+        }
     }
 
     func startSpan<Caller>(

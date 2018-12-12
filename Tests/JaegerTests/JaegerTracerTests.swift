@@ -66,7 +66,6 @@ class JaegerTracerTests: XCTestCase {
         }
 
         XCTAssertEqual(finalSpan.operationName, "TESTSPANNAME")
-        print(finalSpan.startTime.timeIntervalSince(Date()))
         XCTAssertLessThan(Date().timeIntervalSince(finalSpan.startTime), 0.5)
         XCTAssertEqual(finalSpan.isCompleted, false)
         XCTAssertEqual(finalSpan.flag, .sampled)

@@ -53,7 +53,7 @@ class DetailViewController: UIViewController {
     }
 
     private func changeImage(url: URL, fromAction span: WrapSpan?) {
-        let imageSpan = viewModel.tracer.startSpan(callerType: DetailViewController.self, childOf: span)
+        let imageSpan = viewModel.tracer.startSpan(callerType: DetailViewController.self, followsFrom: span)
 
         viewModel.downloader.getImage(at: url) { [weak self] result in
             imageSpan.finish()
