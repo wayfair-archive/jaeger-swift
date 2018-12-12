@@ -1,0 +1,17 @@
+{
+  "host": "localhost",
+  "port": 3000,
+  "payloadLimit": "50mb",
+  "collector": {
+    "udp": {
+      "host": "localhost",
+      "port": 6832,
+      "bufferSize": 60000
+    },
+    "http": {}
+  },
+  "agent": {
+    "version": 1,
+    "id": 1
+  }
+}

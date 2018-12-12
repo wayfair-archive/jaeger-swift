@@ -38,12 +38,15 @@ public final class BasicTracer: Tracer {
      - Returns: A new `Span` wrapped in an OTSpan.
      */
     public func startSpan(operationName: String, referencing reference: Span.Reference?, startTime: Date, tags: [Tag]) -> OTSpan {
+
+        let refs = [reference].compactMap { $0 }
+
         let span = Span(
             tracer: self,
             spanRef: .init(traceId: self.tracerId, spanId: UUID()),
             parentSpanId: reference?.context.spanId,
             operationName: operationName,
-            references: [],
+            references: refs,
             flag: .sampled,
             startTime: startTime,
             tags: [:],

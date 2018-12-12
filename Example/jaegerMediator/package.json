@@ -1,0 +1,18 @@
+{
+  "name": "jaegermediator",
+  "version": "1.0.0",
+  "description": "A mediator service that takes in JSON spans, converts the data to Thrift and sends it to a Jaeger collector.",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app.js",
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "path": "^0.12.7",
+    "thriftrw": "^3.11.3"
+  },
+  "author": "Wayfair LLC",
+  "license": "BSD-2-Clause",
+  "private": "true"
+}

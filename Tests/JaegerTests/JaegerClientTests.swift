@@ -114,6 +114,30 @@ class JaegerClientTests: XCTestCase {
         XCTAssertLessThan(jaegerSpan2.duration, 260000)
     }
 
+    func testJaegerClientTraceChild() {
+
+        guard let tracer = newTracer(
+            session: URLSessionMock(),
+            savingInterval: 0.10,
+            sendingInterval: 0.25
+            ) else {
+                return XCTFail("Invalid CDAgentConfig")
+        }
+
+        let getSpan = expectation(description: "got span from OTSpan")
+        let span1 = tracer.startRootSpan(operationName: "TestSpan1")
+        let span2 = tracer.startSpan(operationName: "TestSpan2", childOf: span1.spanRef)
+
+        span1.finish()
+        span2.finish()
+
+        span2.get { span2 in
+            XCTAssertEqual(span2.references.first?.context.spanId, span1.spanRef.spanId)
+            getSpan.fulfill()
+        }
+        wait(for: [getSpan], timeout: 1)
+    }
+
     func testPerformanceCreateSpanFromCoreDataTracer() {
         var span: OTSpan?
         guard let tracer = newTracer(
