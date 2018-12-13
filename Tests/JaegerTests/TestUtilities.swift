@@ -43,7 +43,6 @@ class TestUtilities {
      */
     static func getNewTestSpan(
         name: String = "testSpan",
-        parentUUID: UUID? = nil,
         startTime: Date = Date(),
         spanUUID: UUID = TestUtilities.Constants.spanUUID,
         traceUUID: UUID = TestUtilities.Constants.traceUUID,
@@ -56,9 +55,8 @@ class TestUtilities {
         return Span(
             tracer: tracer,
             spanRef: Span.Context(traceId: traceUUID, spanId: spanUUID),
-            parentSpanId: parentUUID,
+            parentSpan: nil,
             operationName: name,
-            references: references,
             flag: .debug,
             startTime: startTime,
             tags: tags,

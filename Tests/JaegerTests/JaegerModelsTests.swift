@@ -119,14 +119,13 @@ class JaegerModelsTests: XCTestCase {
         let uuid = UUID()
         let name = "oppName"
         let context =  Span.Context(traceId: uuid, spanId: uuid)
-        let ref = Span.Reference(refType: .childOf, context: context)
+        let parentRef = Span.Reference(refType: .childOf, context: context)
 
         var span = Span(
             tracer: tracer,
             spanRef: context,
-            parentSpanId: uuid,
+            parentSpan: parentRef,
             operationName: name,
-            references: [ref],
             flag: .debug,
             startTime: startTime,
             tags: [tag.key: tag],
@@ -159,14 +158,13 @@ class JaegerModelsTests: XCTestCase {
         let uuid = UUID()
         let name = "oppName"
         let context =  Span.Context(traceId: uuid, spanId: uuid)
-        let ref = Span.Reference(refType: .childOf, context: context)
+        let parentRef = Span.Reference(refType: .childOf, context: context)
 
         let span = Span(
             tracer: tracer,
             spanRef: context,
-            parentSpanId: uuid,
+            parentSpan: parentRef,
             operationName: name,
-            references: [ref],
             flag: .debug,
             startTime: startTime,
             tags: [tag.key: tag],
@@ -191,14 +189,13 @@ class JaegerModelsTests: XCTestCase {
             let uuid = UUID()
             let name = "oppName"
             let context =  Span.Context(traceId: uuid, spanId: uuid)
-            let ref = Span.Reference(refType: .childOf, context: context)
+            let parentRef = Span.Reference(refType: .childOf, context: context)
 
             let span = Span(
                 tracer: tracer,
                 spanRef: context,
-                parentSpanId: uuid,
+                parentSpan: parentRef,
                 operationName: name,
-                references: [ref],
                 flag: .debug,
                 startTime: startTime,
                 tags: [tag.key: tag],
