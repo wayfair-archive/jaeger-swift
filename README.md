@@ -100,11 +100,11 @@ import Jaeger
 
 class ViewController: UIViewController {
   let jaegerClient: JaegerCoreDataClient = {
-  let mediatorEndpoint = URL(string: "http://localhost:3000/spans")!
-  let configuration = CoreDataAgentConfiguration(averageMaximumSpansPerSecond: 5, savingInterval: 5, sendingInterval: 5, coreDataFolderURL: nil)!
-  let sender = JSONSender(endPoint: mediatorEndpoint)
-  return JaegerCoreDataClient(config: configuration, sender: sender, objectModelBundle: .main)
-}()
+    let mediatorEndpoint = URL(string: "http://localhost:3000/spans")!
+    let configuration = CoreDataAgentConfiguration(averageMaximumSpansPerSecond: 5, savingInterval: 5, sendingInterval: 5, coreDataFolderURL: nil)!
+    let sender = JSONSender(endPoint: mediatorEndpoint)
+    return JaegerCoreDataClient(config: configuration, sender: sender, objectModelBundle: .main)
+  }()
 
   override func viewDidLoad() {
     super.viewDidLoad()
