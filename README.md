@@ -1,5 +1,5 @@
-# Jaeger-Swift
 [![Build Status](https://travis-ci.org/wayfair/jaeger-swift.svg?branch=master)](https://travis-ci.org/wayfair/jaeger-swift)
+# Jaeger-Swift
 Jaeger-Swift is an distributed tracing client for Uber's [Jaeger](https://www.jaegertracing.io/) platform written completely in Swift. It follows the official [Opentracing specification](https://github.com/opentracing/specification/blob/master/specification.md).
 
 ## Quick Start
