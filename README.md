@@ -99,6 +99,7 @@ import UIKit
 import Jaeger
 
 class ViewController: UIViewController {
+  
   let jaegerClient: JaegerCoreDataClient = {
     let mediatorEndpoint = URL(string: "http://localhost:3000/spans")!
     let configuration = CoreDataAgentConfiguration(averageMaximumSpansPerSecond: 5, savingInterval: 5, sendingInterval: 5, coreDataFolderURL: nil)!
@@ -149,15 +150,15 @@ doWork(executionTime: 5) { [weak self] in
   rootSpan.finish()
 
   guard let strongSelf = self else {
-  return
+    return
   }
 
   let childSpan = strongSelf.jaegerClient.tracer.startSpan(operationName: "A simple child span", childOf: rootSpan.spanRef, tags: [Tag(key: "onUIThread", tagType: .bool(true))])
 
   //Start a smaller operation that starts after the big operation
   doWork(executionTime: 2) {
-    //Stop this span once the small operation finishes
-    childSpan.finish()
+      //Stop this span once the small operation finishes
+      childSpan.finish()
   }
 }
 ```
