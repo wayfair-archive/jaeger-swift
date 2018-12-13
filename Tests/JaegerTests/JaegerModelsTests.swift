@@ -124,7 +124,7 @@ class JaegerModelsTests: XCTestCase {
         var span = Span(
             tracer: tracer,
             spanRef: context,
-            parentSpan: parentRef,
+            parentSpanRef: parentRef,
             operationName: name,
             flag: .debug,
             startTime: startTime,
@@ -163,7 +163,7 @@ class JaegerModelsTests: XCTestCase {
         let span = Span(
             tracer: tracer,
             spanRef: context,
-            parentSpan: parentRef,
+            parentSpanRef: parentRef,
             operationName: name,
             flag: .debug,
             startTime: startTime,
@@ -194,7 +194,7 @@ class JaegerModelsTests: XCTestCase {
             let span = Span(
                 tracer: tracer,
                 spanRef: context,
-                parentSpan: parentRef,
+                parentSpanRef: parentRef,
                 operationName: name,
                 flag: .debug,
                 startTime: startTime,

@@ -55,7 +55,7 @@ class TestUtilities {
         return Span(
             tracer: tracer,
             spanRef: Span.Context(traceId: traceUUID, spanId: spanUUID),
-            parentSpan: nil,
+            parentSpanRef: nil,
             operationName: name,
             flag: .debug,
             startTime: startTime,

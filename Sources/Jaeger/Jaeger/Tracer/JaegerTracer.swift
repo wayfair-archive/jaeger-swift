@@ -42,7 +42,7 @@ public final class BasicTracer: Tracer {
         let span = Span(
             tracer: self,
             spanRef: .init(traceId: self.tracerId, spanId: UUID()),
-            parentSpan: reference,
+            parentSpanRef: reference,
             operationName: operationName,
             flag: .sampled,
             startTime: startTime,
