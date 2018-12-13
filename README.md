@@ -99,17 +99,16 @@ import UIKit
 import Jaeger
 
 class ViewController: UIViewController {
-
-let jaegerClient: JaegerCoreDataClient = {
-let mediatorEndpoint = URL(string: "http://localhost:3000/spans")!
-let configuration = CoreDataAgentConfiguration(averageMaximumSpansPerSecond: 5, savingInterval: 5, sendingInterval: 5, coreDataFolderURL: nil)!
-let sender = JSONSender(endPoint: mediatorEndpoint)
-return JaegerCoreDataClient(config: configuration, sender: sender, objectModelBundle: .main)
+  let jaegerClient: JaegerCoreDataClient = {
+  let mediatorEndpoint = URL(string: "http://localhost:3000/spans")!
+  let configuration = CoreDataAgentConfiguration(averageMaximumSpansPerSecond: 5, savingInterval: 5, sendingInterval: 5, coreDataFolderURL: nil)!
+  let sender = JSONSender(endPoint: mediatorEndpoint)
+  return JaegerCoreDataClient(config: configuration, sender: sender, objectModelBundle: .main)
 }()
 
-override func viewDidLoad() {
-super.viewDidLoad()
-}
+  override func viewDidLoad() {
+    super.viewDidLoad()
+  }
 }
 ```
 
@@ -127,16 +126,16 @@ let rootSpan = jaegerClient.tracer.startRootSpan(operationName: "A simple root s
 
 //Start the big operation
 doWork(executionTime: 5) {
-//Big operation finishes
-rootSpan.finish()
+  //Big operation finishes
+  rootSpan.finish()
 }
 
 let childSpan = jaegerClient.tracer.startSpan(operationName: "A simple child span", childOf: rootSpan.spanRef, tags: [Tag(key: "onUIThread", tagType: .bool(true))])
 
 //Start a smaller operation that starts before the big operation ends
 doWork(executionTime: 2) {
-//Stop this span once the small operation finishes
-childSpan.finish()
+  //Stop this span once the small operation finishes
+  childSpan.finish()
 }
 ```
 
@@ -146,20 +145,20 @@ let rootSpan = jaegerClient.tracer.startRootSpan(operationName: "A simple root s
 
 //Start the big operation
 doWork(executionTime: 5) { [weak self] in
-//Bigger operation finishes
-rootSpan.finish()
+  //Bigger operation finishes
+  rootSpan.finish()
 
-guard let strongSelf = self else {
-return
-}
+  guard let strongSelf = self else {
+  return
+  }
 
-let childSpan = strongSelf.jaegerClient.tracer.startSpan(operationName: "A simple child span", childOf: rootSpan.spanRef, tags: [Tag(key: "onUIThread", tagType: .bool(true))])
+  let childSpan = strongSelf.jaegerClient.tracer.startSpan(operationName: "A simple child span", childOf: rootSpan.spanRef, tags: [Tag(key: "onUIThread", tagType: .bool(true))])
 
-//Start a smaller operation that starts after the big operation
-doWork(executionTime: 2) {
-//Stop this span once the small operation finishes
-childSpan.finish()
-}
+  //Start a smaller operation that starts after the big operation
+  doWork(executionTime: 2) {
+    //Stop this span once the small operation finishes
+    childSpan.finish()
+  }
 }
 ```
 
