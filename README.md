@@ -2,9 +2,57 @@
 # Jaeger-Swift
 Jaeger-Swift is an distributed tracing client for Uber's [Jaeger](https://www.jaegertracing.io/) platform written completely in Swift. It follows the official [Opentracing specification](https://github.com/opentracing/specification/blob/master/specification.md).
 
+## What is Distributed Tracing?
+Based on the official [Opentracing documentation](https://opentracing.io/docs/overview/what-is-tracing/), Distributed tracing, also called distributed request tracing, is a method used to profile and monitor applications, especially those built using a microservices architecture. Distributed tracing helps pinpoint where failures occur and what causes poor performance. In essence, distributed tracing is basically a way to aggregate and report a collection of spans. Spans and Traces are described in more detail below:
+
+![jaeger overview](https://user-images.githubusercontent.com/2333426/49960014-1d716b80-fedd-11e8-8acd-c0be92337cc6.png)
+
+#### What is a Span?
+A measurable unit of work in the distributed tracing world is referred to as a `Span`. For example, the round trip time associated with a single endpoint request from an app, or the time it takes for a single view to load can be a `Span`. A span needs to be related to other spans in the span hierarchy unless it is a root span. Spans can be aggregated under a `Trace`. We can think of a trace as an aggregation of spans. By aggregating enough spans, we can get a detailed idea of performance bottlenecks, relationships between different tasks. A distributed tracing client facilitates applications to send a collection of spans to a span collector service.
+
+Spans can be related to each other through two kinds of relationships:
+* Parent-Child relationship
+* Follows-from relationship
+
+A parent-child relationship can be used to group one or more spans that may be dependent on a specific span. Consider an API request that fetches data from the database and returns a JSON to the client. A parent span can encompass the entire duration of the request/response lifecycle. A child span can now be started when the middleware validates the request from the client, and another child span can be started when the middleware fetches the data from the server. These two child spans happen within the context of the parent span because the parent span can be completed only after the response has been sent to the client and for that to happen, the validation and the record-fetch will need to happen. There is a timing-dependency between the parent span and these 2 child spans, meaning, the child spans will need to be started before the parent span (associated with the API request) is finished.
+
+A follows-from relationship is a little different from a parent-child relationship. In this case, there is still an association between two or more spans. However, there isn't a timing dependency between the spans. Consider this scenario - you have an app that fetches images from a server and renders the content on the UI. In this case, you will need to fetch the images from the server which is span A, and, render the images after the images are fetched which is span B, so, one operation follows the other. There is a contextual dependency between the spans because span B cannot start until span A has finished. However, span B doesn't start until span A has already finished, so span B doesn't fall under the time umbrella of span A. Therefore, this type of relationship is best expressed as a follows-from relationship.
+
+###### Structure of a Span
+Each span has the following components:
+* A span context which has some data to uniquely identify that span. Specifically, it has a span ID and a trace ID. The span ID is a UUID which is unique to the span and the trace ID links the span with the trace that encompasses the span.
+* A list of span references which denote how the span is related to other spans.
+
+#### What is a Trace?
+A trace is a collection of spans. Think of a trace as an aggregation of all the spans over a certain duration. For example, all the spans we measure in a single app session can be aggregated in a trace.
+
+## Parts of a Distributed Tracing Client
+A distributed tracing client is made up of the following components:
+* Tracer
+* Agent
+* Collector
+
+#### Tracer
+A tracer is an object that manages traces. A tracer's responsibility involves starting and stopping spans and sending the spans to an agent.
+
+#### Agent
+An agent is responsible for sending the collected spans to a span collector. An agent may optionally also have logic to cache the spans and batch send them if needed.
+
+#### Collector
+A collector is a service that ingests spans sent by an agent. Two of the most popular tracing services at the moment are [Zipkin](https://zipkin.io/) and [Jaeger](https://www.jaegertracing.io/).
+
+#### Mediating Jaeger Spans
+One of the challenges we ran into while building this project is that the Jaeger collector we report to only accepts data encoded in `Thrift`. We made an engineering decision to not perform this encoding on the client as it required an extra dependency. Therefore, we built a mediator service that takes in spans from the client, encodes this data to `Thrift Binary` format, and reports it to a sender.
+
+## Fitting everything together
+
+![jaeger sequence](https://user-images.githubusercontent.com/2333426/49960015-1d716b80-fedd-11e8-98b8-48727f34414d.png)
+
+When we create an instance of the Jaeger client, we specify two time intervals, a queuing time interval and a reporting time interval. When the app starts a new span, the span stores the timestamp at the exact moment. Once the span is finished, the span is queued in memory for the duration of the queuing time interval. Once this timer is invalidates, the agent picks up the spans and persists that data to disk. Now the second reporting timer picks up the spans from disk, reports the spans through the sender and then flushes the cache.
+
 ## Quick Start
 
-This section has quick setup steps for those who are familiar with Jaeger and Opentracing. If you are new to Opentracing, subsequent sections carry more information about common Opentracing terminologies and concepts. A complete Opentracing solution consists of a client, an agent and a collector. The following steps will show you how to configure this project to report to a locally hosted Jaeger collector.
+This section has quick setup steps for getting a simple proof of concept up and running. For a more comprehensive understanding of this project, Check out our [API reference](). A complete Opentracing solution consists of a client, an agent and a collector. The following steps will show you how to configure this project to report to a locally hosted Jaeger collector.
 
 ###### Step 1 - Spin up a Jaeger collector
 If you already have a Jaeger collector up and running, you can skip this step. If not, you can run the Jaeger all-in-one docker image published to DockerHub by running the following command in Terminal. Once this step is completed, you should have a working Jaeger collector running locally.
@@ -120,54 +168,6 @@ If you have completed the steps above, you can now see your traces in your Jaege
 
 ## Check out our Demo app
 For a more comprehensive understanding of this project, you can check out our demo app [here](https://github.com/wayfair/jaeger-swift/tree/develop/Example). You can configure the demo app to send traces to our Jaeger mediator.
-
-## What is Distributed Tracing?
-Based on the official [Opentracing documentation](https://opentracing.io/docs/overview/what-is-tracing/), Distributed tracing, also called distributed request tracing, is a method used to profile and monitor applications, especially those built using a microservices architecture. Distributed tracing helps pinpoint where failures occur and what causes poor performance. In essence, distributed tracing is basically a way to aggregate and report a collection of spans. Spans and Traces are described in more detail below:
-
-![jaeger overview](https://user-images.githubusercontent.com/2333426/49960014-1d716b80-fedd-11e8-8acd-c0be92337cc6.png)
-
-#### What is a Span?
-A measurable unit of work in the distributed tracing world is referred to as a `Span`. For example, the round trip time associated with a single endpoint request from an app, or the time it takes for a single view to load can be a `Span`. A span needs to be related to other spans in the span hierarchy unless it is a root span. Spans can be aggregated under a `Trace`. We can think of a trace as an aggregation of spans. By aggregating enough spans, we can get a detailed idea of performance bottlenecks, relationships between different tasks. A distributed tracing client facilitates applications to send a collection of spans to a span collector service.
-
-Spans can be related to each other through two kinds of relationships:
-* Parent-Child relationship
-* Follows-from relationship
-
-A parent-child relationship can be used to group one or more spans that may be dependent on a specific span. Consider an API request that fetches data from the database and returns a JSON to the client. A parent span can encompass the entire duration of the request/response lifecycle. A child span can now be started when the middleware validates the request from the client, and another child span can be started when the middleware fetches the data from the server. These two child spans happen within the context of the parent span because the parent span can be completed only after the response has been sent to the client and for that to happen, the validation and the record-fetch will need to happen. There is a timing-dependency between the parent span and these 2 child spans, meaning, the child spans will need to be started before the parent span (associated with the API request) is finished.
-
-A follows-from relationship is a little different from a parent-child relationship. In this case, there is still an association between two or more spans. However, there isn't a timing dependency between the spans. Consider this scenario - you have an app that fetches images from a server and renders the content on the UI. In this case, you will need to fetch the images from the server which is span A, and, render the images after the images are fetched which is span B, so, one operation follows the other. There is a contextual dependency between the spans because span B cannot start until span A has finished. However, span B doesn't start until span A has already finished, so span B doesn't fall under the time umbrella of span A. Therefore, this type of relationship is best expressed as a follows-from relationship.
-
-###### Structure of a Span
-Each span has the following components:
-* A span context which has some data to uniquely identify that span. Specifically, it has a span ID and a trace ID. The span ID is a UUID which is unique to the span and the trace ID links the span with the trace that encompasses the span.
-* A list of span references which denote how the span is related to other spans.
-
-#### What is a Trace?
-A trace is a collection of spans. Think of a trace as an aggregation of all the spans over a certain duration. For example, all the spans we measure in a single app session can be aggregated in a trace.
-
-## Parts of a Distributed Tracing Client
-A distributed tracing client is made up of the following components:
-* Tracer
-* Agent
-* Collector
-
-#### Tracer
-A tracer is an object that manages traces. A tracer's responsibility involves starting and stopping spans and sending the spans to an agent.
-
-#### Agent
-An agent is responsible for sending the collected spans to a span collector. An agent may optionally also have logic to cache the spans and batch send them if needed.
-
-#### Collector
-A collector is a service that ingests spans sent by an agent. Two of the most popular tracing services at the moment are [Zipkin](https://zipkin.io/) and [Jaeger](https://www.jaegertracing.io/).
-
-#### Mediating Jaeger Spans
-One of the challenges we ran into while building this project is that the Jaeger collector we report to only accepts data encoded in `Thrift`. We made an engineering decision to not perform this encoding on the client as it required an extra dependency. Therefore, we built a mediator service that takes in spans from the client, encodes this data to `Thrift Binary` format, and reports it to a sender.
-
-## Fitting everything together
-
-![jaeger sequence](https://user-images.githubusercontent.com/2333426/49960015-1d716b80-fedd-11e8-98b8-48727f34414d.png)
-
-When we create an instance of the Jaeger client, we specify two time intervals, a queuing time interval and a reporting time interval. When the app starts a new span, the span stores the timestamp at the exact moment. Once the span is finished, the span is queued in memory for the duration of the queuing time interval. Once this timer is invalidates, the agent picks up the spans and persists that data to disk. Now the second reporting timer picks up the spans from disk, reports the spans through the sender and then flushes the cache.
 
 ## API Reference
 For a full understanding of this project, check out our [API reference](). We also welcome contributions!
