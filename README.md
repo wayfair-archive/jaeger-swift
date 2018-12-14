@@ -6,7 +6,7 @@ Jaeger-Swift is a distributed tracing client for Uber's [Jaeger](https://www.jae
 
 This section has quick setup steps for getting a simple proof of concept up and running. For a more comprehensive understanding of this project, Check out our [API reference](). A complete Opentracing solution consists of a client, an agent and a collector. The following steps will show you how to configure this project to report to a locally hosted Jaeger collector.
 
-###### Step 1 - Spin up a Jaeger collector
+#### Step 1 - Spin up a Jaeger collector
 If you already have a Jaeger collector up and running, you can skip this step. If not, you can run the Jaeger all-in-one docker image published to DockerHub by running the following command in Terminal. Once this step is completed, you should have a working Jaeger collector running locally.
 ```
 $ docker run -d --name jaeger \
@@ -23,7 +23,7 @@ jaegertracing/all-in-one:1.8
 
 Now, if you open your browser and type [http://localhost:16686](http://localhost:16686), you should see the Jaeger web interface that displays trace information. Of course, there won't be any traces from our client there.
 
-###### Step 2 - Setup a mediator service
+#### Step 2 - Setup a mediator service
 The Jaeger collector only accepts data that is encoded in `Thrift` format. We have a mediator service that the client can report to. This mediator service accepts JSON spans from the Swift client, encodes this data to `Thrift Binary` format and reports it to the Jaeger collector over UDP.
 
 * Download [our Jaeger mediator service](https://github.com/wayfair/jaeger-swift/tree/develop/Example/jaegerMediator).
@@ -40,8 +40,10 @@ Jaeger Mediator server listening on port 3000
 sudo sysctl net.inet.udp.maxdgram=65536
 ```
 
-###### Step 3 - Setup the client library in your XCode project
-* The Jaeger-Swift library is distributed through Carthage. Add `github "https://github.com/wayfair/jaeger-swift" "develop"` to your `Cartfile`.
+#### Step 3 - Setup the client library in your XCode project
+
+###### Carthage
+* Add `github "https://github.com/wayfair/jaeger-swift" "develop"` to your `Cartfile`.
 * Run `carthage update --platform iOS` to download and generate the Jaeger Framework.
 * Drag `Jaeger.framework` from the appropriate platform directory in `Carthage/Build/` to the “Linked Frameworks and Libraries” section of your Xcode project’s “General” settings.
 * Drag `OTCoreDataAgent` from the appropriate platform directory in `Carthage/Build/iOS/Static/Jaeger.framework/OTCoreDataAgent.mom` to the "Copy Bundle Resources" section of your project's "Build Phases" settings.
