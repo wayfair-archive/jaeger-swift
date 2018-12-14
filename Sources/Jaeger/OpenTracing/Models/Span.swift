@@ -110,9 +110,8 @@ public struct Span {
      
      - Parameter tracer: The `Tracer` that created this span.
      - Parameter spanRef: The unique identification of the span and its trace.
-     - Parameter parentSpanId: The parent span id.
+     - Parameter parentSpanRef: The parent span.
      - Parameter operationName:  A human-readable string which concisely represents the work done by the span.
-     - Parameter references:  The list of references to other nodes.
      - Parameter flag: This flag specifies if the span is a debug span.
      - Parameter startTime: The time at which the task started.
      - Parameter tags: The tags set before the completion the span.
@@ -122,9 +121,8 @@ public struct Span {
     init(
         tracer: Tracer,
         spanRef: Span.Context,
-        parentSpanId: UUID?,
+        parentSpanRef: Span.Reference?,
         operationName: String,
-        references: [Span.Reference],
         flag: Flag,
         startTime: Date,
         tags: [Tag.Key: Tag],
@@ -133,9 +131,9 @@ public struct Span {
 
         self.tracer = tracer
         self.spanRef = spanRef
-        self.parentSpanId = parentSpanId
+        self.parentSpanId = parentSpanRef?.context.spanId
+        self.references = [parentSpanRef].compactMap { $0 }
         self.operationName = operationName
-        self.references = references
         self.flag = flag
         self.startTime = startTime
         self.tags = tags

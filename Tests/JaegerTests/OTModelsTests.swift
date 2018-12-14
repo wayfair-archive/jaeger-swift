@@ -156,6 +156,32 @@ class OTModelsTests: XCTestCase {
         XCTAssertEqual(readSpan?.tags["testKey"], newTag)
     }
 
+    func testParentSpanInit() {
+        let tracer = EmptyTestTracer()
+        let startTime = Date()
+        let tag = Tag(key: "testKey", tagType: .string("testType"))
+        let log = Log(timestamp: startTime, fields: [tag])
+        let uuid = UUID()
+        let name = "oppName"
+        let context =  Span.Context(traceId: uuid, spanId: uuid)
+        let parentRef = Span.Reference(refType: .childOf, context: context)
+
+        let span = Span(
+            tracer: tracer,
+            spanRef: context,
+            parentSpanRef: parentRef,
+            operationName: name,
+            flag: .debug,
+            startTime: startTime,
+            tags: [tag.key: tag],
+            logs: [log]
+        )
+
+        XCTAssertEqual(span.parentSpanId, parentRef.context.spanId)
+        XCTAssertEqual(span.references.first, parentRef)
+        XCTAssertEqual(span.references.count, 1)
+    }
+
     func testPerformanceSpanInit() {
 
         let tracer = EmptyTestTracer()
@@ -165,15 +191,14 @@ class OTModelsTests: XCTestCase {
         let uuid = UUID()
         let name = "oppName"
         let context =  Span.Context(traceId: uuid, spanId: uuid)
-        let ref = Span.Reference(refType: .childOf, context: context)
+        let parentRef = Span.Reference(refType: .childOf, context: context)
 
         self.measure {
             let span = Span(
                 tracer: tracer,
                 spanRef: context,
-                parentSpanId: uuid,
+                parentSpanRef: parentRef,
                 operationName: name,
-                references: [ref],
                 flag: .debug,
                 startTime: startTime,
                 tags: [tag.key: tag],
