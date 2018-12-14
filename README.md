@@ -46,7 +46,7 @@ sudo sysctl net.inet.udp.maxdgram=65536
 * Add `github "wayfair/jaeger-swift" == 0.0.0` to your `Cartfile`.
 * Run `carthage bootstrap` to download and generate the Jaeger Framework.
 * Drag `Jaeger.framework` from the appropriate platform directory in `Carthage/Build/` to the “Linked Frameworks and Libraries” section of your Xcode project’s “General” settings.
-* Drag `OTCoreDataAgent` from the appropriate platform directory in `Carthage/Build/iOS/Static/Jaeger.framework/OTCoreDataAgent.mom` to the "Copy Bundle Resources" section of your project's "Build Phases" settings.
+* Drag `OTCoreDataAgent.mom` from the appropriate platform directory in `Carthage/Build/iOS/Static/Jaeger.framework/` to the "Copy Bundle Resources" section of your project's "Build Phases".
 
 ## What is Distributed Tracing?
 Based on the official [Opentracing documentation](https://opentracing.io/docs/overview/what-is-tracing/), Distributed tracing, also called distributed request tracing, is a method used to profile and monitor applications, especially those built using a microservices architecture. Distributed tracing helps pinpoint where failures occur and what causes poor performance. In essence, distributed tracing is basically a way to aggregate and report a collection of spans. Spans and Traces are described in more detail below:
