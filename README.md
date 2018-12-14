@@ -138,7 +138,7 @@ func performOperations() {
     rootSpan.finish()
   }
 
-  let childSpan = jaegerClient.tracer.startSpan(operationName: "A simple child span", childOf: rootSpan.spanRef, tags: [Tag(key: "onUIThread", tagType: .bool(true))])
+  let childSpan = jaegerClient.tracer.startSpan(operationName: "A simple child span", childOf: rootSpan.spanRef, tags: [Tag(key: "childMeasurement", tagType: .string("a child operation"))])
 
   //Start a smaller operation that starts before the big operation ends
   doWork(executionTime: 2) {
