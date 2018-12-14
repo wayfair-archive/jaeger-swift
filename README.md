@@ -43,8 +43,8 @@ sudo sysctl net.inet.udp.maxdgram=65536
 #### Step 3 - Setup the client library in your XCode project
 
 ###### Carthage
-* Add `github "https://github.com/wayfair/jaeger-swift" "develop"` to your `Cartfile`.
-* Run `carthage update --platform iOS` to download and generate the Jaeger Framework.
+* Add `github "wayfair/jaeger-swift" == 0.0.0` to your `Cartfile`.
+* Run `carthage bootstrap` to download and generate the Jaeger Framework.
 * Drag `Jaeger.framework` from the appropriate platform directory in `Carthage/Build/` to the “Linked Frameworks and Libraries” section of your Xcode project’s “General” settings.
 * Drag `OTCoreDataAgent` from the appropriate platform directory in `Carthage/Build/iOS/Static/Jaeger.framework/OTCoreDataAgent.mom` to the "Copy Bundle Resources" section of your project's "Build Phases" settings.
 
