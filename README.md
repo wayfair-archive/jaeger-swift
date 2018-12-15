@@ -179,7 +179,7 @@ func updateImage() {
     }
 
     //Start a new span to update a UI component
-    let imageRenderSpan = strongSelf.jaegerClient.tracer.startSpan(operationName: "Image render span", referencing: nil, startTime: Date(), tags: [Tag(key: "uiComponent", tagType: .string("myCustomView"))])
+    let imageRenderSpan = strongSelf.jaegerClient.tracer.startSpan(operationName: "Image render span", followsFrom: imageDownloadSpan.spanRef, tags: [Tag(key: "uiComponent", tagType: .string("myCustomView"))])
 
     strongSelf.updateView(with: data)
 
