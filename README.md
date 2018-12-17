@@ -190,7 +190,7 @@ func updateImage() {
 ```
 
 ###### Observe your traces
-If you have completed the steps above, you can now see your traces in your Jaeger collector. If you are using the all-in-one docker image specified in step 1, you can just open [http://localhost:16686/](http://localhost:16686/) to see your traces.The name of the process reporting the spans will be `Jaeger iOS App`. This name can be configured in the mediator.
+If you have completed the steps above, you can now see your traces in your Jaeger collector. If you are using the all-in-one docker image specified in [step 1](#step-1---spin-up-a-jaeger-collector), you can just open [http://localhost:16686/](http://localhost:16686/) to see your traces.The name of the process reporting the spans will be `Jaeger iOS App`. This name can be configured in the mediator.
 
 ## Check out our Demo app
 For a more comprehensive understanding of this project, you can check out our demo app [here](https://github.com/wayfair/jaeger-swift/tree/develop/Example). You can configure the demo app to send traces to our Jaeger mediator.
