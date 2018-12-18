@@ -3,3 +3,14 @@ osx_image: xcode10.1
 xcode_project: Jaeger.xcodeproj
 xcode_scheme: Jaeger
 xcode_destination: platform=iOS Simulator,OS=12.1,name=iPhone XS
+
+before_deploy:
+  - jazzy
+deploy:
+  - provider: pages
+    skip-cleanup: true
+    github-token: $GITHUB_TOKEN
+    keep-history: true
+    local-dir: docs/
+    on:
+      branch: master
