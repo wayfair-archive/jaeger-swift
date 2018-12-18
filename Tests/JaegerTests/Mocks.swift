@@ -117,3 +117,21 @@ class TestCDAgentErrorDelegate: CoreDataAgentErrorDelegate {
         errorCompletion(error)
     }
 }
+
+/**
+ A mock `SpanSender`.
+ */
+class EmptySender: SpanSender {
+    func send<RawSpan>(spans: [RawSpan], completion: CompletionStatus?) where RawSpan: SpanConvertible {
+        completion?(nil)
+    }
+}
+
+/**
+ A mock `Agent`.
+ */
+class EmptyAgent: Agent {
+    var spanSender: SpanSender = EmptySender()
+
+    func record(span: Span) { }
+}
