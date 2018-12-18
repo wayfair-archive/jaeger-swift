@@ -4,7 +4,7 @@ Jaeger-Swift is a distributed tracing client for Uber's [Jaeger](https://www.jae
 
 ## Installation
 
-This section has quick setup steps for getting a simple proof of concept up and running. For a more comprehensive understanding of this project, Check out our [API reference](https://wayfair.github.io/jaeger-swift/). A complete Opentracing solution consists of a client, an agent and a collector. The following steps will show you how to configure this project to report to a locally hosted Jaeger collector.
+This section has quick setup steps for getting a simple proof of concept up and running. For a more comprehensive understanding of this project, Check out our [API reference](https://wayfair.github.io/jaeger-swift). A complete Opentracing solution consists of a client, an agent and a collector. The following steps will show you how to configure this project to report to a locally hosted Jaeger collector.
 
 #### Step 1 - Spin up a Jaeger collector
 If you already have a Jaeger collector up and running, you can skip this step. If not, you can run the Jaeger all-in-one docker image published to DockerHub by running the following command in Terminal. Once this step is completed, you should have a working Jaeger collector running locally.
