@@ -116,7 +116,7 @@ class ViewController: UIViewController {
   }
 }
 ```
-In the sinppet shown above, we use the pre-built `JaegerCoreDataClient` which implements the `Agent` protocol and `JSONSender`, which, implements the `SpanSender` protocol. The sender accepts an array of type `SpanConvertible` which is a customizable representation of a span. Now, if you need to implement a strategy to report to a different collector like Zipkin, you can implement the `SpanConvertible` protocol to convert a `Span` into the appropriate format accepted by Zipkin. If you need a reference, we have done the same with `JaegerSpan`. The `Agent` and `SpanSender` being protocols are also customizable. If you need more information on this topic, you can refer our [API Documentation](https://wayfair.github.io/jaeger-swift).
+In the snippet shown above, we use the pre-built `JaegerCoreDataClient` which implements the `Agent` protocol and `JSONSender`, which, implements the `SpanSender` protocol. The sender accepts an array of type `SpanConvertible` which is a customizable representation of a span. Now, if you need to implement a strategy to report to a different collector like Zipkin, you can implement the `SpanConvertible` protocol to convert a `Span` into the appropriate format accepted by Zipkin. If you need a reference, we have done the same with `JaegerSpan`. The `Agent` and `SpanSender` being protocols are also customizable. If you need more information on this topic, you can refer our [API Documentation](https://wayfair.github.io/jaeger-swift).
 
 Now if you need to create a simple root span, you can just do this.
 ```swift
