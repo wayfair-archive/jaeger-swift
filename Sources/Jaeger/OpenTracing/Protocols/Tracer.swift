@@ -11,6 +11,9 @@ import Foundation
  An interface representing chosen functionalities of the OpenTracing Tracer specifications. Any class implementing this interface should be able to create and relay spans.
  
  Usually a Tracer should be able to transfer spans across process boundaries. In this implementation, the tracer will only be able to create spans and relay them to another system responsible for communication.
+ 
+ - Warning:
+    Since a `Span` will strongly retain the tracer, do not keep a strong reference to any span to avoid memory leaks.
  */
 public protocol Tracer: class {
     /**

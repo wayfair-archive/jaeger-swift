@@ -114,4 +114,16 @@ class JaegerTracerTests: XCTestCase {
         XCTAssertEqual(sentSpans.count, 1)
         XCTAssertEqual(sentSpans.first?.operationName, "TESTSPANNAME")
     }
+
+    func testTracerInjectedInSpanNoMemoryCycleLeak() {
+
+        var tracer: JaegerTracer? = JaegerTracer(agent: EmptyAgent())
+        weak var weakTracerRef: JaegerTracer? = tracer
+        var span: OTSpan? = tracer?.startRootSpan(operationName: "Test")
+        tracer = nil
+        XCTAssertNotNil(span)
+        XCTAssertNotNil(weakTracerRef)
+        span = nil
+        XCTAssertNil(weakTracerRef)
+    }
 }
