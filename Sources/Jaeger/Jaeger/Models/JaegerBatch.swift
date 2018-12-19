@@ -31,7 +31,7 @@ struct JaegerBatch: Codable {
 struct JaegerProcess: Codable {
 
     /**
-     Creates a new `JaegerProcess`. It is a `Trift` representation of a `JaegerBatchProcess`.
+     Creates a new `JaegerProcess`. It is a `Thrift` representation of a `JaegerBatchProcess`.
      
      - Parameter process: The service that emits spans.
      */
