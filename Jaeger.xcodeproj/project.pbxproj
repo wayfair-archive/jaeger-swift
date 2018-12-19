@@ -39,6 +39,8 @@
 		325777AA2191FA7000844EDE /* ReachabilityTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325777A92191FA7000844EDE /* ReachabilityTracker.swift */; };
 		325777CE219219FC00844EDE /* OTCoreDataAgent.mom in Resources */ = {isa = PBXBuildFile; fileRef = 325777CD2192194F00844EDE /* OTCoreDataAgent.mom */; };
 		325777ED2192365D00844EDE /* CoreDataStackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325777EB2192365800844EDE /* CoreDataStackTests.swift */; };
+		3265EBDF21CAD7E200B1B775 /* JaegerBatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3265EBDE21CAD7E200B1B775 /* JaegerBatch.swift */; };
+		3265EBE121CADF8100B1B775 /* JaegerJSONSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3265EBE021CADF8100B1B775 /* JaegerJSONSender.swift */; };
 		3286EF2C218793E200A07DDB /* TimeInterval+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3286EF2B218793E200A07DDB /* TimeInterval+Extensions.swift */; };
 		3286EF2E2187940600A07DDB /* JaegerLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3286EF2D2187940600A07DDB /* JaegerLog.swift */; };
 		3286EF302187942200A07DDB /* JaegerTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3286EF2F2187942200A07DDB /* JaegerTag.swift */; };
@@ -91,6 +93,8 @@
 		325777A92191FA7000844EDE /* ReachabilityTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityTracker.swift; sourceTree = "<group>"; };
 		325777CD2192194F00844EDE /* OTCoreDataAgent.mom */ = {isa = PBXFileReference; lastKnownFileType = file; name = OTCoreDataAgent.mom; path = Jaeger.framework/OTCoreDataAgent.mom; sourceTree = BUILT_PRODUCTS_DIR; };
 		325777EB2192365800844EDE /* CoreDataStackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStackTests.swift; sourceTree = "<group>"; };
+		3265EBDE21CAD7E200B1B775 /* JaegerBatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JaegerBatch.swift; sourceTree = "<group>"; };
+		3265EBE021CADF8100B1B775 /* JaegerJSONSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JaegerJSONSender.swift; sourceTree = "<group>"; };
 		3286EF2B218793E200A07DDB /* TimeInterval+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Extensions.swift"; sourceTree = "<group>"; };
 		3286EF2D2187940600A07DDB /* JaegerLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JaegerLog.swift; sourceTree = "<group>"; };
 		3286EF2F2187942200A07DDB /* JaegerTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JaegerTag.swift; sourceTree = "<group>"; };
@@ -156,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				322100DD219397DD007774A2 /* JSONSender.swift */,
+				3265EBE021CADF8100B1B775 /* JaegerJSONSender.swift */,
 			);
 			path = Sender;
 			sourceTree = "<group>";
@@ -324,6 +329,7 @@
 				3286EF2D2187940600A07DDB /* JaegerLog.swift */,
 				3286EF2F2187942200A07DDB /* JaegerTag.swift */,
 				3286EF312187945300A07DDB /* JaegerSpan.swift */,
+				3265EBDE21CAD7E200B1B775 /* JaegerBatch.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -520,6 +526,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3265EBE121CADF8100B1B775 /* JaegerJSONSender.swift in Sources */,
 				322100E9219490FA007774A2 /* CoreDataAgentConfiguration.swift in Sources */,
 				3257779B2191F74400844EDE /* CoreDataStack.swift in Sources */,
 				32FB05182195CDB7006284AD /* JaegerClient.swift in Sources */,
@@ -530,6 +537,7 @@
 				3257779D2191F79E00844EDE /* OTCoreDataAgent.xcdatamodel in Sources */,
 				3286EF322187945300A07DDB /* JaegerSpan.swift in Sources */,
 				3286EF372187956800A07DDB /* Tag.swift in Sources */,
+				3265EBDF21CAD7E200B1B775 /* JaegerBatch.swift in Sources */,
 				322100D721935EAB007774A2 /* JaegerTracer.swift in Sources */,
 				3286EF3B218795A300A07DDB /* Span.swift in Sources */,
 				322100DB2193804A007774A2 /* CoreDataAgentErrorDelegate.swift in Sources */,
