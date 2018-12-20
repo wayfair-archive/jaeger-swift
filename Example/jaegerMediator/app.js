@@ -23,7 +23,7 @@ app.get('/sampleSpan', (req, res) => {
 
 // API: Report spans to a Jaeger Collector
 app.post('/spans', function (req, res) {
-  sender.reportSpans(req.body)
+  sender.reportBatch(req.body)
   res.status(200).send({
     error: null,
     message: "Success"
