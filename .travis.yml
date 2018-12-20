@@ -8,7 +8,7 @@ install: echo Disabled automatic Gemfile detection to save time
 
 before_deploy:
   - bundle install --jobs=3 --retry=3 --deployment
-  - jazzy
+  - bundle exec jazzy
 deploy:
   - provider: pages
     skip-cleanup: true
