@@ -107,7 +107,8 @@ class ViewController: UIViewController {
   let jaegerClient: JaegerCoreDataClient = {
     let mediatorEndpoint = URL(string: "http://localhost:3000/batch")!
     let configuration = CoreDataAgentConfiguration(averageMaximumSpansPerSecond: 5, savingInterval: 5, sendingInterval: 10, coreDataFolderURL: nil)!
-    let sender = JSONSender(endPoint: mediatorEndpoint)
+    let process = JaegerBatchProcess(serviceName: "Demo App", tags: [])
+    let sender = JaegerJSONSender(endPoint: mediatorEndpoint, process: process)
     return JaegerCoreDataClient(config: configuration, sender: sender, objectModelBundle: .main)
   }()
 
