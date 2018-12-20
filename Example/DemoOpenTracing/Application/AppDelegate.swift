@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     private static let applicationDC: DependencyContainer = {
-        let ctx: AppDependenciesCreator.Context = .app
+        let ctx: AppDependenciesCreator.Context = .appJaegerPayload
         return AppDependenciesCreator().create(forContext: ctx)
     }()
 

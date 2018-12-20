@@ -27,10 +27,6 @@ client.on('error', err => {
   console.log(`error sending spans over UDP: ${err}`);
 });
 
-const process = new jaegerThrift.Process({
-  "serviceName": "Jaeger iOS App"
-})
-
 var prunedSpans = function(spans) {
   while (JSON.stringify(spans).length > bufferSize) {
     spans.pop()
@@ -61,20 +57,20 @@ var send = function(buffer) {
 
 module.exports = {
 
-  reportSpans: function(spans) {
+  reportBatch: function(batch) {
 
     // Get the spans
     let spansToSend = []
 
     // First, let's truncate the payload if it is above 60 KB
-    let truncatedSpans = prunedSpans(spans)
+    let truncatedSpans = prunedSpans(batch.spans)
 
     truncatedSpans.forEach(function(spanJson){
       spansToSend.push(new jaegerThrift.Span(spanJson))
     })
 
     // Creating a batch to report to collector
-    let data = emittableBatch(process, spansToSend);
+    let data = emittableBatch(batch.process, spansToSend);
 
     const thriftBuffer = Buffer.alloc(JSON.stringify(data).length);
     const writeResult = agentThrift.Agent.emitBatch.argumentsMessageRW.writeInto(data, thriftBuffer, 0);

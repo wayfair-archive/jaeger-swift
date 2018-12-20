@@ -13,13 +13,15 @@ class AppDependenciesCreator {
         case consoleTracer
         case noopTracer
         case app
+        case appJaegerPayload
     }
 
     func create(forContext context: Context) -> DependencyContainer {
         switch context {
         case .consoleTracer: return MockApplicationDependencyContainer(context: .consoleSender)
         case .noopTracer: return MockApplicationDependencyContainer(context: .noopTracer)
-        case .app: return ApplicationDependencyContainer()
+        case .appJaegerPayload: return ApplicationDependencyContainer(jaegerPayload: true)
+        case .app: return ApplicationDependencyContainer(jaegerPayload: false)
         }
     }
 }
