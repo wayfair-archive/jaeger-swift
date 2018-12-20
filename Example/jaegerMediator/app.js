@@ -32,7 +32,7 @@ app.post('/batch', function (req, res) {
 
 http.createServer(app).listen(app.get('port'), app.get('host'), function(){
   console.log("Jaeger Mediator server listening on port " + app.get('port'));
-  console.log("** Use the /spans endpoint to report your Jaeger Spans to a Jaeger collector. **");
+  console.log("** Use the /batch endpoint to report your Jaeger Spans to a Jaeger collector. **");
   console.log("** The collector and agent can be configured in configuration.json **");
   console.log("** To see an example of the accepted structure for reporting spans, make a GET to /sampleSpan **");
 });
