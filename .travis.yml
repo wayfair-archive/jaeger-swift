@@ -4,6 +4,9 @@ xcode_project: Jaeger.xcodeproj
 xcode_scheme: Jaeger
 xcode_destination: platform=iOS Simulator,OS=12.1,name=iPhone XS
 
+rvm:
+  - 2.5
+
 before_deploy:
   - jazzy
 deploy:
