@@ -1,5 +1,5 @@
 const configuration = require('./configuration.json');
-const sampleSpan = require('./sampleSpan.json');
+const samplePayload = require('./samplePayload.json');
 const express = require('express');
 var http = require('http');
 const sender = require('./Sender/UDPSender');
@@ -17,8 +17,8 @@ app.get('/', (req, res) => {
 });
 
 // API: Get the structure of the span accepted by the /spans endpoint
-app.get('/sampleSpan', (req, res) => {
-    res.json(sampleSpan);
+app.get('/sampleBatch', (req, res) => {
+    res.json(samplePayload);
 });
 
 // API: Report spans to a Jaeger Collector
@@ -34,7 +34,7 @@ http.createServer(app).listen(app.get('port'), app.get('host'), function(){
   console.log("Jaeger Mediator server listening on port " + app.get('port'));
   console.log("** Use the /batch endpoint to report your Jaeger Spans to a Jaeger collector. **");
   console.log("** The collector and agent can be configured in configuration.json **");
-  console.log("** To see an example of the accepted structure for reporting spans, make a GET to /sampleSpan **");
+  console.log("** To see an example of the accepted structure for reporting spans, make a GET to /sampleBatch **");
 });
 
 module.exports = app;

@@ -31,9 +31,9 @@ The Jaeger collector only accepts data that is encoded in `Thrift` format. We ha
 * Open Terminal. Run `npm ci` and then run `npm start`. You should now have the mediator service running on `http://localhost:3000`. You should see this message printed in the console:
 ```
 Jaeger Mediator server listening on port 3000
-** Use the /spans endpoint to report your Jaeger Spans to a Jaeger collector. **
+** Use the /batch endpoint to report your Jaeger Spans to a Jaeger collector. **
 ** The collector and agent can be configured in configuration.json **
-** To see an example of the accepted structure for reporting spans, make a GET to /sampleSpan **
+** To see an example of the accepted structure for reporting spans, make a GET to /sampleBatch **
 ```
 * This step is optional. Most machines have a limit on the payload size for UDP packets. This limit is usually `9216 bytes`. At times, this can throttle our payload if we report a larger number of spans to the collector. Therefore, if you anticipate that you will be reporting a lot of spans over short durations, you can update this threshold to a preferred size for UDP payloads using this command. The maximum supported size for UDP packets is 65 KB.
 ```
@@ -103,9 +103,9 @@ import UIKit
 import Jaeger
 
 class ViewController: UIViewController {
-  
+
   let jaegerClient: JaegerCoreDataClient = {
-    let mediatorEndpoint = URL(string: "http://localhost:3000/spans")!
+    let mediatorEndpoint = URL(string: "http://localhost:3000/batch")!
     let configuration = CoreDataAgentConfiguration(averageMaximumSpansPerSecond: 5, savingInterval: 5, sendingInterval: 10, coreDataFolderURL: nil)!
     let sender = JSONSender(endPoint: mediatorEndpoint)
     return JaegerCoreDataClient(config: configuration, sender: sender, objectModelBundle: .main)
@@ -116,7 +116,7 @@ class ViewController: UIViewController {
   }
 }
 ```
-In the sinppet shown above, we use the pre-built `JaegerCoreDataClient` which implements the `Agent` protocol and `JSONSender`, which, implements the `SpanSender` protocol. The sender accepts an array of type `SpanConvertible` which is a customizable representation of a span. Now, if you need to implement a strategy to report to a different collector like Zipkin, you can implement the `SpanConvertible` protocol to convert a `Span` into the appropriate format accepted by Zipkin. If you need a reference, we have done the same with `JaegerSpan`. The `Agent` and `SpanSender` being protocols are also customizable. If you need more information on this topic, you can refer our [API Documentation]().
+In the sinppet shown above, we use the pre-built `JaegerCoreDataClient` which implements the `Agent` protocol and `JaegerJSONSender`, which, implements the `SpanSender` protocol. The sender accepts an array of type `SpanConvertible` which is a customizable representation of a span. Now, if you need to implement a strategy to report to a different collector like Zipkin, you can implement the `SpanConvertible` protocol to convert a `Span` into the appropriate format accepted by Zipkin. If you need a reference, we have done the same with `JaegerSpan`. The `Agent` and `SpanSender` being protocols are also customizable. If you need more information on this topic, you can refer our [API Documentation]().
 
 Now if you need to create a simple root span, you can just do this.
 ```swift

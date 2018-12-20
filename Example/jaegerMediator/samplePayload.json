@@ -1,0 +1,31 @@
+{
+  "batch": {
+    "process": {
+      "serviceName": "Sample process"
+    },
+    "spans": [
+      {
+        "traceIdLow": -5886382347018802606,
+        "traceIdHigh": 7895293294489248145,
+        "spanId": -3726416649980053561,
+        "parentSpanId": 0,
+        "operationName": "An example operation",
+        "references": null,
+        "flags": 1,
+        "startTime": 1543593249618949,
+        "duration": 1020670,
+        "tags": [
+          {
+            "key": "example",
+            "vType": "STRING",
+            "vStr": "A simple tag",
+            "vDouble": null,
+            "vBool": null,
+            "vLong": null,
+            "vBinary": null
+          }
+        ]
+      }
+    ]
+  }
+}
