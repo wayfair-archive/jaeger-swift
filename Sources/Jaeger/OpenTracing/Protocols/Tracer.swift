@@ -17,7 +17,7 @@ import Foundation
  */
 public protocol Tracer: class {
     /**
-     A point of entry the crete a start a new span wrapped in an OTSpan.
+     A point of entry to start a new span wrapped in an OTSpan.
      
      - Parameter operationName: A human-readable string which concisely represents the work done by the Span. See [OpenTracing Semantic Specification](https://opentracing.io/specification/) for the naming conventions.
      - Parameter reference: The relationship to a node (span).
@@ -39,7 +39,7 @@ public protocol Tracer: class {
 
 extension Tracer {
     /**
-     A point of entry the crete a start a new span wrapped in an OTSpan.
+     A point of entry to start a new span wrapped in an OTSpan.
      
      - Parameter operationName: A human-readable string which concisely represents the work done by the Span. See [OpenTracing Semantic Specification](https://opentracing.io/specification/) for the naming conventions.
      - Parameter childOf: The parent node (span) .
@@ -54,7 +54,7 @@ extension Tracer {
     }
 
     /**
-     A point of entry the crete a start a new span wrapped in an OTSpan.
+     A point of entry to start a new span wrapped in an OTSpan.
      
      - Parameter operationName: A human-readable string which concisely represents the work done by the Span. See [OpenTracing Semantic Specification](https://opentracing.io/specification/) for the naming conventions.
      - Parameter followsFrom: The parent node (span) .
@@ -69,7 +69,7 @@ extension Tracer {
     }
 
     /**
-     A point of entry the crete a start a new span wrapped in an OTSpan.
+     A point of entry to start a new span wrapped in an OTSpan.
      
      - Parameter operationName: A human-readable string which concisely represents the work done by the Span. See [OpenTracing Semantic Specification](https://opentracing.io/specification/) for the naming conventions.
      - Parameter startTime: The time at which the task was started.
@@ -85,7 +85,7 @@ extension Tracer {
 extension Tracer {
 
     /**
-     A point of entry the crete a start a new span wrapped in an OTSpan.
+     A point of entry to a start a new span wrapped in an OTSpan.
      
      - Parameter operationName: An operation name which concisely represents the work done by the Span. See [OpenTracing Semantic Specification](https://opentracing.io/specification/) for the naming conventions.
      - Parameter references: The relationship to a node (span).
@@ -99,7 +99,7 @@ extension Tracer {
     }
 
     /**
-     A point of entry the crete a start a new span wrapped in an OTSpan.
+     A point of entry to start a new span wrapped in an OTSpan.
      
      - Parameter operationName: An operation name which concisely represents the work done by the Span. See [OpenTracing Semantic Specification](https://opentracing.io/specification/) for the naming conventions.
      - Parameter childOf: The parent node (span) .
@@ -113,7 +113,7 @@ extension Tracer {
     }
 
     /**
-     A point of entry the crete a start a new span wrapped in an OTSpan.
+     A point of entry to start a new span wrapped in an OTSpan.
      
      - Parameter operationName: An operation name which concisely represents the work done by the Span. See [OpenTracing Semantic Specification](https://opentracing.io/specification/) for the naming conventions.
      - Parameter followsFrom: The parent node (span) .
@@ -127,7 +127,7 @@ extension Tracer {
     }
 
     /**
-     A point of entry the crete a start a new span wrapped in an OTSpan.
+     A point of entry to start a new span wrapped in an OTSpan.
      
      - Parameter operationName: An operation name which concisely represents the work done by the Span. See [OpenTracing Semantic Specification](https://opentracing.io/specification/) for the naming conventions.
      - Parameter startTime: The time at which the task was started.
