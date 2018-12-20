@@ -41,6 +41,7 @@
 		325777ED2192365D00844EDE /* CoreDataStackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325777EB2192365800844EDE /* CoreDataStackTests.swift */; };
 		3265EBDF21CAD7E200B1B775 /* JaegerBatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3265EBDE21CAD7E200B1B775 /* JaegerBatch.swift */; };
 		3265EBE121CADF8100B1B775 /* JaegerJSONSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3265EBE021CADF8100B1B775 /* JaegerJSONSender.swift */; };
+		3265EBE321CBD53900B1B775 /* JaegerJSONSenderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3265EBE221CBD53900B1B775 /* JaegerJSONSenderTests.swift */; };
 		3286EF2C218793E200A07DDB /* TimeInterval+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3286EF2B218793E200A07DDB /* TimeInterval+Extensions.swift */; };
 		3286EF2E2187940600A07DDB /* JaegerLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3286EF2D2187940600A07DDB /* JaegerLog.swift */; };
 		3286EF302187942200A07DDB /* JaegerTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3286EF2F2187942200A07DDB /* JaegerTag.swift */; };
@@ -95,6 +96,7 @@
 		325777EB2192365800844EDE /* CoreDataStackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStackTests.swift; sourceTree = "<group>"; };
 		3265EBDE21CAD7E200B1B775 /* JaegerBatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JaegerBatch.swift; sourceTree = "<group>"; };
 		3265EBE021CADF8100B1B775 /* JaegerJSONSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JaegerJSONSender.swift; sourceTree = "<group>"; };
+		3265EBE221CBD53900B1B775 /* JaegerJSONSenderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JaegerJSONSenderTests.swift; sourceTree = "<group>"; };
 		3286EF2B218793E200A07DDB /* TimeInterval+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Extensions.swift"; sourceTree = "<group>"; };
 		3286EF2D2187940600A07DDB /* JaegerLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JaegerLog.swift; sourceTree = "<group>"; };
 		3286EF2F2187942200A07DDB /* JaegerTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JaegerTag.swift; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 				322100DF21939C89007774A2 /* URLSessionMock.swift */,
 				322100EA2194B1E2007774A2 /* JaegerClientTests.swift */,
 				322100E32194878C007774A2 /* JSONSenderTests.swift */,
+				3265EBE221CBD53900B1B775 /* JaegerJSONSenderTests.swift */,
 				322100D82193619F007774A2 /* JaegerTracerTests.swift */,
 				325777A72191F9C900844EDE /* CoreDataAgentTests.swift */,
 				325777EB2192365800844EDE /* CoreDataStackTests.swift */,
@@ -570,6 +573,7 @@
 				322100E42194878C007774A2 /* JSONSenderTests.swift in Sources */,
 				325777A82191F9C900844EDE /* CoreDataAgentTests.swift in Sources */,
 				328FABE22188D73B006C0A89 /* JaegerModelsTests.swift in Sources */,
+				3265EBE321CBD53900B1B775 /* JaegerJSONSenderTests.swift in Sources */,
 				322100E621948DE5007774A2 /* Mocks.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

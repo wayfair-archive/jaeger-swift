@@ -35,6 +35,27 @@ public final class JaegerCoreDataClient {
 
     /**
      Creates a new client by specifying the rules for the core data caching mechanism.
+     This agent will use a standard `JaegerJSONSender`. If a more specific configuration is needed, instantiate a `JaegerJSONSender` from one
+     of the multiple constructors available.
+     
+     - Parameter config: The configuration used by the `CoreDataAgent`.
+     - Parameter process: Description of the service that emits spans.
+     - Parameter endPointUrl: An API endpoint accepting `JSON` formatted spans`.
+     - Parameter session: The underlying `URLSession` to which requests will be forwarded.
+     
+     */
+    public convenience init(
+        config: CoreDataAgentConfiguration,
+        process: JaegerBatchProcess,
+        endPointUrl: URL,
+        session: URLSession = .shared
+        ) {
+        let sender = JaegerJSONSender(endPoint: endPointUrl, process: process, session: session)
+        self.init(config: config, sender: sender)
+    }
+
+    /**
+     Creates a new client by specifying the rules for the core data caching mechanism.
      
      - Parameter config: The configuration used by the `CoreDataAgent`.
      - Parameter sender: The underlying sender used by the agent.

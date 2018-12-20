@@ -27,7 +27,7 @@ struct JaegerBatch: Codable {
     let spans: [JaegerSpan]
 }
 
-/// It describes the traced process/service that emits spans.
+/// Description of the service that emits spans.
 struct JaegerProcess: Codable {
 
     /**
@@ -46,7 +46,7 @@ struct JaegerProcess: Codable {
     let tags: [JaegerTag]?
 }
 
-/// It describes the traced process/service that emits spans.
+/// Description of the service that emits spans.
 public struct JaegerBatchProcess {
 
     /**
