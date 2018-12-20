@@ -84,7 +84,7 @@ class JaegerJSONSenderTests: XCTestCase {
         wait(for: [spansSent, sessionDone], timeout: 1)
     }
 
-    func testSendSpansJaegerNotJaegerSpans() {
+    func testJaegerJSONSenderWithNonJaegerSpans() {
 
         struct FakeSpan: SpanConvertible {
 

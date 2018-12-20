@@ -17,7 +17,7 @@ protocol DependencyContainer {
 class ApplicationDependencyContainer: DependencyContainer {
 
     private enum Const {
-        static let spanSenderEndPoint = URL(string: "http://127.0.0.1:3000/spans")!
+        static let spanSenderEndPoint = URL(string: "http://127.0.0.1:3000/batch")!
     }
 
     let dataRepo: DataRepo = LocalDataRepo()
