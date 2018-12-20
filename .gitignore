@@ -20,6 +20,10 @@ DerivedData
 *.xcscmblueprint
 *.playgrounddata
 
+# Bundler
+#
+vendor/
+
 # CocoaPods
 #
 Pods/

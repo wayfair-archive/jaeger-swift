@@ -7,7 +7,7 @@ xcode_destination: platform=iOS Simulator,OS=12.1,name=iPhone XS
 install: echo Disabled automatic Gemfile detection to save time
 
 before_deploy:
-  - bundle install --jobs=3 --retry=3
+  - bundle install --jobs=3 --retry=3 --deployment
   - jazzy
 deploy:
   - provider: pages
