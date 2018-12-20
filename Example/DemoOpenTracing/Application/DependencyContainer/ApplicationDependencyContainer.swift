@@ -17,15 +17,25 @@ protocol DependencyContainer {
 class ApplicationDependencyContainer: DependencyContainer {
 
     private enum Const {
-        static let spanSenderEndPoint = URL(string: "http://127.0.0.1:3000/spans")!
+        static let spanSenderEndPoint = URL(string: "http://127.0.0.1:3000/batch")!
     }
 
     let dataRepo: DataRepo = LocalDataRepo()
     let imageDownloader: ImageDownloader = AssetDownloader()
     let demoTracer: WrapTracer
 
-    init() {
-        let sender = JSONSender(endPoint: Const.spanSenderEndPoint)
+    init(jaegerPayload: Bool) {
+        
+        let sender: SpanSender
+        
+        if jaegerPayload {
+            let tag = Tag(key: "os", tagType: .string("iOS"))
+            let process = JaegerBatchProcess(serviceName: "Demo App", tags: [tag])
+            sender = JaegerJSONSender(endPoint: Const.spanSenderEndPoint, process: process)
+        } else {
+            sender = JSONSender(endPoint: Const.spanSenderEndPoint)
+        }
+        
         self.demoTracer = DemoTracer(sender: sender, savingInterval: 15, sendingInterval: 60)
     }
 }

@@ -8,7 +8,7 @@
 import Foundation
 
 /// A `SpanSender` designed to send spans at a specified `URL` using the `JSON` format.
-public final class JSONSender: SpanSender {
+public class JSONSender: SpanSender {
 
     /**
      A list of all acceptable `HTTP` methods used by the underlying `URLRequest`.
@@ -31,7 +31,7 @@ public final class JSONSender: SpanSender {
     /**
      A list of global constants for the `JSONSender`.
      */
-    private enum Constants {
+    enum Constants {
         /// The fixed `JSON` encoder.
         static let jsonEncoder = JSONEncoder()
         /// The `HTTP` header field for the content type.
@@ -77,7 +77,7 @@ public final class JSONSender: SpanSender {
      
      - Parameter spans: An array of recorded Spans.
      */
-    public func send<RawSpan: SpanConvertible>(spans: [RawSpan], completion: CompletionStatus?) {
+    final public func send<RawSpan: SpanConvertible>(spans: [RawSpan], completion: CompletionStatus?) {
         DispatchQueue.global(qos: .utility).async { [weak self] in
             if let strongSelf = self {
                 strongSelf.trySendRequest(for: spans, completion: completion)
@@ -93,7 +93,7 @@ public final class JSONSender: SpanSender {
      - Parameter spans: An array of recorded Spans.
      - Parameter completion: A function used to acknowledge the success or the failure after attempting to send the spans.
      */
-    private func trySendRequest<RawSpan: SpanConvertible>(for spans: [RawSpan], completion: CompletionStatus?) {
+    func trySendRequest<RawSpan: SpanConvertible>(for spans: [RawSpan], completion: CompletionStatus?) {
         do {
             let data = try Constants.jsonEncoder.encode(spans)
             sendRequest(for: data, completion: completion)
@@ -108,7 +108,7 @@ public final class JSONSender: SpanSender {
      - Parameter data: converted spans to binary.
      - Parameter completion: A function used to acknowledge the success or the failure after attempting to send the spans.
      */
-    private func sendRequest(for data: Data, completion: CompletionStatus?) {
+    final func sendRequest(for data: Data, completion: CompletionStatus?) {
         var request = URLRequest(url: endPoint)
 
         request.httpMethod = httpMethod.rawValue
