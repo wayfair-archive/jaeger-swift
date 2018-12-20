@@ -7,7 +7,7 @@ documentation: Guides/**/*.md
 
 module: Jaeger
 
-output: .docs
+output: .docs/
 theme: jony
 
 github_url: https://github.com/wayfair/jaeger-swift
