@@ -4,7 +4,7 @@ Jaeger-Swift is a distributed tracing client for Uber's [Jaeger](https://www.jae
 
 ## Installation
 
-This section has quick setup steps for getting a simple proof of concept up and running. For a more comprehensive understanding of this project, Check out our [API reference](). A complete Opentracing solution consists of a client, an agent and a collector. The following steps will show you how to configure this project to report to a locally hosted Jaeger collector.
+This section has quick setup steps for getting a simple proof of concept up and running. For a more comprehensive understanding of this project, Check out our [API reference](https://wayfair.github.io/jaeger-swift). A complete Opentracing solution consists of a client, an agent and a collector. The following steps will show you how to configure this project to report to a locally hosted Jaeger collector.
 
 #### Step 1 - Spin up a Jaeger collector
 If you already have a Jaeger collector up and running, you can skip this step. If not, you can run the Jaeger all-in-one docker image published to DockerHub by running the following command in Terminal. Once this step is completed, you should have a working Jaeger collector running locally.
@@ -117,7 +117,8 @@ class ViewController: UIViewController {
   }
 }
 ```
-In the sinppet shown above, we use the pre-built `JaegerCoreDataClient` which implements the `Agent` protocol and `JaegerJSONSender`, which, implements the `SpanSender` protocol. The sender accepts an array of type `SpanConvertible` which is a customizable representation of a span. Now, if you need to implement a strategy to report to a different collector like Zipkin, you can implement the `SpanConvertible` protocol to convert a `Span` into the appropriate format accepted by Zipkin. If you need a reference, we have done the same with `JaegerSpan`. The `Agent` and `SpanSender` being protocols are also customizable. If you need more information on this topic, you can refer our [API Documentation]().
+
+In the sinppet shown above, we use the pre-built `JaegerCoreDataClient` which implements the `Agent` protocol and `JaegerJSONSender`, which, implements the `SpanSender` protocol. The sender accepts an array of type `SpanConvertible` which is a customizable representation of a span. Now, if you need to implement a strategy to report to a different collector like Zipkin, you can implement the `SpanConvertible` protocol to convert a `Span` into the appropriate format accepted by Zipkin. If you need a reference, we have done the same with `JaegerSpan`. The `Agent` and `SpanSender` being protocols are also customizable. If you need more information on this topic, you can refer our [API Documentation](https://wayfair.github.io/jaeger-swift).
 
 Now if you need to create a simple root span, you can just do this.
 ```swift
@@ -197,4 +198,4 @@ If you have completed the steps above, you can now see your traces in your Jaege
 For a more comprehensive understanding of this project, you can check out our demo app [here](https://github.com/wayfair/jaeger-swift/tree/develop/Example). You can configure the demo app to send traces to our Jaeger mediator.
 
 ## Documentation
-For a full understanding of this project, check out our [API reference](). We also welcome contributions!
+For a full understanding of this project, check out our [API reference](https://wayfair.github.io/jaeger-swift). We also welcome contributions!

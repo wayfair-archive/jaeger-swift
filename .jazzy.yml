@@ -1,5 +1,5 @@
 author: Wayfair
-author_url: https://wayfair.github.io
+author_url: https://wayfair.github.io/
 copyright: Copyright © 2018 Wayfair, LLC.
 readme: README.md
 
@@ -7,13 +7,13 @@ documentation: Guides/**/*.md
 
 module: Jaeger
 
-output: .docs
+output: .docs/
 theme: jony
 
-github_url: https://github.com/wayfair/jaeger-swift
-github_file_prefix: https://github.com/wayfair/jaeger-swift/tree/master
+github_url: https://github.com/wayfair/jaeger-swift/
+github_file_prefix: https://github.com/wayfair/jaeger-swift/tree/master/
 
-root_url: https://wayfair.github.io/jaeger-swift
+root_url: https://wayfair.github.io/jaeger-swift/
 dash_url: https://wayfair.github.io/jaeger-swift/docsets/jaeger-swift.xml
 
 clean: true
