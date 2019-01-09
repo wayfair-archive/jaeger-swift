@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>OTSpan Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/OTSpan" class="dashAnchor"></a>
+    <a title="OTSpan Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (100% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        OTSpan Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/BasicTracer.html">BasicTracer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CoreDataAgent.html">CoreDataAgent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JSONSender.html">JSONSender</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JSONSender/HttpMethod.html">– HttpMethod</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JaegerCoreDataClient.html">JaegerCoreDataClient</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JaegerJSONSender.html">JaegerJSONSender</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/OTSpan.html">OTSpan</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/Agent.html">Agent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/CoreDataAgentErrorDelegate.html">CoreDataAgentErrorDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SpanConvertible.html">SpanConvertible</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SpanSender.html">SpanSender</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Tracer.html">Tracer</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/CoreDataAgentConfiguration.html">CoreDataAgentConfiguration</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/JaegerBatchProcess.html">JaegerBatchProcess</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/JaegerSpan.html">JaegerSpan</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Log.html">Log</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Span.html">Span</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Span/Context.html">– Context</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Span/Reference.html">– Reference</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Span/Flag.html">– Flag</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Tag.html">Tag</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Tag/TagType.html">– TagType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Jaeger6Binarya">Binary</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Jaeger16CompletionStatusa">CompletionStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Jaeger0A5Agenta">JaegerAgent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Jaeger0A6Tracera">JaegerTracer</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>OTSpan</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">OTSpan</span></code></pre>
+
+                </div>
+              </div>
+            <p>A class wrapper around a <code><a href="../Structs/Span.html">Span</a></code>.</p>
+
+<p>This class is a thread safe wrapper around <code><a href="../Structs/Span.html">Span</a></code> that allows performance optimization and reference semantics to a span.
+Read and write accesses are synchronized in a concurrent queue with a <a href="https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/PrioritizeWorkWithQoS.html">Utility Priority</a>.
+Every write access is dispatched as a barrier work item on the queue allowing read operations to finish.
+Every read access is dispatched as a regular work item on the concurrent queue.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Jaeger6OTSpanC7spanRefAA4SpanV7ContextVvp"></a>
+                    <a name="//apple_ref/swift/Property/spanRef" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Jaeger6OTSpanC7spanRefAA4SpanV7ContextVvp">spanRef</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The reference for the current span. Useful to create a child span.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">spanRef</span><span class="p">:</span> <span class="kt"><a href="../Structs/Span.html">Span</a></span><span class="o">.</span><span class="kt">Context</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Jaeger6OTSpanC3setyyyAA4SpanVzcF"></a>
+                    <a name="//apple_ref/swift/Method/set(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Jaeger6OTSpanC3setyyyAA4SpanVzcF">set(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The asynchronous setter of the span.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">set</span><span class="p">(</span><span class="n">_</span> <span class="nv">closure</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">span</span><span class="p">:</span> <span class="k">inout</span> <span class="kt"><a href="../Structs/Span.html">Span</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>closure</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The operations to apply to the span.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>span</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A reference to the span on which to closure will be applied.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Jaeger6OTSpanC3getyyyAA4SpanVcF"></a>
+                    <a name="//apple_ref/swift/Method/get(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Jaeger6OTSpanC3getyyyAA4SpanVcF">get(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The asynchronous getter of the span.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">get</span><span class="p">(</span><span class="n">_</span> <span class="nv">closure</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">span</span><span class="p">:</span> <span class="kt"><a href="../Structs/Span.html">Span</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>closure</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The asynchronous getter.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>span</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A copy of the current span.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Jaeger6OTSpanC6finish2aty10Foundation4DateV_tF"></a>
+                    <a name="//apple_ref/swift/Method/finish(at:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Jaeger6OTSpanC6finish2aty10Foundation4DateV_tF">finish(at:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>An action to indicate that the task was completed.
+This function will forward the request to the span by using the specified date or the current date.</p>
+
+<p>This function avoid timing errors by keeping a reference to the current date before asynchronously forwarding the request to the span.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">func</span> <span class="nf">finish</span><span class="p">(</span><span class="n">at</span> <span class="nv">time</span><span class="p">:</span> <span class="kt">Date</span> <span class="o">=</span> <span class="kt">Date</span><span class="p">())</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>at</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The time at which the task was completed. The default value is the current date.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2019 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2019-01-09)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

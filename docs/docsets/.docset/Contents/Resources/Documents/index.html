@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a title="  Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="index.html"> Docs</a> (100% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="index.html"> Reference</a>
+        <img id="carat" src="img/carat.png" />
+          Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Classes/BasicTracer.html">BasicTracer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/CoreDataAgent.html">CoreDataAgent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/JSONSender.html">JSONSender</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/JSONSender/HttpMethod.html">– HttpMethod</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/JaegerCoreDataClient.html">JaegerCoreDataClient</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/JaegerJSONSender.html">JaegerJSONSender</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/OTSpan.html">OTSpan</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Protocols/Agent.html">Agent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/CoreDataAgentErrorDelegate.html">CoreDataAgentErrorDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/SpanConvertible.html">SpanConvertible</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/SpanSender.html">SpanSender</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/Tracer.html">Tracer</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Structs/CoreDataAgentConfiguration.html">CoreDataAgentConfiguration</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/JaegerBatchProcess.html">JaegerBatchProcess</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/JaegerSpan.html">JaegerSpan</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Log.html">Log</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Span.html">Span</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Span/Context.html">– Context</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Span/Reference.html">– Reference</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Span/Flag.html">– Flag</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Tag.html">Tag</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Tag/TagType.html">– TagType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:6Jaeger6Binarya">Binary</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:6Jaeger16CompletionStatusa">CompletionStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:6Jaeger0A5Agenta">JaegerAgent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:6Jaeger0A6Tracera">JaegerTracer</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            
+            <h1 id='jaeger-swift' class='heading'>Jaeger-Swift</h1>
+
+<p><a href="https://travis-ci.org/wayfair/jaeger-swift"><img src="https://travis-ci.org/wayfair/jaeger-swift.svg?branch=master" alt="Build Status"></a></p>
+
+<p>Jaeger-Swift is a distributed tracing client for Uber&rsquo;s <a href="https://www.jaegertracing.io/">Jaeger</a> platform written completely in Swift. It follows the official <a href="https://github.com/opentracing/specification/blob/master/specification.md">Opentracing specification</a>.</p>
+<h2 id='installation' class='heading'>Installation</h2>
+
+<p>This section has quick setup steps for getting a simple proof of concept up and running. For a more comprehensive understanding of this project, Check out our <a href="https://wayfair.github.io/jaeger-swift">API reference</a>. A complete Opentracing solution consists of a client, an agent and a collector. The following steps will show you how to configure this project to report to a locally hosted Jaeger collector.</p>
+<h4 id='step-1-spin-up-a-jaeger-collector' class='heading'>Step 1 - Spin up a Jaeger collector</h4>
+
+<p>If you already have a Jaeger collector up and running, you can skip this step. If not, you can run the Jaeger all-in-one docker image published to DockerHub by running the following command in Terminal. Once this step is completed, you should have a working Jaeger collector running locally.</p>
+<pre class="highlight plaintext"><code>$ docker run -d --name jaeger \
+-e COLLECTOR_ZIPKIN_HTTP_PORT=9411 \
+-p 5775:5775/udp \
+-p 6831:6831/udp \
+-p 6832:6832/udp \
+-p 5778:5778 \
+-p 16686:16686 \
+-p 14268:14268 \
+-p 9411:9411 \
+jaegertracing/all-in-one:1.8
+</code></pre>
+
+<p>Now, if you open your browser and type <a href="http://localhost:16686">http://localhost:16686</a>, you should see the Jaeger web interface that displays trace information. Of course, there won&rsquo;t be any traces from our client there.</p>
+<h4 id='step-2-setup-a-mediator-service' class='heading'>Step 2 - Setup a mediator service</h4>
+
+<p>The Jaeger collector only accepts data that is encoded in <code>Thrift</code> format. We have a mediator service that the client can report to. This mediator service accepts JSON spans from the Swift client, encodes this data to <code>Thrift Binary</code> format and reports it to the Jaeger collector over UDP.</p>
+
+<ul>
+<li>Download <a href="./Example/jaegerMediator">our Jaeger mediator service</a>.</li>
+<li>By default, this mediator service reports spans to the locally hosted collector. If you already have a remote collector setup, you can specify the location in <code>configuration.json</code>.</li>
+<li>Open Terminal. Run <code>npm ci</code> and then run <code>npm start</code>. You should now have the mediator service running on <code>http://localhost:3000</code>. You should see this message printed in the console:
+<code>
+Jaeger Mediator server listening on port 3000
+** Use the /batch endpoint to report your Jaeger Spans to a Jaeger collector. **
+** The collector and agent can be configured in configuration.json **
+** To see an example of the accepted structure for reporting spans, make a GET to /sampleBatch **
+</code></li>
+<li>This step is optional. Most machines have a limit on the payload size for UDP packets. This limit is usually <code>9216 bytes</code>. At times, this can throttle our payload if we report a larger number of spans to the collector. Therefore, if you anticipate that you will be reporting a lot of spans over short durations, you can update this threshold to a preferred size for UDP payloads using this command. The maximum supported size for UDP packets is 65 KB.
+<code>
+sudo sysctl net.inet.udp.maxdgram=65536
+</code></li>
+</ul>
+<h4 id='step-3-setup-the-client-library-in-your-xcode-project' class='heading'>Step 3 - Setup the client library in your XCode project</h4>
+<h6 id='carthage' class='heading'>Carthage</h6>
+
+<ul>
+<li>Add <code>github &quot;wayfair/jaeger-swift&quot; == 0.0.0</code> to your <code>Cartfile</code>.</li>
+<li>Run <code>carthage bootstrap</code> to download and generate the Jaeger Framework.</li>
+<li>Drag <code>Jaeger.framework</code> from the appropriate platform directory in <code>Carthage/Build/</code> to the “Linked Frameworks and Libraries” section of your Xcode project’s “General” settings.</li>
+<li>Drag <code>OTCoreDataAgent.mom</code> from the appropriate platform directory in <code>Carthage/Build/iOS/Static/Jaeger.framework/</code> to the <q>Copy Bundle Resources</q> section of your project&rsquo;s <q>Build Phases</q>.</li>
+</ul>
+<h2 id='what-is-distributed-tracing' class='heading'>What is Distributed Tracing?</h2>
+
+<p>Based on the official <a href="https://opentracing.io/docs/overview/what-is-tracing/">Opentracing documentation</a>, Distributed tracing, also called distributed request tracing, is a method used to profile and monitor applications, especially those built using a microservices architecture. Distributed tracing helps pinpoint where failures occur and what causes poor performance. In essence, distributed tracing is basically a way to aggregate and report a collection of spans. Spans and Traces are described in more detail below:</p>
+
+<p><img src="https://user-images.githubusercontent.com/2333426/49960014-1d716b80-fedd-11e8-8acd-c0be92337cc6.png" alt="jaeger overview"></p>
+<h4 id='what-is-a-span' class='heading'>What is a Span?</h4>
+
+<p>A measurable unit of work in the distributed tracing world is referred to as a <code><a href="Structs/Span.html">Span</a></code>. For example, the round trip time associated with a single endpoint request from an app, or, the time it takes for a single view to load can be a <code><a href="Structs/Span.html">Span</a></code>. A span needs to be related to other spans in the span hierarchy unless it is a root span. Spans can be aggregated under a <code>Trace</code>. We can think of a trace as an aggregation of spans. By aggregating enough spans, we can get a detailed idea of performance bottlenecks, relationships between different tasks. A distributed tracing client facilitates applications to send a collection of spans to a span collector service.</p>
+
+<p>Spans can be related to each other through two kinds of relationships:</p>
+
+<ul>
+<li>Parent-Child relationship</li>
+<li>Follows-from relationship</li>
+</ul>
+
+<p>A parent-child relationship can be used to group one or more spans that may be dependent on a specific span. Consider an API request that fetches data from the database and returns a JSON to the client. A parent span can encompass the entire duration of the request/response lifecycle. A child span can now be started when the middleware validates the request from the client, and another child span can be started when the middleware fetches the data from the server. These two child spans happen within the context of the parent span because the parent span can be completed only after the response has been sent to the client and for that to happen, the validation and the record-fetch will need to happen. There is a timing-dependency between the parent span and these 2 child spans, meaning, the child spans will need to be started before the parent span (associated with the API request) is finished.</p>
+
+<p>A follows-from relationship is a little different from a parent-child relationship. In this case, there is still an association between two or more spans. However, there isn&rsquo;t a timing dependency between the spans. Consider this scenario - you have an app that fetches images from a server and renders the content on the UI. In this case, you will need to fetch the images from the server which is span A, and, render the images after the images are fetched which is span B, so, one operation follows the other. There is a contextual dependency between the spans because span B cannot start until span A has finished. However, span B doesn&rsquo;t start until span A has already finished, so span B doesn&rsquo;t fall under the time umbrella of span A. Therefore, this type of relationship is best expressed as a follows-from relationship.</p>
+<h6 id='structure-of-a-span' class='heading'>Structure of a Span</h6>
+
+<p>Each span has the following components:</p>
+
+<ul>
+<li>A span context which has some data to uniquely identify that span. Specifically, it has a span ID and a trace ID. The span ID is a UUID which is unique to the span and the trace ID links the span with the trace that encompasses the span.</li>
+<li>A list of span references which denote how the span is related to other spans.</li>
+</ul>
+<h4 id='what-is-a-trace' class='heading'>What is a Trace?</h4>
+
+<p>A trace is a collection of spans. Think of a trace as an aggregation of all the spans over a certain duration. For example, all the spans we measure in a single app session can be aggregated in a trace.</p>
+<h2 id='parts-of-a-distributed-tracing-client' class='heading'>Parts of a Distributed Tracing Client</h2>
+
+<p>A distributed tracing client is made up of the following components:</p>
+
+<ul>
+<li>Tracer</li>
+<li>Agent</li>
+<li>Collector</li>
+</ul>
+<h4 id='tracer' class='heading'>Tracer</h4>
+
+<p>A tracer is an object that manages traces. A tracer&rsquo;s responsibility involves starting and stopping spans and sending the spans to an agent.</p>
+<h4 id='agent' class='heading'>Agent</h4>
+
+<p>An agent is responsible for sending the collected spans to a span collector. An agent may optionally also have logic to cache the spans and batch send them if needed.</p>
+<h4 id='collector' class='heading'>Collector</h4>
+
+<p>A collector is a service that ingests spans sent by an agent. Two of the most popular tracing services at the moment are <a href="https://zipkin.io/">Zipkin</a> and <a href="https://www.jaegertracing.io/">Jaeger</a>.</p>
+<h4 id='mediating-jaeger-spans' class='heading'>Mediating Jaeger Spans</h4>
+
+<p>One of the challenges we ran into while building this project is that the Jaeger collector we report to only accepts data encoded in <code>Thrift</code>. We made an engineering decision to not perform this encoding on the client as it required an extra dependency. Therefore, we built a mediator service that takes in spans from the client, encodes this data to <code>Thrift Binary</code> format, and reports it to a sender.</p>
+<h2 id='fitting-everything-together' class='heading'>Fitting everything together</h2>
+
+<p><img src="https://user-images.githubusercontent.com/2333426/49960015-1d716b80-fedd-11e8-98b8-48727f34414d.png" alt="jaeger sequence"></p>
+
+<p>When we create an instance of the Jaeger client, we specify two time intervals, a queuing time interval and a reporting time interval. When the app starts a new span, the span stores the timestamp at the exact moment. Once the span is finished, the span is queued in memory for the duration of the queuing time interval. Once this timer is invalidated, the agent picks up the spans and persists that data to disk. Now the second reporting timer picks up the spans from disk, reports the spans through the sender and then flushes the cache.</p>
+<h2 id='usage' class='heading'>Usage</h2>
+
+<ul>
+<li>A simple app with just one view controller is shown below.
+&ldquo;`swift
+import UIKit
+import Jaeger</li>
+</ul>
+
+<p>class ViewController: UIViewController {</p>
+
+<p>let jaegerClient: JaegerCoreDataClient = {
+    let mediatorEndpoint = URL(string: <q>http://localhost:3000/batch</q>)!
+    let configuration = CoreDataAgentConfiguration(averageMaximumSpansPerSecond: 5, savingInterval: 5, sendingInterval: 10, coreDataFolderURL: nil)!
+    let process = JaegerBatchProcess(serviceName: <q>Demo App</q>, tags: [])
+    let sender = JaegerJSONSender(endPoint: mediatorEndpoint, process: process)
+    return JaegerCoreDataClient(config: configuration, sender: sender, objectModelBundle: .main)
+  }()</p>
+
+<p>override func viewDidLoad() {
+    super.viewDidLoad()
+  }
+}</p>
+<pre class="highlight plaintext"><code>
+In the sinppet shown above, we use the pre-built `JaegerCoreDataClient` which implements the `Agent` protocol and `JaegerJSONSender`, which, implements the `SpanSender` protocol. The sender accepts an array of type `SpanConvertible` which is a customizable representation of a span. Now, if you need to implement a strategy to report to a different collector like Zipkin, you can implement the `SpanConvertible` protocol to convert a `Span` into the appropriate format accepted by Zipkin. If you need a reference, we have done the same with `JaegerSpan`. The `Agent` and `SpanSender` being protocols are also customizable. If you need more information on this topic, you can refer our [API Documentation](https://wayfair.github.io/jaeger-swift).
+
+Now if you need to create a simple root span, you can just do this.
+```swift
+let rootSpan = jaegerClient.tracer.startRootSpan(operationName: "A simple root span")
+//Do something here
+rootSpan.finish()
+</code></pre>
+
+<p>The above example describes a simple root span that is not related to any other span. If you have a scenario where you need to break down the measurement of a larger operation into smaller sub-operations, you can create child spans. In the following example, we have 1 big operation that takes 5 seconds to finish and a smaller operation that is started before the bigger operation ends which takes 3 seconds to finish. This type of scenario can be captured through a <code>parent-child</code> relationship between the spans where the child operation</p>
+<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">doWork</span><span class="p">(</span><span class="nv">executionTime</span><span class="p">:</span> <span class="kt">Double</span><span class="p">,</span> <span class="nv">done</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="p">())</span> <span class="p">{</span>
+  <span class="kt">DispatchQueue</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="nf">asyncAfter</span><span class="p">(</span><span class="nv">deadline</span><span class="p">:</span> <span class="o">.</span><span class="nf">now</span><span class="p">()</span> <span class="o">+</span> <span class="n">executionTime</span><span class="p">,</span> <span class="nv">execute</span><span class="p">:</span> <span class="n">done</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">performOperations</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">let</span> <span class="nv">rootSpan</span> <span class="o">=</span> <span class="n">jaegerClient</span><span class="o">.</span><span class="n">tracer</span><span class="o">.</span><span class="nf">startRootSpan</span><span class="p">(</span><span class="nv">operationName</span><span class="p">:</span> <span class="s">"A simple root span"</span><span class="p">)</span>
+
+  <span class="c1">//Start the big operation</span>
+  <span class="nf">doWork</span><span class="p">(</span><span class="nv">executionTime</span><span class="p">:</span> <span class="mi">5</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//Big operation finishes</span>
+    <span class="n">rootSpan</span><span class="o">.</span><span class="nf">finish</span><span class="p">()</span>
+  <span class="p">}</span>
+
+  <span class="k">let</span> <span class="nv">childSpan</span> <span class="o">=</span> <span class="n">jaegerClient</span><span class="o">.</span><span class="n">tracer</span><span class="o">.</span><span class="nf">startSpan</span><span class="p">(</span><span class="nv">operationName</span><span class="p">:</span> <span class="s">"A simple child span"</span><span class="p">,</span> <span class="nv">childOf</span><span class="p">:</span> <span class="n">rootSpan</span><span class="o">.</span><span class="n">spanRef</span><span class="p">,</span> <span class="nv">tags</span><span class="p">:</span> <span class="p">[</span><span class="kt">Tag</span><span class="p">(</span><span class="nv">key</span><span class="p">:</span> <span class="s">"childMeasurement"</span><span class="p">,</span> <span class="nv">tagType</span><span class="p">:</span> <span class="o">.</span><span class="nf">string</span><span class="p">(</span><span class="s">"a child operation"</span><span class="p">))])</span>
+
+  <span class="c1">//Start a smaller operation that starts before the big operation ends</span>
+  <span class="nf">doWork</span><span class="p">(</span><span class="nv">executionTime</span><span class="p">:</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//Stop this span once the small operation finishes</span>
+    <span class="n">childSpan</span><span class="o">.</span><span class="nf">finish</span><span class="p">()</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>When building a new feature, in many cases, we might have a series of operations that will need to happen before a user can interact with the UI. For example, if we have a table view that is dynamically populated based on the response from an endpoint, we may need to A) fetch the data from the server, B) parse and validate what we received, C) reload our table view section(s) with the new data. In such a case, there are multiple operations that follow one another. This scenario can be captured through a <code>follows-from</code> relationship. Shown below, is an example where we grab an image from a URL and update a <code>UImageView</code>.</p>
+<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getData</span><span class="p">(</span><span class="n">from</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Data</span><span class="p">?,</span> <span class="kt">URLResponse</span><span class="p">?,</span> <span class="kt">Error</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="p">())</span> <span class="p">{</span>
+  <span class="kt">URLSession</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">dataTask</span><span class="p">(</span><span class="nv">with</span><span class="p">:</span> <span class="n">url</span><span class="p">,</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="n">completion</span><span class="p">)</span><span class="o">.</span><span class="nf">resume</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">updateView</span><span class="p">(</span><span class="n">with</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">myCustomView</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="kt">UIImage</span><span class="p">(</span><span class="nv">data</span><span class="p">:</span> <span class="n">data</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">updateImage</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">let</span> <span class="nv">imageURLString</span> <span class="o">=</span> <span class="s">"http://www.website.com/image1.png"</span>
+
+  <span class="k">guard</span> <span class="k">let</span> <span class="nv">imageURL</span> <span class="o">=</span> <span class="kt">URL</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="n">imageURLString</span><span class="p">)</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">return</span>
+  <span class="p">}</span>
+
+  <span class="c1">//Start a new span to record image download time</span>
+  <span class="k">let</span> <span class="nv">imageDownloadSpan</span> <span class="o">=</span> <span class="n">jaegerClient</span><span class="o">.</span><span class="n">tracer</span><span class="o">.</span><span class="nf">startSpan</span><span class="p">(</span><span class="nv">operationName</span><span class="p">:</span> <span class="s">"Image download span"</span><span class="p">,</span> <span class="nv">referencing</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">startTime</span><span class="p">:</span> <span class="kt">Date</span><span class="p">(),</span> <span class="nv">tags</span><span class="p">:</span> <span class="p">[</span><span class="kt">Tag</span><span class="p">(</span><span class="nv">key</span><span class="p">:</span> <span class="s">"downloadURL"</span><span class="p">,</span> <span class="nv">tagType</span><span class="p">:</span> <span class="o">.</span><span class="nf">string</span><span class="p">(</span><span class="n">imageURLString</span><span class="p">))])</span>
+
+  <span class="nf">getData</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="n">imageURL</span><span class="p">)</span> <span class="p">{</span> <span class="p">[</span><span class="k">weak</span> <span class="k">self</span><span class="p">]</span> <span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="k">in</span>
+
+    <span class="c1">//Finish this span once the image downloads</span>
+    <span class="n">imageDownloadSpan</span><span class="o">.</span><span class="nf">finish</span><span class="p">()</span>
+    <span class="k">guard</span> <span class="k">let</span> <span class="nv">strongSelf</span> <span class="o">=</span> <span class="k">self</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="k">return</span>
+    <span class="p">}</span>
+
+    <span class="c1">//Start a new span to update a UI component</span>
+    <span class="k">let</span> <span class="nv">imageRenderSpan</span> <span class="o">=</span> <span class="n">strongSelf</span><span class="o">.</span><span class="n">jaegerClient</span><span class="o">.</span><span class="n">tracer</span><span class="o">.</span><span class="nf">startSpan</span><span class="p">(</span><span class="nv">operationName</span><span class="p">:</span> <span class="s">"Image render span"</span><span class="p">,</span> <span class="nv">followsFrom</span><span class="p">:</span> <span class="n">imageDownloadSpan</span><span class="o">.</span><span class="n">spanRef</span><span class="p">,</span> <span class="nv">tags</span><span class="p">:</span> <span class="p">[</span><span class="kt">Tag</span><span class="p">(</span><span class="nv">key</span><span class="p">:</span> <span class="s">"uiComponent"</span><span class="p">,</span> <span class="nv">tagType</span><span class="p">:</span> <span class="o">.</span><span class="nf">string</span><span class="p">(</span><span class="s">"myCustomView"</span><span class="p">))])</span>
+
+    <span class="n">strongSelf</span><span class="o">.</span><span class="nf">updateView</span><span class="p">(</span><span class="nv">with</span><span class="p">:</span> <span class="n">data</span><span class="p">)</span>
+
+    <span class="c1">//Finish image rendering span</span>
+    <span class="n">imageRenderSpan</span><span class="o">.</span><span class="nf">finish</span><span class="p">()</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<h6 id='observe-your-traces' class='heading'>Observe your traces</h6>
+
+<p>If you have completed the steps above, you can now see your traces in your Jaeger collector. If you are using the all-in-one docker image specified in <a href="#step-1---spin-up-a-jaeger-collector">step 1</a>, you can just open <a href="http://localhost:16686/">http://localhost:16686/</a> to see your traces.The name of the process reporting the spans will be <code>Jaeger iOS App</code>. This name can be configured in the mediator.</p>
+<h2 id='check-out-our-demo-app' class='heading'>Check out our Demo app</h2>
+
+<p>For a more comprehensive understanding of this project, you can check out our demo app <a href="./Example">here</a>. You can configure the demo app to send traces to our Jaeger mediator.</p>
+<h2 id='documentation' class='heading'>Documentation</h2>
+
+<p>For a full understanding of this project, check out our <a href="https://wayfair.github.io/jaeger-swift">API reference</a>. We also welcome contributions!</p>
+
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2019 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2019-01-09)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

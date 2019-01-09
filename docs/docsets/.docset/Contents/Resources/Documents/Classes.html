@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Classes  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Section/Classes" class="dashAnchor"></a>
+    <a title="Classes  Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="index.html"> Docs</a> (100% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="index.html"> Reference</a>
+        <img id="carat" src="img/carat.png" />
+        Classes  Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Classes/BasicTracer.html">BasicTracer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/CoreDataAgent.html">CoreDataAgent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/JSONSender.html">JSONSender</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/JSONSender/HttpMethod.html">– HttpMethod</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/JaegerCoreDataClient.html">JaegerCoreDataClient</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/JaegerJSONSender.html">JaegerJSONSender</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/OTSpan.html">OTSpan</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Protocols/Agent.html">Agent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/CoreDataAgentErrorDelegate.html">CoreDataAgentErrorDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/SpanConvertible.html">SpanConvertible</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/SpanSender.html">SpanSender</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/Tracer.html">Tracer</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Structs/CoreDataAgentConfiguration.html">CoreDataAgentConfiguration</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/JaegerBatchProcess.html">JaegerBatchProcess</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/JaegerSpan.html">JaegerSpan</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Log.html">Log</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Span.html">Span</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Span/Context.html">– Context</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Span/Reference.html">– Reference</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Span/Flag.html">– Flag</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Tag.html">Tag</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Tag/TagType.html">– TagType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:6Jaeger6Binarya">Binary</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:6Jaeger16CompletionStatusa">CompletionStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:6Jaeger0A5Agenta">JaegerAgent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:6Jaeger0A6Tracera">JaegerTracer</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>Classes</h1>
+            <p>The following classes are available globally.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Jaeger13CoreDataAgentC"></a>
+                    <a name="//apple_ref/swift/Class/CoreDataAgent" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Jaeger13CoreDataAgentC">CoreDataAgent</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>An agent using a Core Data Stack to save a binary representation of a span. The agent will save the spans periodically on disk in order to minimize the memory footprint  and optimize disk writing operations. At regular intervals, spans will be fetched from the disk and send to the provided <code><a href="Protocols/SpanSender.html">SpanSender</a></code>.</p>
+
+<p>A SQLite store type is used for the persistent store.</p>
+
+                        <a href="Classes/CoreDataAgent.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">CoreDataAgent</span><span class="o">&lt;</span><span class="kt">RawSpan</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt"><a href="Protocols/Agent.html">Agent</a></span> <span class="k">where</span> <span class="kt">RawSpan</span> <span class="p">:</span> <span class="kt"><a href="Protocols/SpanConvertible.html">SpanConvertible</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Jaeger0A14CoreDataClientC"></a>
+                    <a name="//apple_ref/swift/Class/JaegerCoreDataClient" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Jaeger0A14CoreDataClientC">JaegerCoreDataClient</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A Jaeger client using core data as a caching mechanism and a configurable <code><a href="Protocols/SpanSender.html">SpanSender</a></code>.</p>
+
+                        <a href="Classes/JaegerCoreDataClient.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">JaegerCoreDataClient</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Jaeger10JSONSenderC"></a>
+                    <a name="//apple_ref/swift/Class/JSONSender" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Jaeger10JSONSenderC">JSONSender</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A <code><a href="Protocols/SpanSender.html">SpanSender</a></code> designed to send spans at a specified <code>URL</code> using the <code>JSON</code> format.</p>
+
+                        <a href="Classes/JSONSender.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">JSONSender</span> <span class="p">:</span> <span class="kt"><a href="Protocols/SpanSender.html">SpanSender</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Jaeger0A10JSONSenderC"></a>
+                    <a name="//apple_ref/swift/Class/JaegerJSONSender" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Jaeger0A10JSONSenderC">JaegerJSONSender</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A <code><a href="Protocols/SpanSender.html">SpanSender</a></code> designed to send spans at a specified <code>URL</code> using the <code>JSON</code> format. This sender works exactly as a <code><a href="Classes/JSONSender.html">JSONSender</a></code>, it only modifies the payload sent to the endpoint. The spans will be wrapped in a <code>Batch</code> according to the <a href="https://github.com/jaegertracing/jaeger-idl/blob/master/thrift/jaeger.thrift">Jaeger.Thrift</a> definition.</p>
+
+                        <a href="Classes/JaegerJSONSender.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">JaegerJSONSender</span> <span class="p">:</span> <span class="kt"><a href="Classes/JSONSender.html">JSONSender</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Jaeger11BasicTracerC"></a>
+                    <a name="//apple_ref/swift/Class/BasicTracer" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Jaeger11BasicTracerC">BasicTracer</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A tracer using a generic agent for the caching process.</p>
+
+                        <a href="Classes/BasicTracer.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">BasicTracer</span> <span class="p">:</span> <span class="kt"><a href="Protocols/Tracer.html">Tracer</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Jaeger6OTSpanC"></a>
+                    <a name="//apple_ref/swift/Class/OTSpan" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Jaeger6OTSpanC">OTSpan</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A class wrapper around a <code><a href="Structs/Span.html">Span</a></code>.</p>
+
+<p>This class is a thread safe wrapper around <code><a href="Structs/Span.html">Span</a></code> that allows performance optimization and reference semantics to a span.
+Read and write accesses are synchronized in a concurrent queue with a <a href="https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/PrioritizeWorkWithQoS.html">Utility Priority</a>.
+Every write access is dispatched as a barrier work item on the queue allowing read operations to finish.
+Every read access is dispatched as a regular work item on the concurrent queue.</p>
+
+                        <a href="Classes/OTSpan.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">OTSpan</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2019 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2019-01-09)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

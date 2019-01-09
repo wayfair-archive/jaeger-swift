@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>CoreDataAgentConfiguration Structure Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Struct/CoreDataAgentConfiguration" class="dashAnchor"></a>
+    <a title="CoreDataAgentConfiguration Structure Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (100% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        CoreDataAgentConfiguration Structure Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/BasicTracer.html">BasicTracer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CoreDataAgent.html">CoreDataAgent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JSONSender.html">JSONSender</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JSONSender/HttpMethod.html">– HttpMethod</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JaegerCoreDataClient.html">JaegerCoreDataClient</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JaegerJSONSender.html">JaegerJSONSender</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/OTSpan.html">OTSpan</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/Agent.html">Agent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/CoreDataAgentErrorDelegate.html">CoreDataAgentErrorDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SpanConvertible.html">SpanConvertible</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SpanSender.html">SpanSender</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Tracer.html">Tracer</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/CoreDataAgentConfiguration.html">CoreDataAgentConfiguration</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/JaegerBatchProcess.html">JaegerBatchProcess</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/JaegerSpan.html">JaegerSpan</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Log.html">Log</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Span.html">Span</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Span/Context.html">– Context</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Span/Reference.html">– Reference</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Span/Flag.html">– Flag</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Tag.html">Tag</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Tag/TagType.html">– TagType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Jaeger6Binarya">Binary</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Jaeger16CompletionStatusa">CompletionStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Jaeger0A5Agenta">JaegerAgent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Jaeger0A6Tracera">JaegerTracer</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>CoreDataAgentConfiguration</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">CoreDataAgentConfiguration</span></code></pre>
+
+                </div>
+              </div>
+            <p>The configuration used by the <code><a href="../Classes/CoreDataAgent.html">CoreDataAgent</a></code> agent to set up the core data stack and saving behavior.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Jaeger26CoreDataAgentConfigurationV28averageMaximumSpansPerSecond14savingInterval07sendingL013errorDelegate04coreC9FolderURLACSgSi_S2dAA0bcd5ErrorO0_pSg10Foundation0R0VSgtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(averageMaximumSpansPerSecond:savingInterval:sendingInterval:errorDelegate:coreDataFolderURL:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Jaeger26CoreDataAgentConfigurationV28averageMaximumSpansPerSecond14savingInterval07sendingL013errorDelegate04coreC9FolderURLACSgSi_S2dAA0bcd5ErrorO0_pSg10Foundation0R0VSgtcfc">init(averageMaximumSpansPerSecond:savingInterval:sendingInterval:errorDelegate:coreDataFolderURL:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a new configuration.</p>
+<div class="aside aside-warning">
+    <p class="aside-title">Warning</p>
+    <p>Every parameter should be strictly positive and the sending interval should be greater than the saving interval.</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">?(</span>
+    <span class="nv">averageMaximumSpansPerSecond</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
+    <span class="nv">savingInterval</span><span class="p">:</span> <span class="kt">TimeInterval</span><span class="p">,</span>
+    <span class="nv">sendingInterval</span><span class="p">:</span> <span class="kt">TimeInterval</span><span class="p">,</span>
+    <span class="nv">errorDelegate</span><span class="p">:</span> <span class="kt"><a href="../Protocols/CoreDataAgentErrorDelegate.html">CoreDataAgentErrorDelegate</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">coreDataFolderURL</span><span class="p">:</span> <span class="kt">URL</span><span class="p">?</span>
+    <span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>averageMaximumSpansPerSecond</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The maximum number of spans per seconds to be saved in memory before the next saving operation on disk.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>savingInterval</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The time between each saving operation on disk.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>sendingInterval</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The time between each sending tasks to the collector.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>errorDelegate</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The error delegate. Any core data error or network error will be forwarded to the delegate.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>coreDataFolderURL</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An optional URL to a folder where the core data files will be saved. When not specified the <code>NSPersistentContainer.defaultDirectoryURL()</code> will be used.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Jaeger26CoreDataAgentConfigurationV13errorDelegateAA0bcd5ErrorG0_pSgXwvp"></a>
+                    <a name="//apple_ref/swift/Property/errorDelegate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Jaeger26CoreDataAgentConfigurationV13errorDelegateAA0bcd5ErrorG0_pSgXwvp">errorDelegate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The error delegate. Any core data error or network error will be forwarded to the delegate.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">weak</span> <span class="k">var</span> <span class="nv">errorDelegate</span><span class="p">:</span> <span class="kt"><a href="../Protocols/CoreDataAgentErrorDelegate.html">CoreDataAgentErrorDelegate</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Jaeger26CoreDataAgentConfigurationV21maximumSpansPerSecondSivp"></a>
+                    <a name="//apple_ref/swift/Property/maximumSpansPerSecond" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Jaeger26CoreDataAgentConfigurationV21maximumSpansPerSecondSivp">maximumSpansPerSecond</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The maximum number of spans per seconds to be saved in memory before the next saving operation on disk.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">maximumSpansPerSecond</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Jaeger26CoreDataAgentConfigurationV14savingIntervalSdvp"></a>
+                    <a name="//apple_ref/swift/Property/savingInterval" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Jaeger26CoreDataAgentConfigurationV14savingIntervalSdvp">savingInterval</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The time between each saving operation on disk.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">savingInterval</span><span class="p">:</span> <span class="kt">TimeInterval</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Jaeger26CoreDataAgentConfigurationV15sendingIntervalSdvp"></a>
+                    <a name="//apple_ref/swift/Property/sendingInterval" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Jaeger26CoreDataAgentConfigurationV15sendingIntervalSdvp">sendingInterval</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The time between each sending tasks to the collector.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">sendingInterval</span><span class="p">:</span> <span class="kt">TimeInterval</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Jaeger26CoreDataAgentConfigurationV29maximumSpansPerSavingIntervalSivp"></a>
+                    <a name="//apple_ref/swift/Property/maximumSpansPerSavingInterval" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Jaeger26CoreDataAgentConfigurationV29maximumSpansPerSavingIntervalSivp">maximumSpansPerSavingInterval</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The maximum number of spans to be saved in memory before the next saving operation on disk.
+ This is the product between the <code><a href="../Structs/CoreDataAgentConfiguration.html#/s:6Jaeger26CoreDataAgentConfigurationV21maximumSpansPerSecondSivp">maximumSpansPerSecond</a></code> and the <code><a href="../Structs/CoreDataAgentConfiguration.html#/s:6Jaeger26CoreDataAgentConfigurationV14savingIntervalSdvp">savingInterval</a></code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">maximumSpansPerSavingInterval</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Jaeger26CoreDataAgentConfigurationV30maximumSpansPerSendingIntervalSivp"></a>
+                    <a name="//apple_ref/swift/Property/maximumSpansPerSendingInterval" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Jaeger26CoreDataAgentConfigurationV30maximumSpansPerSendingIntervalSivp">maximumSpansPerSendingInterval</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The maximum number of spans fetched from the disk before sending to the collector.
+ This is the product between the <code><a href="../Structs/CoreDataAgentConfiguration.html#/s:6Jaeger26CoreDataAgentConfigurationV21maximumSpansPerSecondSivp">maximumSpansPerSecond</a></code> and the <code><a href="../Structs/CoreDataAgentConfiguration.html#/s:6Jaeger26CoreDataAgentConfigurationV15sendingIntervalSdvp">sendingInterval</a></code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">maximumSpansPerSendingInterval</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Jaeger26CoreDataAgentConfigurationV04coreC9FolderURL10Foundation0H0VSgvp"></a>
+                    <a name="//apple_ref/swift/Property/coreDataFolderURL" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Jaeger26CoreDataAgentConfigurationV04coreC9FolderURL10Foundation0H0VSgvp">coreDataFolderURL</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>An optional URL to a folder where the core data files will be saved. When not specified the <code>NSPersistentContainer.defaultDirectoryURL()</code> will be used.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">coreDataFolderURL</span><span class="p">:</span> <span class="kt">URL</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2019 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2019-01-09)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Tracer Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Protocol/Tracer" class="dashAnchor"></a>
+    <a title="Tracer Protocol Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (100% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        Tracer Protocol Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/BasicTracer.html">BasicTracer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CoreDataAgent.html">CoreDataAgent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JSONSender.html">JSONSender</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JSONSender/HttpMethod.html">– HttpMethod</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JaegerCoreDataClient.html">JaegerCoreDataClient</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JaegerJSONSender.html">JaegerJSONSender</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/OTSpan.html">OTSpan</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/Agent.html">Agent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/CoreDataAgentErrorDelegate.html">CoreDataAgentErrorDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SpanConvertible.html">SpanConvertible</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SpanSender.html">SpanSender</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Tracer.html">Tracer</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/CoreDataAgentConfiguration.html">CoreDataAgentConfiguration</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/JaegerBatchProcess.html">JaegerBatchProcess</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/JaegerSpan.html">JaegerSpan</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Log.html">Log</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Span.html">Span</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Span/Context.html">– Context</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Span/Reference.html">– Reference</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Span/Flag.html">– Flag</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Tag.html">Tag</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Tag/TagType.html">– TagType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Jaeger6Binarya">Binary</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Jaeger16CompletionStatusa">CompletionStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Jaeger0A5Agenta">JaegerAgent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Jaeger0A6Tracera">JaegerTracer</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>Tracer</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Tracer</span> <span class="p">:</span> <span class="kt">AnyObject</span></code></pre>
+
+                </div>
+              </div>
+            <p>An interface representing chosen functionalities of the OpenTracing Tracer specifications. Any class implementing this interface should be able to create and relay spans.</p>
+
+<p>Usually a Tracer should be able to transfer spans across process boundaries. In this implementation, the tracer will only be able to create spans and relay them to another system responsible for communication.</p>
+<div class="aside aside-warning">
+    <p class="aside-title">Warning</p>
+    Since a <code><a href="../Structs/Span.html">Span</a></code> will strongly retain the tracer, do not keep a strong reference to any span to avoid memory leaks.
+
+</div>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Jaeger6TracerP9startSpan13operationName11referencing0C4Time4tagsAA6OTSpanCSS_AA0D0V9ReferenceVSg10Foundation4DateVSayAA3TagVGtF"></a>
+                    <a name="//apple_ref/swift/Method/startSpan(operationName:referencing:startTime:tags:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Jaeger6TracerP9startSpan13operationName11referencing0C4Time4tagsAA6OTSpanCSS_AA0D0V9ReferenceVSg10Foundation4DateVSayAA3TagVGtF">startSpan(operationName:referencing:startTime:tags:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A point of entry to start a new span wrapped in an OTSpan.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">startSpan</span><span class="p">(</span><span class="nv">operationName</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">referencing</span> <span class="nv">reference</span><span class="p">:</span> <span class="kt"><a href="../Structs/Span.html">Span</a></span><span class="o">.</span><span class="kt">Reference</span><span class="p">?,</span> <span class="nv">startTime</span><span class="p">:</span> <span class="kt">Date</span><span class="p">,</span> <span class="nv">tags</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Tag.html">Tag</a></span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/OTSpan.html">OTSpan</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>operationName</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A human-readable string which concisely represents the work done by the Span. See <a href="https://opentracing.io/specification/">OpenTracing Semantic Specification</a> for the naming conventions.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>reference</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The relationship to a node (span).</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>startTime</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The time at which the task was started.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>tags</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Tags to be included at the creation of the span.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A new <code><a href="../Structs/Span.html">Span</a></code> wrapped in an OTSpan.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Jaeger6TracerP6report4spanyAA4SpanV_tF"></a>
+                    <a name="//apple_ref/swift/Method/report(span:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Jaeger6TracerP6report4spanyAA4SpanV_tF">report(span:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Transfer a <strong>completed</strong> span to the tracer.</p>
+
+<p>The span should be completed before being reported to the tracer. Common implementation of a Tracer should reject incomplete span.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">report</span><span class="p">(</span><span class="nv">span</span><span class="p">:</span> <span class="kt"><a href="../Structs/Span.html">Span</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>span</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A <strong>completed</strong> span.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Jaeger6TracerPAAE9startSpan13operationName7childOf0C4Time4tagsAA6OTSpanCSS_AA0D0V7ContextV10Foundation4DateVSayAA3TagVGtF"></a>
+                    <a name="//apple_ref/swift/Method/startSpan(operationName:childOf:startTime:tags:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Jaeger6TracerPAAE9startSpan13operationName7childOf0C4Time4tagsAA6OTSpanCSS_AA0D0V7ContextV10Foundation4DateVSayAA3TagVGtF">startSpan(operationName:childOf:startTime:tags:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A point of entry to start a new span wrapped in an OTSpan.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">startSpan</span><span class="p">(</span><span class="nv">operationName</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">childOf</span> <span class="nv">parent</span><span class="p">:</span> <span class="kt"><a href="../Structs/Span.html">Span</a></span><span class="o">.</span><span class="kt">Context</span><span class="p">,</span> <span class="nv">startTime</span><span class="p">:</span> <span class="kt">Date</span> <span class="o">=</span> <span class="kt">Date</span><span class="p">(),</span> <span class="nv">tags</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Tag.html">Tag</a></span><span class="p">]</span> <span class="o">=</span> <span class="p">[])</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/OTSpan.html">OTSpan</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>operationName</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A human-readable string which concisely represents the work done by the Span. See <a href="https://opentracing.io/specification/">OpenTracing Semantic Specification</a> for the naming conventions.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>childOf</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The parent node (span) .</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>startTime</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The time at which the task was started.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>tags</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Tags to be included at the creation of the span.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A new <code><a href="../Structs/Span.html">Span</a></code> (wrapped in an OTSpan) with a <code>childOf</code> relationship.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Jaeger6TracerPAAE9startSpan13operationName11followsFrom0C4Time4tagsAA6OTSpanCSS_AA0D0V7ContextV10Foundation4DateVSayAA3TagVGtF"></a>
+                    <a name="//apple_ref/swift/Method/startSpan(operationName:followsFrom:startTime:tags:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Jaeger6TracerPAAE9startSpan13operationName11followsFrom0C4Time4tagsAA6OTSpanCSS_AA0D0V7ContextV10Foundation4DateVSayAA3TagVGtF">startSpan(operationName:followsFrom:startTime:tags:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A point of entry to start a new span wrapped in an OTSpan.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">startSpan</span><span class="p">(</span><span class="nv">operationName</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">followsFrom</span> <span class="nv">parent</span><span class="p">:</span> <span class="kt"><a href="../Structs/Span.html">Span</a></span><span class="o">.</span><span class="kt">Context</span><span class="p">,</span> <span class="nv">startTime</span><span class="p">:</span> <span class="kt">Date</span> <span class="o">=</span> <span class="kt">Date</span><span class="p">(),</span> <span class="nv">tags</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Tag.html">Tag</a></span><span class="p">]</span> <span class="o">=</span> <span class="p">[])</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/OTSpan.html">OTSpan</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>operationName</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A human-readable string which concisely represents the work done by the Span. See <a href="https://opentracing.io/specification/">OpenTracing Semantic Specification</a> for the naming conventions.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>followsFrom</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The parent node (span) .</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>startTime</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The time at which the task was started.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>tags</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Tags to be included at the creation of the span.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A new <code><a href="../Structs/Span.html">Span</a></code> (wrapped in an OTSpan) with a <code>followsFrom</code> relationship.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Jaeger6TracerPAAE13startRootSpan13operationName0C4Time4tagsAA6OTSpanCSS_10Foundation4DateVSayAA3TagVGtF"></a>
+                    <a name="//apple_ref/swift/Method/startRootSpan(operationName:startTime:tags:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Jaeger6TracerPAAE13startRootSpan13operationName0C4Time4tagsAA6OTSpanCSS_10Foundation4DateVSayAA3TagVGtF">startRootSpan(operationName:startTime:tags:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A point of entry to start a new span wrapped in an OTSpan.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">startRootSpan</span><span class="p">(</span><span class="nv">operationName</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">startTime</span><span class="p">:</span> <span class="kt">Date</span> <span class="o">=</span> <span class="kt">Date</span><span class="p">(),</span> <span class="nv">tags</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Tag.html">Tag</a></span><span class="p">]</span> <span class="o">=</span> <span class="p">[])</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/OTSpan.html">OTSpan</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>operationName</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A human-readable string which concisely represents the work done by the Span. See <a href="https://opentracing.io/specification/">OpenTracing Semantic Specification</a> for the naming conventions.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>startTime</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The time at which the task was started.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>tags</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Tags to be included at the creation of the span.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A new <code><a href="../Structs/Span.html">Span</a></code> (wrapped in an OTSpan) with no relationship. This is a root node.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Jaeger6TracerPAAE9startSpan13operationName10references0C4Time4tagsAA6OTSpanCqd___AA0D0V9ReferenceVSg10Foundation4DateVSayAA3TagVGtSYRd__SS8RawValueRtd__lF"></a>
+                    <a name="//apple_ref/swift/Method/startSpan(operationName:references:startTime:tags:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Jaeger6TracerPAAE9startSpan13operationName10references0C4Time4tagsAA6OTSpanCqd___AA0D0V9ReferenceVSg10Foundation4DateVSayAA3TagVGtSYRd__SS8RawValueRtd__lF">startSpan(operationName:references:startTime:tags:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A point of entry to a start a new span wrapped in an OTSpan.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">startSpan</span><span class="o">&lt;</span><span class="kt">Operation</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">operationName</span><span class="p">:</span> <span class="kt">Operation</span><span class="p">,</span> <span class="nv">references</span><span class="p">:</span> <span class="kt"><a href="../Structs/Span.html">Span</a></span><span class="o">.</span><span class="kt">Reference</span><span class="p">?,</span> <span class="nv">startTime</span><span class="p">:</span> <span class="kt">Date</span><span class="p">,</span> <span class="nv">tags</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Tag.html">Tag</a></span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/OTSpan.html">OTSpan</a></span> <span class="k">where</span> <span class="kt">Operation</span> <span class="p">:</span> <span class="kt">RawRepresentable</span><span class="p">,</span> <span class="kt">Operation</span><span class="o">.</span><span class="kt">RawValue</span> <span class="o">==</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>operationName</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An operation name which concisely represents the work done by the Span. See <a href="https://opentracing.io/specification/">OpenTracing Semantic Specification</a> for the naming conventions.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>references</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The relationship to a node (span).</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>startTime</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The time at which the task was started.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>tags</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Tags to be included at the creation of the span.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A new <code><a href="../Structs/Span.html">Span</a></code> wrapped in an OTSpan.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Jaeger6TracerPAAE9startSpan13operationName7childOf0C4Time4tagsAA6OTSpanCqd___AA0D0V7ContextV10Foundation4DateVSayAA3TagVGtSYRd__SS8RawValueRtd__lF"></a>
+                    <a name="//apple_ref/swift/Method/startSpan(operationName:childOf:startTime:tags:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Jaeger6TracerPAAE9startSpan13operationName7childOf0C4Time4tagsAA6OTSpanCqd___AA0D0V7ContextV10Foundation4DateVSayAA3TagVGtSYRd__SS8RawValueRtd__lF">startSpan(operationName:childOf:startTime:tags:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A point of entry to start a new span wrapped in an OTSpan.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">startSpan</span><span class="o">&lt;</span><span class="kt">Operation</span><span class="p">:</span> <span class="kt">RawRepresentable</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">operationName</span><span class="p">:</span> <span class="kt">Operation</span><span class="p">,</span> <span class="n">childOf</span> <span class="nv">parent</span><span class="p">:</span> <span class="kt"><a href="../Structs/Span.html">Span</a></span><span class="o">.</span><span class="kt">Context</span><span class="p">,</span> <span class="nv">startTime</span><span class="p">:</span> <span class="kt">Date</span> <span class="o">=</span> <span class="kt">Date</span><span class="p">(),</span> <span class="nv">tags</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Tag.html">Tag</a></span><span class="p">]</span> <span class="o">=</span> <span class="p">[])</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/OTSpan.html">OTSpan</a></span> <span class="k">where</span> <span class="kt">Operation</span><span class="o">.</span><span class="kt">RawValue</span> <span class="o">==</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>operationName</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An operation name which concisely represents the work done by the Span. See <a href="https://opentracing.io/specification/">OpenTracing Semantic Specification</a> for the naming conventions.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>childOf</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The parent node (span) .</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>startTime</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The time at which the task was started.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>tags</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Tags to be included at the creation of the span.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A new <code><a href="../Structs/Span.html">Span</a></code> (wrapped in an OTSpan) with a <code>childOf</code> relationship.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Jaeger6TracerPAAE9startSpan13operationName11followsFrom0C4Time4tagsAA6OTSpanCqd___AA0D0V7ContextV10Foundation4DateVSayAA3TagVGtSYRd__SS8RawValueRtd__lF"></a>
+                    <a name="//apple_ref/swift/Method/startSpan(operationName:followsFrom:startTime:tags:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Jaeger6TracerPAAE9startSpan13operationName11followsFrom0C4Time4tagsAA6OTSpanCqd___AA0D0V7ContextV10Foundation4DateVSayAA3TagVGtSYRd__SS8RawValueRtd__lF">startSpan(operationName:followsFrom:startTime:tags:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A point of entry to start a new span wrapped in an OTSpan.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">startSpan</span><span class="o">&lt;</span><span class="kt">Operation</span><span class="p">:</span> <span class="kt">RawRepresentable</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">operationName</span><span class="p">:</span> <span class="kt">Operation</span><span class="p">,</span> <span class="n">followsFrom</span> <span class="nv">parent</span><span class="p">:</span> <span class="kt"><a href="../Structs/Span.html">Span</a></span><span class="o">.</span><span class="kt">Context</span><span class="p">,</span> <span class="nv">startTime</span><span class="p">:</span> <span class="kt">Date</span> <span class="o">=</span> <span class="kt">Date</span><span class="p">(),</span> <span class="nv">tags</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Tag.html">Tag</a></span><span class="p">]</span> <span class="o">=</span> <span class="p">[])</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/OTSpan.html">OTSpan</a></span> <span class="k">where</span> <span class="kt">Operation</span><span class="o">.</span><span class="kt">RawValue</span> <span class="o">==</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>operationName</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An operation name which concisely represents the work done by the Span. See <a href="https://opentracing.io/specification/">OpenTracing Semantic Specification</a> for the naming conventions.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>followsFrom</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The parent node (span) .</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>startTime</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The time at which the task was started.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>tags</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Tags to be included at the creation of the span.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A new <code><a href="../Structs/Span.html">Span</a></code> (wrapped in an OTSpan) with a <code>followsFrom</code> relationship.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Jaeger6TracerPAAE13startRootSpan13operationName0C4Time4tagsAA6OTSpanCqd___10Foundation4DateVSayAA3TagVGtSYRd__SS8RawValueRtd__lF"></a>
+                    <a name="//apple_ref/swift/Method/startRootSpan(operationName:startTime:tags:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Jaeger6TracerPAAE13startRootSpan13operationName0C4Time4tagsAA6OTSpanCqd___10Foundation4DateVSayAA3TagVGtSYRd__SS8RawValueRtd__lF">startRootSpan(operationName:startTime:tags:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A point of entry to start a new span wrapped in an OTSpan.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">startRootSpan</span><span class="o">&lt;</span><span class="kt">Operation</span><span class="p">:</span> <span class="kt">RawRepresentable</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">operationName</span><span class="p">:</span> <span class="kt">Operation</span><span class="p">,</span> <span class="nv">startTime</span><span class="p">:</span> <span class="kt">Date</span> <span class="o">=</span> <span class="kt">Date</span><span class="p">(),</span> <span class="nv">tags</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Tag.html">Tag</a></span><span class="p">]</span> <span class="o">=</span> <span class="p">[])</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/OTSpan.html">OTSpan</a></span> <span class="k">where</span> <span class="kt">Operation</span><span class="o">.</span><span class="kt">RawValue</span> <span class="o">==</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>operationName</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An operation name which concisely represents the work done by the Span. See <a href="https://opentracing.io/specification/">OpenTracing Semantic Specification</a> for the naming conventions.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>startTime</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The time at which the task was started.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>tags</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Tags to be included at the creation of the span.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A new <code><a href="../Structs/Span.html">Span</a></code> (wrapped in an OTSpan) with no relationship. This is a root node.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2019 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2019-01-09)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>JaegerCoreDataClient Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/JaegerCoreDataClient" class="dashAnchor"></a>
+    <a title="JaegerCoreDataClient Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (100% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        JaegerCoreDataClient Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/BasicTracer.html">BasicTracer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CoreDataAgent.html">CoreDataAgent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JSONSender.html">JSONSender</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JSONSender/HttpMethod.html">– HttpMethod</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JaegerCoreDataClient.html">JaegerCoreDataClient</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JaegerJSONSender.html">JaegerJSONSender</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/OTSpan.html">OTSpan</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/Agent.html">Agent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/CoreDataAgentErrorDelegate.html">CoreDataAgentErrorDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SpanConvertible.html">SpanConvertible</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SpanSender.html">SpanSender</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Tracer.html">Tracer</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/CoreDataAgentConfiguration.html">CoreDataAgentConfiguration</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/JaegerBatchProcess.html">JaegerBatchProcess</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/JaegerSpan.html">JaegerSpan</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Log.html">Log</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Span.html">Span</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Span/Context.html">– Context</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Span/Reference.html">– Reference</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Span/Flag.html">– Flag</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Tag.html">Tag</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Tag/TagType.html">– TagType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Jaeger6Binarya">Binary</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Jaeger16CompletionStatusa">CompletionStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Jaeger0A5Agenta">JaegerAgent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Jaeger0A6Tracera">JaegerTracer</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>JaegerCoreDataClient</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">JaegerCoreDataClient</span></code></pre>
+
+                </div>
+              </div>
+            <p>A Jaeger client using core data as a caching mechanism and a configurable <code><a href="../Protocols/SpanSender.html">SpanSender</a></code>.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Jaeger0A14CoreDataClientC6tracerAA11BasicTracerCvp"></a>
+                    <a name="//apple_ref/swift/Property/tracer" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Jaeger0A14CoreDataClientC6tracerAA11BasicTracerCvp">tracer</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The tracer used to create all spans.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">tracer</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:6Jaeger0A6Tracera">JaegerTracer</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Jaeger0A14CoreDataClientC5agentAA0bC5AgentCyAA0A4SpanVGvp"></a>
+                    <a name="//apple_ref/swift/Property/agent" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Jaeger0A14CoreDataClientC5agentAA0bC5AgentCyAA0A4SpanVGvp">agent</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The underlying agent used by tracer.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">agent</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:6Jaeger0A5Agenta">JaegerAgent</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Jaeger0A14CoreDataClientC6senderAA10SpanSender_pvp"></a>
+                    <a name="//apple_ref/swift/Property/sender" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Jaeger0A14CoreDataClientC6senderAA10SpanSender_pvp">sender</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The underlying sender used by the agent.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">sender</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SpanSender.html">SpanSender</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Jaeger0A14CoreDataClientC6config11endPointUrl7sessionAcA0bC18AgentConfigurationV_10Foundation3URLVSo12NSURLSessionCtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(config:endPointUrl:session:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Jaeger0A14CoreDataClientC6config11endPointUrl7sessionAcA0bC18AgentConfigurationV_10Foundation3URLVSo12NSURLSessionCtcfc">init(config:endPointUrl:session:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a new client by specifying the rules for the core data caching mechanism.
+This agent will use a standard <code><a href="../Classes/JSONSender.html">JSONSender</a></code>. If a more specific configuration is needed, instantiate a <code><a href="../Classes/JSONSender.html">JSONSender</a></code> from one
+of the multiple constructors available.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">config</span><span class="p">:</span> <span class="kt"><a href="../Structs/CoreDataAgentConfiguration.html">CoreDataAgentConfiguration</a></span><span class="p">,</span> <span class="nv">endPointUrl</span><span class="p">:</span> <span class="kt">URL</span><span class="p">,</span> <span class="nv">session</span><span class="p">:</span> <span class="kt">URLSession</span> <span class="o">=</span> <span class="o">.</span><span class="n">shared</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>config</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The configuration used by the <code><a href="../Classes/CoreDataAgent.html">CoreDataAgent</a></code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>endPointUrl</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An API endpoint accepting <code>JSON</code> formatted spans`.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>session</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The underlying <code>URLSession</code> to which requests will be forwarded.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Jaeger0A14CoreDataClientC6config7process11endPointUrl7sessionAcA0bC18AgentConfigurationV_AA0A12BatchProcessV10Foundation3URLVSo12NSURLSessionCtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(config:process:endPointUrl:session:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Jaeger0A14CoreDataClientC6config7process11endPointUrl7sessionAcA0bC18AgentConfigurationV_AA0A12BatchProcessV10Foundation3URLVSo12NSURLSessionCtcfc">init(config:process:endPointUrl:session:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a new client by specifying the rules for the core data caching mechanism.
+This agent will use a standard <code><a href="../Classes/JaegerJSONSender.html">JaegerJSONSender</a></code>. If a more specific configuration is needed, instantiate a <code><a href="../Classes/JaegerJSONSender.html">JaegerJSONSender</a></code> from one
+of the multiple constructors available.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">convenience</span> <span class="nf">init</span><span class="p">(</span>
+    <span class="nv">config</span><span class="p">:</span> <span class="kt"><a href="../Structs/CoreDataAgentConfiguration.html">CoreDataAgentConfiguration</a></span><span class="p">,</span>
+    <span class="nv">process</span><span class="p">:</span> <span class="kt"><a href="../Structs/JaegerBatchProcess.html">JaegerBatchProcess</a></span><span class="p">,</span>
+    <span class="nv">endPointUrl</span><span class="p">:</span> <span class="kt">URL</span><span class="p">,</span>
+    <span class="nv">session</span><span class="p">:</span> <span class="kt">URLSession</span> <span class="o">=</span> <span class="o">.</span><span class="n">shared</span>
+    <span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>config</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The configuration used by the <code><a href="../Classes/CoreDataAgent.html">CoreDataAgent</a></code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>process</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Description of the service that emits spans.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>endPointUrl</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An API endpoint accepting <code>JSON</code> formatted spans`.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>session</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The underlying <code>URLSession</code> to which requests will be forwarded.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Jaeger0A14CoreDataClientC6config6sender17objectModelBundleAcA0bC18AgentConfigurationV_AA10SpanSender_pSo8NSBundleCtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(config:sender:objectModelBundle:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Jaeger0A14CoreDataClientC6config6sender17objectModelBundleAcA0bC18AgentConfigurationV_AA10SpanSender_pSo8NSBundleCtcfc">init(config:sender:objectModelBundle:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a new client by specifying the rules for the core data caching mechanism.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">config</span><span class="p">:</span> <span class="kt"><a href="../Structs/CoreDataAgentConfiguration.html">CoreDataAgentConfiguration</a></span><span class="p">,</span> <span class="nv">sender</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SpanSender.html">SpanSender</a></span><span class="p">,</span> <span class="nv">objectModelBundle</span><span class="p">:</span> <span class="kt">Bundle</span> <span class="o">=</span> <span class="o">.</span><span class="n">main</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>config</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The configuration used by the <code><a href="../Classes/CoreDataAgent.html">CoreDataAgent</a></code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>sender</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The underlying sender used by the agent.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>objectModelBundle</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The bundle where the OTCoreDataAgent.mom file was copied.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2019 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2019-01-09)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
