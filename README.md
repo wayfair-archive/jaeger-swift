@@ -26,7 +26,7 @@ Now, if you open your browser and type [http://localhost:16686](http://localhost
 #### Step 2 - Setup a mediator service
 The Jaeger collector only accepts data that is encoded in `Thrift` format. We have a mediator service that the client can report to. This mediator service accepts JSON spans from the Swift client, encodes this data to `Thrift Binary` format and reports it to the Jaeger collector over UDP.
 
-* Download [our Jaeger mediator service](https://github.com/wayfair/jaeger-swift/tree/develop/Example/jaegerMediator).
+* Download [our Jaeger mediator service](./Example/jaegerMediator).
 * By default, this mediator service reports spans to the locally hosted collector. If you already have a remote collector setup, you can specify the location in `configuration.json`.
 * Open Terminal. Run `npm ci` and then run `npm start`. You should now have the mediator service running on `http://localhost:3000`. You should see this message printed in the console:
 ```
@@ -195,7 +195,7 @@ func updateImage() {
 If you have completed the steps above, you can now see your traces in your Jaeger collector. If you are using the all-in-one docker image specified in [step 1](#step-1---spin-up-a-jaeger-collector), you can just open [http://localhost:16686/](http://localhost:16686/) to see your traces.The name of the process reporting the spans will be `Jaeger iOS App`. This name can be configured in the mediator.
 
 ## Check out our Demo app
-For a more comprehensive understanding of this project, you can check out our demo app [here](https://github.com/wayfair/jaeger-swift/tree/develop/Example). You can configure the demo app to send traces to our Jaeger mediator.
+For a more comprehensive understanding of this project, you can check out our demo app [here](./Example). You can configure the demo app to send traces to our Jaeger mediator.
 
 ## Documentation
 For a full understanding of this project, check out our [API reference](https://wayfair.github.io/jaeger-swift). We also welcome contributions!
