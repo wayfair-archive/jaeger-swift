@@ -161,23 +161,24 @@ jaegertracing/all-in-one:1.8
 <ul>
 <li>Download <a href="./Example/jaegerMediator">our Jaeger mediator service</a>.</li>
 <li>By default, this mediator service reports spans to the locally hosted collector. If you already have a remote collector setup, you can specify the location in <code>configuration.json</code>.</li>
-<li>Open Terminal. Run <code>npm ci</code> and then run <code>npm start</code>. You should now have the mediator service running on <code>http://localhost:3000</code>. You should see this message printed in the console:
-<code>
-Jaeger Mediator server listening on port 3000
+<li>Open Terminal. Run <code>npm ci</code> and then run <code>npm start</code>. You should now have the mediator service running on <code>http://localhost:3000</code>. You should see this message printed in the console:</li>
+</ul>
+<pre class="highlight plaintext"><code>Jaeger Mediator server listening on port 3000
 ** Use the /batch endpoint to report your Jaeger Spans to a Jaeger collector. **
 ** The collector and agent can be configured in configuration.json **
 ** To see an example of the accepted structure for reporting spans, make a GET to /sampleBatch **
-</code></li>
-<li>This step is optional. Most machines have a limit on the payload size for UDP packets. This limit is usually <code>9216 bytes</code>. At times, this can throttle our payload if we report a larger number of spans to the collector. Therefore, if you anticipate that you will be reporting a lot of spans over short durations, you can update this threshold to a preferred size for UDP payloads using this command. The maximum supported size for UDP packets is 65 KB.
-<code>
-sudo sysctl net.inet.udp.maxdgram=65536
-</code></li>
+</code></pre>
+
+<ul>
+<li>This step is optional. Most machines have a limit on the payload size for UDP packets. This limit is usually <code>9216 bytes</code>. At times, this can throttle our payload if we report a larger number of spans to the collector. Therefore, if you anticipate that you will be reporting a lot of spans over short durations, you can update this threshold to a preferred size for UDP payloads using this command. The maximum supported size for UDP packets is 65 KB.</li>
 </ul>
+<pre class="highlight plaintext"><code>sudo sysctl net.inet.udp.maxdgram=65536
+</code></pre>
 <h4 id='step-3-setup-the-client-library-in-your-xcode-project' class='heading'>Step 3 - Setup the client library in your XCode project</h4>
 <h6 id='carthage' class='heading'>Carthage</h6>
 
 <ul>
-<li>Add <code>github &quot;wayfair/jaeger-swift&quot; == 0.0.0</code> to your <code>Cartfile</code>.</li>
+<li>Add <code>github &quot;wayfair/jaeger-swift&quot; == 1.0.0</code> to your <code>Cartfile</code>.</li>
 <li>Run <code>carthage bootstrap</code> to download and generate the Jaeger Framework.</li>
 <li>Drag <code>Jaeger.framework</code> from the appropriate platform directory in <code>Carthage/Build/</code> to the “Linked Frameworks and Libraries” section of your Xcode project’s “General” settings.</li>
 <li>Drag <code>OTCoreDataAgent.mom</code> from the appropriate platform directory in <code>Carthage/Build/iOS/Static/Jaeger.framework/</code> to the <q>Copy Bundle Resources</q> section of your project&rsquo;s <q>Build Phases</q>.</li>
@@ -232,7 +233,7 @@ sudo sysctl net.inet.udp.maxdgram=65536
 <p>A collector is a service that ingests spans sent by an agent. Two of the most popular tracing services at the moment are <a href="https://zipkin.io/">Zipkin</a> and <a href="https://www.jaegertracing.io/">Jaeger</a>.</p>
 <h4 id='mediating-jaeger-spans' class='heading'>Mediating Jaeger Spans</h4>
 
-<p>One of the challenges we ran into while building this project is that the Jaeger collector we report to only accepts data encoded in <code>Thrift</code>. We made an engineering decision to not perform this encoding on the client as it required an extra dependency. Therefore, we built a mediator service that takes in spans from the client, encodes this data to <code>Thrift Binary</code> format, and reports it to a sender.</p>
+<p>One of the challenges we ran into while building this project is that the Jaeger collector we report to only accepts data encoded in <code>Thrift</code>. We made an engineering decision not to perform this encoding on the client as it required an extra dependency. Therefore, we built a mediator service that takes in spans from the client, encodes this data to <code>Thrift Binary</code> format, and reports it to a sender.</p>
 <h2 id='fitting-everything-together' class='heading'>Fitting everything together</h2>
 
 <p><img src="https://user-images.githubusercontent.com/2333426/49960015-1d716b80-fedd-11e8-98b8-48727f34414d.png" alt="jaeger sequence"></p>
@@ -241,37 +242,36 @@ sudo sysctl net.inet.udp.maxdgram=65536
 <h2 id='usage' class='heading'>Usage</h2>
 
 <ul>
-<li>A simple app with just one view controller is shown below.
-&ldquo;`swift
-import UIKit
-import Jaeger</li>
+<li>A simple app with just one view controller is shown below.</li>
 </ul>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">UIKit</span>
+<span class="kd">import</span> <span class="kt">Jaeger</span>
 
-<p>class ViewController: UIViewController {</p>
+<span class="kd">class</span> <span class="kt">ViewController</span><span class="p">:</span> <span class="kt">UIViewController</span> <span class="p">{</span>
 
-<p>let jaegerClient: JaegerCoreDataClient = {
-    let mediatorEndpoint = URL(string: <q>http://localhost:3000/batch</q>)!
-    let configuration = CoreDataAgentConfiguration(averageMaximumSpansPerSecond: 5, savingInterval: 5, sendingInterval: 10, coreDataFolderURL: nil)!
-    let process = JaegerBatchProcess(serviceName: <q>Demo App</q>, tags: [])
-    let sender = JaegerJSONSender(endPoint: mediatorEndpoint, process: process)
-    return JaegerCoreDataClient(config: configuration, sender: sender, objectModelBundle: .main)
-  }()</p>
+  <span class="k">let</span> <span class="nv">jaegerClient</span><span class="p">:</span> <span class="kt">JaegerCoreDataClient</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">mediatorEndpoint</span> <span class="o">=</span> <span class="kt">URL</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="s">"http://localhost:3000/batch"</span><span class="p">)</span><span class="o">!</span>
+    <span class="k">let</span> <span class="nv">configuration</span> <span class="o">=</span> <span class="kt">CoreDataAgentConfiguration</span><span class="p">(</span><span class="nv">averageMaximumSpansPerSecond</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="nv">savingInterval</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="nv">sendingInterval</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="nv">coreDataFolderURL</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span><span class="o">!</span>
+    <span class="k">let</span> <span class="nv">process</span> <span class="o">=</span> <span class="kt">JaegerBatchProcess</span><span class="p">(</span><span class="nv">serviceName</span><span class="p">:</span> <span class="s">"Demo App"</span><span class="p">,</span> <span class="nv">tags</span><span class="p">:</span> <span class="p">[])</span>
+    <span class="k">let</span> <span class="nv">sender</span> <span class="o">=</span> <span class="kt">JaegerJSONSender</span><span class="p">(</span><span class="nv">endPoint</span><span class="p">:</span> <span class="n">mediatorEndpoint</span><span class="p">,</span> <span class="nv">process</span><span class="p">:</span> <span class="n">process</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kt">JaegerCoreDataClient</span><span class="p">(</span><span class="nv">config</span><span class="p">:</span> <span class="n">configuration</span><span class="p">,</span> <span class="nv">sender</span><span class="p">:</span> <span class="n">sender</span><span class="p">,</span> <span class="nv">objectModelBundle</span><span class="p">:</span> <span class="o">.</span><span class="n">main</span><span class="p">)</span>
+  <span class="p">}()</span>
 
-<p>override func viewDidLoad() {
-    super.viewDidLoad()
-  }
-}</p>
-<pre class="highlight plaintext"><code>
-In the sinppet shown above, we use the pre-built `JaegerCoreDataClient` which implements the `Agent` protocol and `JaegerJSONSender`, which, implements the `SpanSender` protocol. The sender accepts an array of type `SpanConvertible` which is a customizable representation of a span. Now, if you need to implement a strategy to report to a different collector like Zipkin, you can implement the `SpanConvertible` protocol to convert a `Span` into the appropriate format accepted by Zipkin. If you need a reference, we have done the same with `JaegerSpan`. The `Agent` and `SpanSender` being protocols are also customizable. If you need more information on this topic, you can refer our [API Documentation](https://wayfair.github.io/jaeger-swift).
-
-Now if you need to create a simple root span, you can just do this.
-```swift
-let rootSpan = jaegerClient.tracer.startRootSpan(operationName: "A simple root span")
-//Do something here
-rootSpan.finish()
+  <span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">super</span><span class="o">.</span><span class="nf">viewDidLoad</span><span class="p">()</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 </code></pre>
 
-<p>The above example describes a simple root span that is not related to any other span. If you have a scenario where you need to break down the measurement of a larger operation into smaller sub-operations, you can create child spans. In the following example, we have 1 big operation that takes 5 seconds to finish and a smaller operation that is started before the bigger operation ends which takes 3 seconds to finish. This type of scenario can be captured through a <code>parent-child</code> relationship between the spans where the child operation</p>
+<p>In the snippet shown above, we use the pre-built <code><a href="Classes/JaegerCoreDataClient.html">JaegerCoreDataClient</a></code> which implements the <code><a href="Protocols/Agent.html">Agent</a></code> protocol and <code><a href="Classes/JaegerJSONSender.html">JaegerJSONSender</a></code>, which, implements the <code><a href="Protocols/SpanSender.html">SpanSender</a></code> protocol. The sender accepts an array of type <code><a href="Protocols/SpanConvertible.html">SpanConvertible</a></code> which is a customizable representation of a span. Now, if you need to implement a strategy to report to a different collector like Zipkin, you can implement the <code><a href="Protocols/SpanConvertible.html">SpanConvertible</a></code> protocol to convert a <code><a href="Structs/Span.html">Span</a></code> into the appropriate format accepted by Zipkin. If you need a reference, we have done the same with <code><a href="Structs/JaegerSpan.html">JaegerSpan</a></code>. The <code><a href="Protocols/Agent.html">Agent</a></code> and <code><a href="Protocols/SpanSender.html">SpanSender</a></code> being protocols are also customizable. If you need more information on this topic, you can refer our <a href="https://wayfair.github.io/jaeger-swift">API Documentation</a>.</p>
+
+<p>Now if you need to create a simple root span, you can just do this.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">rootSpan</span> <span class="o">=</span> <span class="n">jaegerClient</span><span class="o">.</span><span class="n">tracer</span><span class="o">.</span><span class="nf">startRootSpan</span><span class="p">(</span><span class="nv">operationName</span><span class="p">:</span> <span class="s">"A simple root span"</span><span class="p">)</span>
+<span class="c1">//Do something here</span>
+<span class="n">rootSpan</span><span class="o">.</span><span class="nf">finish</span><span class="p">()</span>
+</code></pre>
+
+<p>The above example describes a simple root span that is not related to any other span. If you have a scenario where you need to break down the measurement of a larger operation into smaller sub-operations, you can create child spans. In the following example, we have one big operation that takes 5 seconds to finish and a smaller operation that is started before the bigger operation ends which takes 3 seconds to finish. This type of scenario can be captured through a <code>parent-child</code> relationship.</p>
 <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">doWork</span><span class="p">(</span><span class="nv">executionTime</span><span class="p">:</span> <span class="kt">Double</span><span class="p">,</span> <span class="nv">done</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="p">())</span> <span class="p">{</span>
   <span class="kt">DispatchQueue</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="nf">asyncAfter</span><span class="p">(</span><span class="nv">deadline</span><span class="p">:</span> <span class="o">.</span><span class="nf">now</span><span class="p">()</span> <span class="o">+</span> <span class="n">executionTime</span><span class="p">,</span> <span class="nv">execute</span><span class="p">:</span> <span class="n">done</span><span class="p">)</span>
 <span class="p">}</span>
@@ -345,7 +345,7 @@ rootSpan.finish()
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2019-01-09)</p>
+          <p>&copy; 2019 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2019-01-11)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
