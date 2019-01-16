@@ -45,15 +45,10 @@ public final class CoreDataAgent<RawSpan: SpanConvertible>: Agent {
     private var currentSavingCount: Int = 0
     /// The tracker used to monitor network accessibility.
     private let reachabilityTracker: ReachabilityTracker
-
     /// The timer used to execute saving tasks.
-    private lazy var savingTimer = Timer.scheduledTimer(withTimeInterval: TimeInterval(self.config.savingInterval), repeats: true) { [weak self] _ in
-        self?.executeSavingTasks()
-    }
+    private weak var savingTimer: Timer?
     /// The timer used to execute fetching and sending tasks.
-    private lazy var sendingTimer = Timer.scheduledTimer(withTimeInterval: TimeInterval(self.config.sendingInterval), repeats: true) { [weak self] _ in
-        self?.executeSendingTasks()
-    }
+    private weak var sendingTimer: Timer?
 
     /**
      Creates a new agent from a specified configuration and span sender.
@@ -96,8 +91,15 @@ public final class CoreDataAgent<RawSpan: SpanConvertible>: Agent {
         self.coreDataStack = stack
         self.reachabilityTracker = reachabilityTracker
         backgroundContext = coreDataStack.defaultBackgroundContext
-        _ = savingTimer // start timer
-        _ = sendingTimer // start timer
+
+        savingTimer  = Timer.scheduledTimer(withTimeInterval: TimeInterval(self.config.savingInterval), repeats: true) { [weak self] _ in
+            self?.executeSavingTasks()
+        }
+
+        sendingTimer = Timer.scheduledTimer(withTimeInterval: TimeInterval(self.config.sendingInterval), repeats: true) { [weak self] _ in
+            self?.executeSendingTasks()
+        }
+
         executeSendingTasks() // Send cached data from the last app start.
         addAppWillTerminateActions()
     }
@@ -265,5 +267,10 @@ public final class CoreDataAgent<RawSpan: SpanConvertible>: Agent {
         } catch {
             config.errorDelegate?.handleError(error)
         }
+    }
+
+    deinit {
+        savingTimer?.invalidate()
+        sendingTimer?.invalidate()
     }
 }
