@@ -209,11 +209,21 @@ public final class CoreDataAgent<RawSpan: SpanConvertible>: Agent {
      Only call this method from the `backgroundContext` queue.
      */
     private func handle(results: [CoreDataSpan]) {
+
         let spans: [RawSpan] = results.compactMap {
-            return try? Constants.jsonDecoder.decode(RawSpan.self, from: $0.jsonSpan as Data)
+
+            do {
+                 return try Constants.jsonDecoder.decode(RawSpan.self, from: $0.jsonSpan as Data)
+            } catch {
+                self.config.errorDelegate?.handleError(error)
+                return nil
+            }
         }
+
         deleteAllSpans()
+
         guard spans.count > 0  else { return }
+
         self.spanSender.send(spans: spans) { [weak self] error in
             guard let strongSelf = self, let error = error else { return }
             strongSelf.config.errorDelegate?.handleError(error)
