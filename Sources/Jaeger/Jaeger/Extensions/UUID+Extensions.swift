@@ -12,8 +12,8 @@ extension UUID {
     /**
      An integer representation of the first 64 bits of the UUID.
      
-     This still produces a random number, since all bits were randomly generated with no correlation.
-     See the [UUID documentation](https://developer.apple.com/documentation/foundation/nsuuid).
+     This is not a truly random number, and [also not a UUID in itself as some bits are used to indicate version and the variant as per RFC 4122 version 4](https://tools.ietf.org/html/rfc4122#section-4.1.1)​.
+     See also: [UUID documentation](https://developer.apple.com/documentation/foundation/nsuuid)​.
      */
     var firstHalfBits: UInt64 {
         let bytes = self.uuid
@@ -33,8 +33,8 @@ extension UUID {
     /**
      An integer representation of the last 64 bits of the UUID.
      
-     This still produces a random number, since all bits were randomly generated with no correlation.
-     See the [UUID documentation](https://developer.apple.com/documentation/foundation/nsuuid).
+     This is not a truly random number, and [also not a UUID in itself as some bits are used to indicate version and the variant as per RFC 4122 version 4](https://tools.ietf.org/html/rfc4122#section-4.1.1)​.
+     See also: [UUID documentation](https://developer.apple.com/documentation/foundation/nsuuid)​.
      */
     var secondHalfBits: UInt64 {
         let bytes = self.uuid
