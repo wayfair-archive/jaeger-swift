@@ -59,7 +59,7 @@ public final class CoreDataAgent<RawSpan: SpanConvertible>: Agent {
     public convenience init(config: CoreDataAgentConfiguration, sender: SpanSender) {
 
         let storeType: CoreDataStack.StoreType = .sql
-        let model = agentCoreDataObjectModel
+        let model = AgentCoreDataObjectModel.model
         if let url = config.coreDataFolderURL {
             let stack = CoreDataStack(modelName: Constants.modelName, folderURL: url, model: model, type: storeType)
             self.init(config: config, sender: sender, stack: stack)

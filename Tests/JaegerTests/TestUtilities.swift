@@ -64,5 +64,5 @@ class TestUtilities {
         )
     }
 
-    static let modelForCoreDataAgent: NSManagedObjectModel = agentCoreDataObjectModel
+    static let modelForCoreDataAgent = AgentCoreDataObjectModel.model
 }

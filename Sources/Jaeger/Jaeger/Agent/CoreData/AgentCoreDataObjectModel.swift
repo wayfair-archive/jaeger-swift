@@ -8,30 +8,34 @@
 import CoreData
 
 /// The Core Data model for the Agent written in Code.
-let agentCoreDataObjectModel: NSManagedObjectModel = {
+enum AgentCoreDataObjectModel {
 
-    let model = NSManagedObjectModel()
+    /// The Core Data model for the Agent written in Code.
+    static let model: NSManagedObjectModel = {
 
-    // Core Data Span
-    let coreDataSpan = NSEntityDescription()
-    coreDataSpan.name = "CoreDataSpan"
-    coreDataSpan.managedObjectClassName = "CoreDataSpan"
+        let model = NSManagedObjectModel()
 
-    // Property 1: Binary Data representing the span
-    let jsonSpan = NSAttributeDescription()
-    jsonSpan.name = "jsonSpan"
-    jsonSpan.attributeType = .binaryDataAttributeType
-    jsonSpan.isOptional = false
-    jsonSpan.allowsExternalBinaryDataStorage = true
+        // Core Data Span
+        let coreDataSpan = NSEntityDescription()
+        coreDataSpan.name = "CoreDataSpan"
+        coreDataSpan.managedObjectClassName = "CoreDataSpan"
 
-    // Property 2: the span start time, it is useful to order queries
-    let startTime = NSAttributeDescription()
-    startTime.name = "startTime"
-    startTime.attributeType = .dateAttributeType
-    jsonSpan.isOptional = false
+        // Property 1: Binary Data representing the span
+        let jsonSpan = NSAttributeDescription()
+        jsonSpan.name = "jsonSpan"
+        jsonSpan.attributeType = .binaryDataAttributeType
+        jsonSpan.isOptional = false
+        jsonSpan.allowsExternalBinaryDataStorage = true
 
-    coreDataSpan.properties = [jsonSpan, startTime]
-    model.entities = [coreDataSpan]
+        // Property 2: the span start time, it is useful to order queries
+        let startTime = NSAttributeDescription()
+        startTime.name = "startTime"
+        startTime.attributeType = .dateAttributeType
+        jsonSpan.isOptional = false
 
-    return model
-}()
+        coreDataSpan.properties = [jsonSpan, startTime]
+        model.entities = [coreDataSpan]
+
+        return model
+    }()
+}
