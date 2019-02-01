@@ -22,7 +22,7 @@ $ docker run -d --name jaeger \
 -p 16686:16686 \
 -p 14268:14268 \
 -p 9411:9411 \
-jaegertracing/all-in-one:1.8
+jaegertracing/all-in-one:1.9
 ```
 
 Now, if you open your browser and type [http://localhost:16686](http://localhost:16686), you should see the Jaeger web interface that displays trace information. Of course, there won't be any traces from our client there.
@@ -54,7 +54,7 @@ sudo sysctl net.inet.udp.maxdgram=65536
 * Add `github "wayfair/jaeger-swift" == 1.0.0` to your `Cartfile`.
 * Run `carthage bootstrap` to download and generate the Jaeger Framework.
 * Drag `Jaeger.framework` from the appropriate platform directory in `Carthage/Build/` to the “Linked Frameworks and Libraries” section of your Xcode project’s “General” settings.
-* Drag `OTCoreDataAgent.mom` from the appropriate platform directory in `Carthage/Build/iOS/Static/Jaeger.framework/` to the "Copy Bundle Resources" section of your project's "Build Phases".
+
 
 ## What is Distributed Tracing?
 

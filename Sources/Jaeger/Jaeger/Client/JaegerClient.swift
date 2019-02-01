@@ -59,11 +59,10 @@ public final class JaegerCoreDataClient {
      
      - Parameter config: The configuration used by the `CoreDataAgent`.
      - Parameter sender: The underlying sender used by the agent.
-     - Parameter objectModelBundle: The bundle where the OTCoreDataAgent.mom file was copied.
      */
-    public init(config: CoreDataAgentConfiguration, sender: SpanSender, objectModelBundle: Bundle = .main) {
+    public init(config: CoreDataAgentConfiguration, sender: SpanSender) {
         self.sender = sender
-        self.agent = JaegerAgent(config: config, sender: sender, objectModelBundle: objectModelBundle)
+        self.agent = JaegerAgent(config: config, sender: sender)
         self.tracer = JaegerTracer(agent: agent)
     }
 }
