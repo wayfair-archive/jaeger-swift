@@ -19,8 +19,8 @@ private enum Constants {
     static let jsonEncoder =  JSONEncoder()
     /// The shared `JSONDecoder`.
     static let jsonDecoder =  JSONDecoder()
-    /// The model name for the Core Data model.
-    static let modelName = "OTCoreDataAgent"
+    /// The model name for the Agent persitent store.
+    static let persistentStoreName = "OTCoreDataAgent"
 }
 
 /**
@@ -61,10 +61,10 @@ public final class CoreDataAgent<RawSpan: SpanConvertible>: Agent {
         let storeType: CoreDataStack.StoreType = .sql
         let model = AgentCoreDataObjectModel.model
         if let url = config.coreDataFolderURL {
-            let stack = CoreDataStack(modelName: Constants.modelName, folderURL: url, model: model, type: storeType)
+            let stack = CoreDataStack(persistentStoreName: Constants.persistentStoreName, folderURL: url, model: model, type: storeType)
             self.init(config: config, sender: sender, stack: stack)
         } else {
-            let stack =  CoreDataStack(modelName: Constants.modelName, model: model, type: storeType)
+            let stack =  CoreDataStack(persistentStoreName: Constants.persistentStoreName, model: model, type: storeType)
             self.init(config: config, sender: sender, stack: stack)
         }
     }

@@ -19,8 +19,8 @@ class TestUtilities {
         static let spanUUID = UUID(uuidString: "271C452F-D78A-4612-9425-79BCC21B3811")!
         /// Fixed UUID for a `Trace`
         static let traceUUID = UUID(uuidString: "54186C03-8F55-403F-97D0-CF602CE3D903")!
-        /// The name of the core data agent model file.
-        static let coreDataAgentModelName = "OTCoreDataAgent"
+        /// The name of the persitent store.
+        static let persitentStoreName = "OTCoreDataAgent"
     }
 
     private init() {} // Only static methods for the class.

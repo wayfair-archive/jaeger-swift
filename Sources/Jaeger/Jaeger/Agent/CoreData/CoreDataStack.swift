@@ -37,25 +37,27 @@ final class CoreDataStack {
     /**
      Creates a new `CoreDataStack` for a specified model.
      
-     - Parameter modelName: The name of the CoreDta model.
+     - Parameter persistentStoreName: The name of the persistent store.
      - Parameter folderURL: The folder at which the CoreData files should be created or loaded.
+     - Parameter model: The model used for the CoreData stack.
+     - Parameter type: The `NSPersistentStore` store type to be used when creating the `CoreDataStack`.
      
      - Warning:
      The folder has to exist in order to load or create the persistent store. Falling to provide an existing folder might result in a runtime crash.
      */
-    init(modelName: String,
+    init(persistentStoreName: String,
          folderURL: URL = NSPersistentContainer.defaultDirectoryURL(),
          model: NSManagedObjectModel,
          type: StoreType) {
 
-        self.modelName = modelName
+        self.persistentStoreName = persistentStoreName
         self.folderURL = folderURL
         self.model = model
         self.storeType = type
     }
 
-    /// The name of the CoreDta model.
-    private let modelName: String
+    /// The name of the persistent store.
+    private let persistentStoreName: String
     /// The folder at which the CoreData files should be created or loaded.
     private let folderURL: URL
     /// The model used for the CoreData stack.
@@ -70,7 +72,7 @@ final class CoreDataStack {
     /// The underlying `NSPersistentContainer`. The first access to this variable will trigger the loading of the persistent store synchronously.
     private(set) lazy var storeContainer: NSPersistentContainer = {
 
-        let container = NSPersistentContainer(name: modelName, managedObjectModel: model)
+        let container = NSPersistentContainer(name: persistentStoreName, managedObjectModel: model)
         let description: NSPersistentStoreDescription
 
         switch storeType {
