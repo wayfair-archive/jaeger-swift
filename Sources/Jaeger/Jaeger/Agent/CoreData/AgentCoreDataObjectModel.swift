@@ -7,7 +7,14 @@
 
 import CoreData
 
-/// The Core Data model for the Agent written in Code.
+/** The Core Data model for the Agent written in Code.
+ 
+ By  writing the model in code, we lose the ability of performing automatic migration.
+ To recover this feature, it would require to implement a fully manual migration.
+ More specifically, one would need to keep track of all versions and use a `NSMappingModel`
+ for each version that supports migration.
+
+*/
 enum AgentCoreDataObjectModel {
 
     /// The Core Data model for the Agent written in Code.
