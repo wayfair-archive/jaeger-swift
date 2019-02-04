@@ -13,7 +13,7 @@ class JaegerClientTests: XCTestCase {
 
     private func newStack() -> CoreDataStack {
         let stack = CoreDataStack(
-            persistentStoreName: TestUtilities.Constants.persitentStoreName,
+            persistentStoreName: TestUtilities.Constants.persistentStoreName,
             model: TestUtilities.modelForCoreDataAgent,
             type: .inMemory
         )
@@ -176,7 +176,7 @@ class JaegerClientTests: XCTestCase {
             }
 
             let stack = CoreDataStack(
-                persistentStoreName: TestUtilities.Constants.persitentStoreName,
+                persistentStoreName: TestUtilities.Constants.persistentStoreName,
                 model: TestUtilities.modelForCoreDataAgent,
                 type: .inMemory
             )

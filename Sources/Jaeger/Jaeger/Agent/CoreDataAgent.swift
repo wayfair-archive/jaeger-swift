@@ -19,7 +19,7 @@ private enum Constants {
     static let jsonEncoder =  JSONEncoder()
     /// The shared `JSONDecoder`.
     static let jsonDecoder =  JSONDecoder()
-    /// The model name for the Agent persitent store.
+    /// The model name for the Agent persistent store.
     static let persistentStoreName = "OTCoreDataAgent"
 }
 

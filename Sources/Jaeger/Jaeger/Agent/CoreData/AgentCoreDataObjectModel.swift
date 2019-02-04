@@ -18,7 +18,7 @@ enum AgentCoreDataObjectModel {
         // Core Data Span
         let coreDataSpan = NSEntityDescription()
         coreDataSpan.name = "CoreDataSpan"
-        coreDataSpan.managedObjectClassName = "CoreDataSpan"
+        coreDataSpan.managedObjectClassName = "CoreDataSpan" // See the CoreDataSpan.swift file
 
         // Property 1: Binary Data representing the span
         let jsonSpan = NSAttributeDescription()
