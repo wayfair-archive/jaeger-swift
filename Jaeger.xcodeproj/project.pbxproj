@@ -30,7 +30,7 @@
 		322100E621948DE5007774A2 /* Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322100E521948DE5007774A2 /* Mocks.swift */; };
 		322100E9219490FA007774A2 /* CoreDataAgentConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322100E721949094007774A2 /* CoreDataAgentConfiguration.swift */; };
 		322100EB2194B1E2007774A2 /* JaegerClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322100EA2194B1E2007774A2 /* JaegerClientTests.swift */; };
-		323456CC2204CE1700C3C03A /* AgentCoreDataObjectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323456CB2204CE1700C3C03A /* AgentCoreDataObjectModel.swift */; };
+		323456CC2204CE1700C3C03A /* AgentCoreDataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323456CB2204CE1700C3C03A /* AgentCoreDataObject.swift */; };
 		3257779B2191F74400844EDE /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3257779A2191F74400844EDE /* CoreDataStack.swift */; };
 		3257779F2191F7DC00844EDE /* CoreDataAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3257779E2191F7DC00844EDE /* CoreDataAgent.swift */; };
 		325777A22191F8B100844EDE /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325777A12191F8B100844EDE /* Reachability.swift */; };
@@ -84,7 +84,7 @@
 		322100E521948DE5007774A2 /* Mocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mocks.swift; sourceTree = "<group>"; };
 		322100E721949094007774A2 /* CoreDataAgentConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataAgentConfiguration.swift; sourceTree = "<group>"; };
 		322100EA2194B1E2007774A2 /* JaegerClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JaegerClientTests.swift; sourceTree = "<group>"; };
-		323456CB2204CE1700C3C03A /* AgentCoreDataObjectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentCoreDataObjectModel.swift; sourceTree = "<group>"; };
+		323456CB2204CE1700C3C03A /* AgentCoreDataObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentCoreDataObject.swift; sourceTree = "<group>"; };
 		3257779A2191F74400844EDE /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		3257779E2191F7DC00844EDE /* CoreDataAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataAgent.swift; sourceTree = "<group>"; };
 		325777A12191F8B100844EDE /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
@@ -181,7 +181,7 @@
 			children = (
 				325777A32191F8DE00844EDE /* CoreDataSpan.swift */,
 				3257779A2191F74400844EDE /* CoreDataStack.swift */,
-				323456CB2204CE1700C3C03A /* AgentCoreDataObjectModel.swift */,
+				323456CB2204CE1700C3C03A /* AgentCoreDataObject.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -543,7 +543,7 @@
 				3257779F2191F7DC00844EDE /* CoreDataAgent.swift in Sources */,
 				322100DE219397DD007774A2 /* JSONSender.swift in Sources */,
 				32B0ED89218A2A4800408434 /* SpanSender.swift in Sources */,
-				323456CC2204CE1700C3C03A /* AgentCoreDataObjectModel.swift in Sources */,
+				323456CC2204CE1700C3C03A /* AgentCoreDataObject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

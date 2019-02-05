@@ -64,5 +64,5 @@ class TestUtilities {
         )
     }
 
-    static let modelForCoreDataAgent = AgentCoreDataObjectModel.model
+    static let modelForCoreDataAgent = AgentCoreDataObject.sharedModel
 }

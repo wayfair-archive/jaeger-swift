@@ -1,5 +1,5 @@
 //
-//  AgentCoreDataObjectModel.swift
+//  AgentCoreDataObject.swift
 //  Jaeger
 //
 //  Created by Simon-Pierre Roy on 2/1/19.
@@ -7,18 +7,18 @@
 
 import CoreData
 
-/** The Core Data model for the Agent written in Code.
- 
- By  writing the model in code, we lose the ability of performing automatic migration.
- To recover this feature, it would require to implement a fully manual migration.
- More specifically, one would need to keep track of all versions and use a `NSMappingModel`
- for each version that supports migration.
-
+/** The name space for the Core Data objects. It contains a Core Data model for the Agent written in Code.
 */
-enum AgentCoreDataObjectModel {
+enum AgentCoreDataObject {
 
-    /// The Core Data model for the Agent written in Code.
-    static let model: NSManagedObjectModel = {
+    /** The Core Data model for the Agent written in Code.
+    
+    By  writing the model in code, we lose the ability of performing automatic migration.
+    To recover this feature, it would require to implement a fully manual migration.
+    More specifically, one would need to keep track of all versions and use a `NSMappingModel`
+    for each version that supports migration.
+     */
+    static let sharedModel: NSManagedObjectModel = {
 
         let model = NSManagedObjectModel()
 
