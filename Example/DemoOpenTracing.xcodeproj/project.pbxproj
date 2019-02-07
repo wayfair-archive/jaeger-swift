@@ -19,7 +19,6 @@
 		32881D7621AC981500F838C4 /* DetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32881D7521AC981500F838C4 /* DetailView.storyboard */; };
 		32881D7821AC998B00F838C4 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32881D7721AC998B00F838C4 /* DetailViewController.swift */; };
 		32881D7A21ACA12400F838C4 /* RoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32881D7921ACA12400F838C4 /* RoundView.swift */; };
-		32A025E721B7126100054DCC /* OTCoreDataAgent.mom in Resources */ = {isa = PBXBuildFile; fileRef = 32DA8AAD21B71103004FB41B /* OTCoreDataAgent.mom */; };
 		32A025E921B712D600054DCC /* Jaeger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A025E821B7128B00054DCC /* Jaeger.framework */; };
 		32A025EA21B712D600054DCC /* Jaeger.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 32A025E821B7128B00054DCC /* Jaeger.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		32C2F0C321A5ABF300EEAF4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C2F0C221A5ABF300EEAF4D /* AppDelegate.swift */; };
@@ -79,7 +78,6 @@
 		32C2F0DA21A5AE9700EEAF4D /* ApplicationDependencyContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationDependencyContainer.swift; sourceTree = "<group>"; };
 		32C2F0DC21A5AEDA00EEAF4D /* AppRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
 		32C2F0DE21A5AF6200EEAF4D /* MockApplicationDependencyContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockApplicationDependencyContainer.swift; sourceTree = "<group>"; };
-		32DA8AAD21B71103004FB41B /* OTCoreDataAgent.mom */ = {isa = PBXFileReference; lastKnownFileType = file; name = OTCoreDataAgent.mom; path = Jaeger.framework/OTCoreDataAgent.mom; sourceTree = BUILT_PRODUCTS_DIR; };
 		32F2901521A5B1DF00E9E5D2 /* UIViewControllerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerHelper.swift; sourceTree = "<group>"; };
 		32F2901721A5B4A100E9E5D2 /* ListViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewPresenter.swift; sourceTree = "<group>"; };
 		32F2901921A5B56200E9E5D2 /* ListViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewRouter.swift; sourceTree = "<group>"; };
@@ -138,7 +136,6 @@
 		32C2F0B621A5ABF300EEAF4D = {
 			isa = PBXGroup;
 			children = (
-				32DA8AAD21B71103004FB41B /* OTCoreDataAgent.mom */,
 				32C2F0C121A5ABF300EEAF4D /* DemoOpenTracing */,
 				32C2F0C021A5ABF300EEAF4D /* Products */,
 				3255E5CC21A5BF3700F26971 /* Frameworks */,
@@ -303,7 +300,6 @@
 				32C2F0CA21A5ABF300EEAF4D /* Assets.xcassets in Resources */,
 				32C2F0C821A5ABF300EEAF4D /* ListView.storyboard in Resources */,
 				32881D7621AC981500F838C4 /* DetailView.storyboard in Resources */,
-				32A025E721B7126100054DCC /* OTCoreDataAgent.mom in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

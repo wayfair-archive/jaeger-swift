@@ -13,7 +13,7 @@ class CoreDataStackTests: XCTestCase {
 
     func testInitCoreDataStackInMemory() {
         let stack = CoreDataStack(
-            modelName: TestUtilities.Constants.coreDataAgentModelName,
+            persistentStoreName: TestUtilities.Constants.persistentStoreName,
             model: TestUtilities.modelForCoreDataAgent,
             type: .inMemory
         )

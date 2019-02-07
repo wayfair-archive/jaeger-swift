@@ -19,8 +19,8 @@ private enum Constants {
     static let jsonEncoder =  JSONEncoder()
     /// The shared `JSONDecoder`.
     static let jsonDecoder =  JSONDecoder()
-    /// The model name for the Core Data model.
-    static let modelName = "OTCoreDataAgent"
+    /// The model name for the Agent persistent store.
+    static let persistentStoreName = "OTCoreDataAgent"
 }
 
 /**
@@ -55,18 +55,16 @@ public final class CoreDataAgent<RawSpan: SpanConvertible>: Agent {
      
      - Parameter config: The configuration for the core data stack and agent.
      - Parameter sender: The point of entry to report spans to a collector.
-     - Parameter objectModelBundle: The bundle where the OTCoreDataAgent.mom file was copied.
      */
-    public convenience init(config: CoreDataAgentConfiguration, sender: SpanSender, objectModelBundle: Bundle = .main) {
-        guard let modelURL = objectModelBundle.url(forResource: Constants.modelName, withExtension: "mom"),
-            let model = NSManagedObjectModel(contentsOf: modelURL) else { fatalError() }
-        let storeType: CoreDataStack.StoreType = .sql
+    public convenience init(config: CoreDataAgentConfiguration, sender: SpanSender) {
 
+        let storeType: CoreDataStack.StoreType = .sql
+        let model = AgentCoreDataObject.sharedModel
         if let url = config.coreDataFolderURL {
-            let stack = CoreDataStack(modelName: Constants.modelName, folderURL: url, model: model, type: storeType)
+            let stack = CoreDataStack(persistentStoreName: Constants.persistentStoreName, folderURL: url, model: model, type: storeType)
             self.init(config: config, sender: sender, stack: stack)
         } else {
-            let stack =  CoreDataStack(modelName: Constants.modelName, model: model, type: storeType)
+            let stack =  CoreDataStack(persistentStoreName: Constants.persistentStoreName, model: model, type: storeType)
             self.init(config: config, sender: sender, stack: stack)
         }
     }
