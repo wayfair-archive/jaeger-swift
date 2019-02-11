@@ -59,7 +59,7 @@ public final class CoreDataAgent<RawSpan: SpanConvertible>: Agent {
     public convenience init(config: CoreDataAgentConfiguration, sender: SpanSender) {
 
         let storeType: CoreDataStack.StoreType = .sql
-        let model = AgentCoreDataObject.sharedModel
+        let model = NSManagedObjectModel.Jaeger.sharedAgentModel
         if let url = config.coreDataFolderURL {
             let stack = CoreDataStack(persistentStoreName: Constants.persistentStoreName, folderURL: url, model: model, type: storeType)
             self.init(config: config, sender: sender, stack: stack)

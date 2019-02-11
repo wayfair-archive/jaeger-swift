@@ -64,5 +64,5 @@ class TestUtilities {
         )
     }
 
-    static let modelForCoreDataAgent = AgentCoreDataObject.sharedModel
+    static let modelForCoreDataAgent = NSManagedObjectModel.Jaeger.sharedAgentModel
 }
