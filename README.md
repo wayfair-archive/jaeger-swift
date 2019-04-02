@@ -129,7 +129,7 @@ class ViewController: UIViewController {
     let configuration = CoreDataAgentConfiguration(averageMaximumSpansPerSecond: 5, savingInterval: 5, sendingInterval: 10, coreDataFolderURL: nil)!
     let process = JaegerBatchProcess(serviceName: "Demo App", tags: [])
     let sender = JaegerJSONSender(endPoint: mediatorEndpoint, process: process)
-    return JaegerCoreDataClient(config: configuration, sender: sender, objectModelBundle: .main)
+    return JaegerCoreDataClient(config: configuration, sender: sender)
   }()
 
   override func viewDidLoad() {
