@@ -51,7 +51,7 @@ sudo sysctl net.inet.udp.maxdgram=65536
 
 ###### Carthage
 
-* Add `github "wayfair/jaeger-swift" == 2.0.0` to your `Cartfile`.
+* Add `github "wayfair/jaeger-swift" == 3.0.0` to your `Cartfile`.
 * Run `carthage bootstrap` to download and generate the Jaeger Framework.
 * Drag `Jaeger.framework` from the appropriate platform directory in `Carthage/Build/` to the “Linked Frameworks and Libraries” section of your Xcode project’s “General” settings.
 
