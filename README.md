@@ -22,7 +22,7 @@ $ docker run -d --name jaeger \
 -p 16686:16686 \
 -p 14268:14268 \
 -p 9411:9411 \
-jaegertracing/all-in-one:1.9
+jaegertracing/all-in-one:1.11
 ```
 
 Now, if you open your browser and type [http://localhost:16686](http://localhost:16686), you should see the Jaeger web interface that displays trace information. Of course, there won't be any traces from our client there.
@@ -51,7 +51,7 @@ sudo sysctl net.inet.udp.maxdgram=65536
 
 ###### Carthage
 
-* Add `github "wayfair/jaeger-swift" == 1.0.0` to your `Cartfile`.
+* Add `github "wayfair/jaeger-swift" == 3.0.0` to your `Cartfile`.
 * Run `carthage bootstrap` to download and generate the Jaeger Framework.
 * Drag `Jaeger.framework` from the appropriate platform directory in `Carthage/Build/` to the “Linked Frameworks and Libraries” section of your Xcode project’s “General” settings.
 
@@ -129,7 +129,7 @@ class ViewController: UIViewController {
     let configuration = CoreDataAgentConfiguration(averageMaximumSpansPerSecond: 5, savingInterval: 5, sendingInterval: 10, coreDataFolderURL: nil)!
     let process = JaegerBatchProcess(serviceName: "Demo App", tags: [])
     let sender = JaegerJSONSender(endPoint: mediatorEndpoint, process: process)
-    return JaegerCoreDataClient(config: configuration, sender: sender, objectModelBundle: .main)
+    return JaegerCoreDataClient(config: configuration, sender: sender)
   }()
 
   override func viewDidLoad() {
