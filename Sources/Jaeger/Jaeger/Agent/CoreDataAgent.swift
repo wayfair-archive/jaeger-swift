@@ -277,6 +277,7 @@ public final class CoreDataAgent<RawSpan: SpanConvertible>: Agent {
         }
     }
 
+    ///  :nodoc:
     deinit {
         savingTimer?.invalidate()
         sendingTimer?.invalidate()
