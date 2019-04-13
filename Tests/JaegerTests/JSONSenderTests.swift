@@ -7,7 +7,6 @@
 
 import XCTest
 @testable import Jaeger
-import CoreData
 
 class JSONSenderTests: XCTestCase {
 

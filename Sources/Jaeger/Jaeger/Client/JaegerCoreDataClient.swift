@@ -1,10 +1,11 @@
 //
-//  JaegerClient.swift
+//  JaegerCoreDataClient.swift
 //  Jaeger
 //
 //  Created by Simon-Pierre Roy on 11/9/18.
 //
 
+#if canImport(CoreData)
 import Foundation
 
 /// A Jaeger client using core data as a caching mechanism and a configurable `SpanSender`.
@@ -66,3 +67,4 @@ public final class JaegerCoreDataClient {
         self.tracer = JaegerTracer(agent: agent)
     }
 }
+#endif

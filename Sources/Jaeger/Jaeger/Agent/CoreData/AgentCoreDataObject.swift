@@ -5,6 +5,7 @@
 //  Created by Simon-Pierre Roy on 2/1/19.
 //
 
+#if canImport(CoreData)
 import CoreData
 
 extension NSManagedObjectModel {
@@ -45,3 +46,4 @@ extension NSManagedObjectModel {
         }()
     }
 }
+#endif

@@ -5,6 +5,7 @@
 //  Created by Simon-Pierre Roy on 11/6/18.
 //
 
+#if canImport(CoreData)
 import Foundation
 import CoreData
 
@@ -121,3 +122,4 @@ final class CoreDataStack {
         }
     }
 }
+#endif

@@ -5,7 +5,10 @@
 //  Created by Simon-Pierre Roy on 11/6/18.
 //
 
+#if canImport(CoreData)
+#if canImport(UIKit)
 import UIKit
+#endif
 import CoreData
 
 /// An agent using a Core Data Stack to save a binary representation of a JaegerSpan.
@@ -120,11 +123,13 @@ public final class CoreDataAgent<RawSpan: SpanConvertible>: Agent {
 
     /// Add an action to save spans to disk when the application will terminate.
     private func addAppWillTerminateActions() {
+        #if canImport(UIKit)
         _ = NotificationCenter.default.addObserver(forName: UIApplication.willTerminateNotification, object: nil, queue: nil) { [weak self] _ in
             self?.backgroundContext.performAndWait { [weak self] in
                 self?.save()
             }
         }
+        #endif
     }
 
     /**
@@ -283,3 +288,4 @@ public final class CoreDataAgent<RawSpan: SpanConvertible>: Agent {
         sendingTimer?.invalidate()
     }
 }
+#endif

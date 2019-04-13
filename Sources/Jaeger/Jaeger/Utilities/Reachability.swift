@@ -5,6 +5,7 @@
 //  Created by Simon-Pierre Roy on 11/6/18.
 //
 
+#if canImport(SystemConfiguration)
 import SystemConfiguration
 
 /**
@@ -78,11 +79,12 @@ extension Reachability: ReachabilityTracker {
             return .notConnected
         }
 
-        guard flags.contains(.isWWAN) else {
-            return .wifi
+        #if os(iOS) || os(tvOS)
+        if !flags.contains(.isWWAN) {
+            return .mobileData
         }
-
-        return .mobileData
+        #endif
+        return .wifi
     }
 
     /**
@@ -97,3 +99,4 @@ extension Reachability: ReachabilityTracker {
         }
     }
 }
+#endif

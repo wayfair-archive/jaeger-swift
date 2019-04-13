@@ -7,7 +7,6 @@
 
 import XCTest
 @testable import Jaeger
-import CoreData
 
 class TestUtilities {
 
@@ -64,5 +63,7 @@ class TestUtilities {
         )
     }
 
+    #if canImport(CoreData)
     static let modelForCoreDataAgent = NSManagedObjectModel.Jaeger.sharedAgentModel
+    #endif
 }

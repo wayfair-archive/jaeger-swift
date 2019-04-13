@@ -5,6 +5,7 @@
 //  Created by Simon-Pierre Roy on 11/6/18.
 //
 
+#if canImport(CoreData)
 import XCTest
 import CoreData
 @testable import Jaeger
@@ -23,3 +24,4 @@ class CoreDataStackTests: XCTestCase {
         XCTAssertEqual(typeForStore, NSInMemoryStoreType)
     }
 }
+#endif

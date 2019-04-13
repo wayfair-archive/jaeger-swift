@@ -5,6 +5,7 @@
 //  Created by Simon-Pierre Roy on 11/7/18.
 //
 
+#if canImport(CoreData)
 import Foundation
 
 /// A delegate receiving all errors from a `CoreDataAgent`.
@@ -21,3 +22,4 @@ public protocol CoreDataAgentErrorDelegate: class {
      */
     func handleError(_ error: Error)
 }
+#endif

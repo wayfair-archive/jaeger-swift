@@ -102,6 +102,7 @@ struct TestSpanConvertible: SpanConvertible {
     init(span: Span) { }
 }
 
+#if canImport(CoreData)
 /**
  A mock `CDAgentErrorDelegate`.
  */
@@ -117,6 +118,7 @@ class TestCDAgentErrorDelegate: CoreDataAgentErrorDelegate {
         errorCompletion(error)
     }
 }
+#endif
 
 /**
  A mock `SpanSender`.

@@ -6,6 +6,7 @@
 //
 //
 
+#if canImport(CoreData)
 import Foundation
 import CoreData
 
@@ -43,3 +44,4 @@ class CoreDataSpan: NSManagedObject {
         return NSFetchRequest<CoreDataSpan>(entityName: "CoreDataSpan")
     }
 }
+#endif

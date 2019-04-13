@@ -7,6 +7,7 @@
 
 import Foundation
 
+#if canImport(CoreData)
 /**
  The configuration used by the `CoreDataAgent` agent to set up the core data stack and saving behavior.
  */
@@ -69,3 +70,4 @@ public struct CoreDataAgentConfiguration {
     /// An optional URL to a folder where the core data files will be saved. When not specified the `NSPersistentContainer.defaultDirectoryURL()` will be used.
     public let coreDataFolderURL: URL?
 }
+#endif

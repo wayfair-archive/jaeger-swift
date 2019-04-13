@@ -1,7 +1,34 @@
-language: swift
-osx_image: xcode10.2
-xcode_project: Jaeger.xcodeproj
-xcode_scheme: Jaeger
-xcode_destination: platform=iOS Simulator,OS=12.2,name=iPhone XS
+env:
+  global:
+    - LC_CTYPE=en_US.UTF-8
+os: osx
+language: generic
+matrix:
+  exclude:
+    - os: osx
+  include:
+    - os: linux
+      language: generic
+      sudo: required
+      dist: xenial
+      env:
+        - SWIFT_VERSION="5.0"
+      before_install:
+        - eval "$(curl -sL https://gist.githubusercontent.com/kylef/5c0475ff02b7c7671d2a/raw/9f442512a46d7a2af7b850d65a7e9bd31edfb09b/swiftenv-install.sh)"
+      script:
+        - swift build --verbose
+        - swift test || true
+    - osx_image: xcode10.2
+      language: swift
+      env:
+        - JOB=SWIFT_PM
+      script:
+        - swift build --verbose
+        - swift test
+    - osx_image: xcode10.2
+      language: swift
+      xcode_project: Jaeger.xcodeproj
+      xcode_scheme: Jaeger
+      xcode_destination: platform=iOS Simulator,OS=12.2,name=iPhone XS
 
 install: echo Disabled automatic Gemfile detection to save time

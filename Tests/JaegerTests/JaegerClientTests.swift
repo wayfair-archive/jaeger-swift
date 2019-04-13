@@ -5,6 +5,7 @@
 //  Created by Simon-Pierre Roy on 11/8/18.
 //
 
+#if canImport(CoreData)
 import XCTest
 @testable import Jaeger
 import CoreData
@@ -194,3 +195,4 @@ class JaegerClientTests: XCTestCase {
         XCTAssertNotNil(tracer)
     }
 }
+#endif
