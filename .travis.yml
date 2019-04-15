@@ -7,7 +7,8 @@ matrix:
   exclude:
     - os: osx
   include:
-    - os: linux
+    - name: "SwiftPM – Linux"
+      os: linux
       language: generic
       sudo: required
       dist: xenial
@@ -18,17 +19,23 @@ matrix:
       script:
         - swift build --verbose
         - swift test
-    - osx_image: xcode10.2
+    - name: "SwiftPM – macOS"
+      osx_image: xcode10.2
       language: swift
       env:
         - JOB=SWIFT_PM
       script:
         - swift build --verbose
         - swift test
-    - osx_image: xcode10.2
+    - name: "Xcode 10.2"
+      osx_image: xcode10.2
       language: swift
       xcode_project: Jaeger.xcodeproj
       xcode_scheme: Jaeger
       xcode_destination: platform=iOS Simulator,OS=12.2,name=iPhone XS
+    - name: "Swiftlint"
+      osx_image: xcode10.2
+      language: swift
+      script: swiftlint lint
 
 install: echo Disabled automatic Gemfile detection to save time
